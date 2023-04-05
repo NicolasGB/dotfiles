@@ -1,0 +1,13 @@
+Autorandr
+Betterlockscreen
+Brightnessctl
+Rofi
+Polybar
+Networkmanager_dmenu
+Blueman
+Nitrogen
+Picom
+Playerctl
+Mpv
+snixembed
+Kwallet (pam kwallet)
