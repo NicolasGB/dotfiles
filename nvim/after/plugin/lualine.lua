@@ -38,3 +38,12 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+-- Lualine
+require('lualine').setup {
+    options = {
+        theme = "auto"
+        -- ... the rest of your lualine config
+    }
+}
+

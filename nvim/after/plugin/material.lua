@@ -25,7 +25,7 @@ require('material').setup({
         -- Available plugins:
         -- "dap",
         -- "dashboard",
-        -- "gitsigns",
+        "gitsigns",
         -- "hop",
         -- "indent-blankline",
         -- "lspsaga",
@@ -37,7 +37,7 @@ require('material').setup({
         -- "nvim-tree",
         -- "nvim-web-devicons",
         -- "sneak",
-        -- "telescope",
+        "telescope",
         -- "trouble",
         -- "which-key",
     },
@@ -64,5 +64,5 @@ require('material').setup({
     custom_highlights = {}, -- Overwrite highlights with your own
 })
 
--- vim.cmd 'colorscheme material'
+ -- vim.cmd 'colorscheme material'
 
