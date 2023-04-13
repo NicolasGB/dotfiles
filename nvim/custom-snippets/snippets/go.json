@@ -1,0 +1,17 @@
+{
+    "if error": {
+        "prefix": "iferr",
+        "body": "if err := ${1:func}; err != nil {\n\t$2\n}",
+        "description": "if err function"
+    },
+    "kore variable log": {
+        "prefix": "vlog",
+        "body": "log.Info().Msgf(\"${1} %+v\", ${2:variable})",
+        "description": "Log a variable in kore"
+    },
+    "kore service": {
+        "prefix": "serv",
+        "body": "@Service(${1})",
+        "description": "Service annotation"
+    }
+}

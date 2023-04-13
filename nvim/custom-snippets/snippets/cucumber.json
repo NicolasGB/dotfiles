@@ -1,0 +1,27 @@
+{
+    "wip": {
+        "prefix": "wip",
+        "body": "\n\n@wip",
+        "description": "Wip tag for kore tests"
+    },
+    "dump": {
+        "prefix": "dump",
+        "body": "And I dump the response",
+        "description": "Dump the response in kore tests"
+    },
+    "empty": {
+        "prefix": "empty",
+        "body": "Scenario: [Err]  ${1:desc}\nWhen I call the  \"${2:handler}\".\"${3:method}\" handler with no data\nThen the response should not be successful\nAnd the response error code should be 400\nAnd the error data JSON node \"violations.fields.${4:field}\" should exist",
+        "description": "Empty scenario"
+    },
+    "eq": {
+        "prefix": "eq",
+        "body": "And the JSON node \"${1:node}\" should be equal to \"${2:value}\"",
+        "description": "Response node equal in kore"
+    },
+    "val": {
+        "prefix": "val",
+        "body": "And the error data JSON node \"violations.fields.${1:field}\" should exist",
+        "description": "Check field validation in kore"
+    }
+}

@@ -60,6 +60,10 @@ lsp.setup_nvim_cmp({
         { name = "buffer" },
     },
     mapping = cmp_mappings,
+    preselect = 'first',
+    completion = {
+        completeopt = 'menu,menuone,noinsert'
+    },
 })
 
 lsp.set_preferences({
