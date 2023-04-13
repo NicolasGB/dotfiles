@@ -11,3 +11,15 @@ Playerctl
 Mpv
 snixembed
 Kwallet (pam kwallet)
+
+
+-- Some usefull packages--
+
+lsd
+bat
+fd
+ripgrep
+zoxide
+lazydocker
+lazygit
+starship
