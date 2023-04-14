@@ -1,5 +1,6 @@
 require("neo-tree").setup({
     filesystem = {
+        follow_current_file = true,
         filtered_items = {
             visible = false,
             hide_dotfiles = true,
@@ -18,5 +19,15 @@ require("neo-tree").setup({
 
             },
         }
+    },
+    event_handlers = {
+        {
+            event = "file_opened",
+            handler = function(file_path)
+                --auto close
+                require("neo-tree").close_all()
+            end
+        },
+
     }
 })

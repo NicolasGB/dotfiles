@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd({ 'User' }, {
   pattern = "SessionLoadPost",
   group = config_group,
   callback = function()
-    vim.cmd("Neotree show"); -- if this is annoying remove later
+     -- vim.cmd("Neotree show"); -- if this is annoying remove later
   end,
 })
 
