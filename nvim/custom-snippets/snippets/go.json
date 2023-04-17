@@ -6,7 +6,7 @@
     },
     "kore variable log": {
         "prefix": "vlog",
-        "body": "log.Info().Msgf(\"${1} %+v\", ${2:variable})",
+        "body": "log.Info().Msgf(\"${1} %+v\", ${2})",
         "description": "Log a variable in kore"
     },
     "kore service": {

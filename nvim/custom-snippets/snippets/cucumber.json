@@ -1,7 +1,7 @@
 {
     "wip": {
         "prefix": "wip",
-        "body": "\n\n@wip",
+        "body": "@wip",
         "description": "Wip tag for kore tests"
     },
     "dump": {

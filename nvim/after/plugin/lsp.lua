@@ -32,29 +32,28 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 --- Luasnip Mapping ---
 local luasnip = require("luasnip")
 cmp_mappings["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_locally_jumpable() then
+    if luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
-      else
+    else
         fallback()
-      end
-    end, { "i", "s" })
+    end
+end, { "i", "s" })
 cmp_mappings["<S-Tab>"] = cmp.mapping(function(fallback)
     if luasnip.jumpable(-1) then
         luasnip.jump(-1)
-      else
+    else
         fallback()
-      end
-    end, { "i", "s" })
+    end
+end, { "i", "s" })
 
----
-
+--- CMP Setup ---
 lsp.setup_nvim_cmp({
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
         end
     },
-     sources = {
+    sources = {
         { name = "luasnip", option = { use_show_condition = false, show_autosnippets = true } },
         { name = "nvim_lsp" },
         { name = "buffer" },
@@ -66,8 +65,21 @@ lsp.setup_nvim_cmp({
     },
 })
 
+-- Disable completion in comments
+cmp.setup({
+    enabled = function()
+        if require "cmp.config.context".in_treesitter_capture("comment") == true or require "cmp.config.context".in_syntax_group("Comment") then
+            return false
+        else
+            return true
+        end
+    end
+})
+
+-- some lsp settings
+
 lsp.set_preferences({
-    suggest_lsp_servers = false,
+    suggest_lsp_servers = true,
     sign_icons = {
         error = "E",
         warn = "W",
@@ -97,7 +109,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
     vim.keymap.set("n", "gr", telescope.lsp_references, opts)
     vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
-    vim.keymap.set("n", "<leader>vs", function () telescope.lsp_document_symbols({symbol_width = 80}) end, opts)
+    vim.keymap.set("n", "<leader>vs", function() telescope.lsp_document_symbols({ symbol_width = 80 }) end, opts)
 end)
 
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
