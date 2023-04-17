@@ -1,6 +1,5 @@
 require("neo-tree").setup({
     filesystem = {
-        follow_current_file = true,
         filtered_items = {
             visible = false,
             hide_dotfiles = true,
@@ -29,5 +28,6 @@ require("neo-tree").setup({
             end
         },
 
-    }
+   },
 })
+

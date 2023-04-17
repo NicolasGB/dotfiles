@@ -57,6 +57,7 @@ lsp.setup_nvim_cmp({
         { name = "luasnip", option = { use_show_condition = false, show_autosnippets = true } },
         { name = "nvim_lsp" },
         { name = "buffer" },
+        { name = "crates" }
     },
     mapping = cmp_mappings,
     preselect = 'first',
@@ -102,7 +103,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "ge", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "gpe", function() vim.diagnostic.goto_prev() end, opts)
     vim.keymap.set("n", "<leader>le", telescope.diagnostics, opts)
-    vim.keymap.set("n", "<leader>va", function() vim.lsp.buf.code_action() end, opts)
+    -- Good old JetBrains 
+    vim.keymap.set("n", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("v", "<leader>va", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>R", function() vim.lsp.buf.rename() end, opts)
@@ -129,34 +131,8 @@ require("lspconfig").gopls.setup({
     },
 })
 
+
 lsp.skip_server_setup({ "rust_analyzer" })
 
 lsp.setup()
 
------- RUST SETUP ------
-local rust_tools = require("rust-tools")
-
-rust_tools.setup({
-    tools = {
-        runnables = {
-            use_telescope = true,
-        },
-        inlay_hints = {
-            auto = true,
-            show_parameter_hints = true,
-        },
-    },
-    server = {
-        on_attach = function()
-            vim.keymap.set('n', '<leader>ha', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
-        end,
-        settings = {
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy",
-                },
-            },
-        },
-    }
-})

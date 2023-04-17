@@ -26,3 +26,12 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Replace word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Saving the old way
+vim.keymap.set("n", "<C-s>", ":w<CR>")
+vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a")
+
+-- Quitting 
+vim.keymap.set("n", "<C-q>", ":qa<CR>")
+vim.keymap.set("i", "<C-q>", "<Esc>:qa<CR>")
+vim.keymap.set("v", "<C-q>", "<Esc>:qa<CR>")
