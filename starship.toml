@@ -14,3 +14,6 @@ symbol = '  '
 
 [golang]
 symbol = ' '
+
+[python]
+symbol = ' '
