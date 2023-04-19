@@ -60,9 +60,9 @@ lsp.setup_nvim_cmp({
         { name = "crates" }
     },
     mapping = cmp_mappings,
-    preselect = 'first',
+    preselect = 'item',
     completion = {
-        completeopt = 'menu,menuone,noinsert'
+        completeopt = 'menu,menuone,noinsert',
     },
 })
 
@@ -74,7 +74,11 @@ cmp.setup({
         else
             return true
         end
-    end
+    end,
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
 })
 
 -- some lsp settings
@@ -103,7 +107,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "ge", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "gpe", function() vim.diagnostic.goto_prev() end, opts)
     vim.keymap.set("n", "<leader>le", telescope.diagnostics, opts)
-    -- Good old JetBrains 
+    -- Good old JetBrains
     vim.keymap.set("n", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("v", "<leader>va", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
@@ -114,8 +118,10 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vs", function() telescope.lsp_document_symbols({ symbol_width = 80 }) end, opts)
 end)
 
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-require("lspconfig").gopls.setup({
+-- LSP Servers Setup
+local lspconfig = require("lspconfig")
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+lspconfig.gopls.setup({
     settings = {
         gopls = {
             hints = {
@@ -130,9 +136,22 @@ require("lspconfig").gopls.setup({
         },
     },
 })
-
-
+lspconfig.yamlls.setup({
+    settings = {
+        yaml = {
+            keyOrdering = false
+        }
+    },
+})
 lsp.skip_server_setup({ "rust_analyzer" })
 
-lsp.setup()
+-- Format on save
+lsp.format_on_save({
+    servers = {
+        ["lua_ls"] = { "lua" },
+        ["gopls"] = { "go" },
+        ["rust_analyzer"] = { "rust" },
+    }
+})
 
+lsp.setup()

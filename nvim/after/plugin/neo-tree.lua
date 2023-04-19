@@ -11,13 +11,15 @@ require("neo-tree").setup({
                 "Cargo.lock",
                 ".env",
                 ".ssh",
+                ".shared",
 
                 -- Kore
                 ".env.local",
                 "docker-compose.override.yaml"
 
             },
-        }
+        },
+        follow_current_file = true,
     },
     event_handlers = {
         {
@@ -28,6 +30,5 @@ require("neo-tree").setup({
             end
         },
 
-   },
+    },
 })
-
