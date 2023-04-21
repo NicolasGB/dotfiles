@@ -63,8 +63,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty msg create-window -o font.size=10 || alacritty -o font.size=10
-
+bindsym $mod+Return exec alacritty msg create-window || alacritty  
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -252,10 +251,11 @@ bar {
 #          Custom             #
 ###############################
 
+# Battery capacity notifier
+exec --no-startup-id ~/.config/i3/battery-notify -f 20 -s 10 -i 3
+
 # Autorandr
 exec --no-startup-id autorandr --change && nitrogen --restore 
-
-#&& feh --bg-scale ~/polybar-themes/wallpapers/bg_17.jpg --bg-fill ~/polybar-themes/wallpapers/bg_17.jpg
 
 # Picom
 exec --no-startup-id picom --config ~/.config/picom/picom.conf --backend=xrender
@@ -278,7 +278,7 @@ smart_borders on
 exec --no-startup-id /usr/lib/pam_kwallet_init
 
 # Polybar
-exec_always --no-startup-id ~/.config/polybar/forest/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
