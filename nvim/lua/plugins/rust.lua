@@ -24,13 +24,32 @@ return {
                     end,
                     settings = {
                         ["rust-analyzer"] = {
-                            -- enable clippy on save
-                            checkOnSave = {
-                                command = "clippy",
+                            cargo = { features = "all" },
+                            assist = {
+                                importEnforceGranularity = true,
+                                importPrefix = "crate"
                             },
+                            checkOnSave = {
+                                enable = true,
+                                command = "clippy",
+                                features = "all",
+                            },
+                            inlayHints = {
+                                lifetimeElisionHints = {
+                                    enable = true,
+                                    useParameterNames = true
+                                }
+                            }
                         },
                     },
+                    standalone = false,
+                    cmd = { "rustup", "run", "stable", "rust-analyzer" },
                 },
+                dap = {
+                    adapter = "executable",
+                    command = "lldb_vscode",
+                    name = "rt_lldb",
+                }
             })
         end
     },
@@ -41,5 +60,5 @@ return {
             crates.setup()
             crates.show()
         end,
-    }
+    },
 }

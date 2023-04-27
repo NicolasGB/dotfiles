@@ -5,7 +5,6 @@ vim.diagnostic.config({
 local lsp = require("lsp-zero").preset({})
 
 lsp.ensure_installed({
-    "rust_analyzer",
     "gopls",
 })
 
@@ -60,7 +59,7 @@ lsp.setup_nvim_cmp({
         { name = "crates" }
     },
     mapping = cmp_mappings,
-    preselect = 'item',
+    preselect = 'first',
     completion = {
         completeopt = 'menu,menuone,noinsert',
     },

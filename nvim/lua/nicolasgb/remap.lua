@@ -30,6 +30,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- Saving the old way
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a")
+vim.keymap.set("v", "<C-s>", "<Esc>:w<CR>^V")
 
 -- Quitting
 vim.keymap.set("n", "<C-q>", ":qa<CR>")
