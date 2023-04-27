@@ -122,7 +122,7 @@ font:
     family: JetBrainsMono Nerd Font
     style: SemiBold Italic
 
-  size: 12
+  size: 11
   # Font family
   #
   # If the bold family is not specified, it will fall back to the
