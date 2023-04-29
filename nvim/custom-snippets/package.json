@@ -12,6 +12,15 @@
             {
                 "language": "cucumber",
                 "path": "./snippets/cucumber.json"
+            },
+            {
+                "language": [
+                    "rust",
+                    "javascript",
+                    "go",
+                    "typescript"
+                ],
+                "path": "./snippets/remembers.json"
             }
         ]
     }

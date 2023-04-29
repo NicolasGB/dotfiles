@@ -34,6 +34,7 @@ return {
                                 command = "clippy",
                                 features = "all",
                             },
+                            -- this doesn't seem to do nothing
                             inlayHints = {
                                 lifetimeElisionHints = {
                                     enable = true,
