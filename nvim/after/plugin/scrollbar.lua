@@ -22,10 +22,19 @@ require("scrollbar").setup({
             text = { "━╸" },
             color = "#DBBC7F"
         },
+        Info = {
+            text = { "━╸" },
+        },
+        Hint = {
+            text = { "━╸" },
+        },
+        Misc = {
+            text = { "━╸" },
+        }
     },
     handlers = {
         cursor = false,
         gitsigns = true,
-        search = true
+        search = false
     }
 })
