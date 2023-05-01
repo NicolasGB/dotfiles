@@ -108,7 +108,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>le", telescope.diagnostics, opts)
     -- Good old JetBrains
     vim.keymap.set("n", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("v", "<leader>va", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("v", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>R", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
@@ -152,3 +152,5 @@ lsp.format_on_save({
         ["rust_analyzer"] = { "rust" },
     }
 })
+
+lsp.setup()
