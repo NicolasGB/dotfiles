@@ -20,6 +20,9 @@ return {
                 end,
                 group = format_sync_grp,
             })
+
+            vim.keymap.set("n", "<leader>fs", ":GoFillStruct<CR>")
+            vim.keymap.set("n", "<leader>at", ":GoAddTag<CR>")
         end,
     },
 }

@@ -1,6 +1,9 @@
 return {
     { 'folke/tokyonight.nvim' },
     {
+        'hrsh7th/nvim-cmp',
+    },
+    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         dependencies = {
@@ -150,6 +153,7 @@ return {
                         experimentalPostfixCompletions = true,
                         analyses = {
                             unusedparams = true,
+                            unusedresult = true,
                             shadow = true,
                         },
                         hints = {
@@ -175,6 +179,10 @@ return {
 
             -- Format on save
             lsp.format_on_save({
+                format_opts = {
+                    async = false,
+                    timeout_ms = 10000,
+                },
                 servers = {
                     ["lua_ls"] = { "lua" },
                     ["gopls"] = { "go" },
