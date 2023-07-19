@@ -79,11 +79,11 @@ return {
                     end
                 },
                 sources = {
-                    { name = "nvim_lsp" },
                     {
                         name = "luasnip",
                         option = { use_show_condition = false, show_autosnippets = true }
                     },
+                    { name = "nvim_lsp" },
                     { name = "buffer" },
                     { name = "crates" }
                 },
