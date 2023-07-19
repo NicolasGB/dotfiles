@@ -29,3 +29,11 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = ""
+
+-- Remove the 'ro' option from 'formatoptions' to avoid continuing comments
+vim.cmd([[
+augroup RemoveROFormatOptions
+  autocmd!
+  autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
+augroup END
+]])

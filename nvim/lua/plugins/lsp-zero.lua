@@ -79,8 +79,11 @@ return {
                     end
                 },
                 sources = {
-                    { name = "luasnip", option = { use_show_condition = false, show_autosnippets = true } },
                     { name = "nvim_lsp" },
+                    {
+                        name = "luasnip",
+                        option = { use_show_condition = false, show_autosnippets = true }
+                    },
                     { name = "buffer" },
                     { name = "crates" }
                 },
@@ -104,6 +107,11 @@ return {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
+                performance = {
+                    trigger_debounce_time = 300,
+                    throttle = 60,
+                    fetching_timeout = 200,
+                }
             })
 
             -- some lsp settings
@@ -147,6 +155,7 @@ return {
             -- LSP Servers Setup
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+
             lspconfig.gopls.setup({
                 settings = {
                     gopls = {

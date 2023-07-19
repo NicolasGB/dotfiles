@@ -10,10 +10,21 @@ return {
                 ts_config = {
                     lua = { 'string' }, -- it will not add a pair on that treesitter node
                     javascript = { 'template_string' },
-                    java = false, -- don't check treesitter on java
+                    java = false,       -- don't check treesitter on java
                 },
                 enable_check_bracket_line = true,
-                fast_wrap = {},
+                fast_wrap = {
+                    map = '<A-e>',
+                    chars = { '{', '[', '(', '"', "'" },
+                    pattern = [=[[%'%"%>%]%)%}%,]]=],
+                    end_key = '$',
+                    keys = 'qwertyuiopzxcvbnmasdfghjkl',
+                    check_comma = true,
+                    manual_position = true,
+                    highlight = 'Search',
+                    highlight_grey = 'Comment'
+                },
+                disable_filetype = { "TelescopePrompt", "vim" },
             })
 
             local ts_conds = require('nvim-autopairs.ts-conds')

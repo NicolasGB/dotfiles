@@ -1,0 +1,17 @@
+{
+    "macro": {
+        "prefix": "macro",
+        "body": "#[${1}]",
+        "description": "A macro"
+    },
+    "closure": {
+        "prefix": "closure",
+        "body": "|${1}| ${2}",
+        "description": "A closure"
+    },
+    "async function": {
+        "prefix": "afn",
+        "body": "async fn ${1}(${2}) -> ${3} {\n\t${4:unimplemented!()}\n}",
+        "description": "An async function"
+    }
+}

@@ -37,3 +37,8 @@ vim.keymap.set("v", "<C-s>", "<Esc>:w<CR>^V")
 vim.keymap.set("n", "<C-q>", ":qa<CR>")
 vim.keymap.set("i", "<C-q>", "<Esc>:qa<CR>")
 vim.keymap.set("v", "<C-q>", "<Esc>:qa<CR>")
+
+
+-- New lines
+vim.api.nvim_set_keymap('n', '<Leader>j', 'o<Esc>k', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>k', 'O<Esc>j', { noremap = true, silent = true })
