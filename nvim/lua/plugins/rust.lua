@@ -44,7 +44,9 @@ return {
                         },
                     },
                     standalone = false,
-                    cmd = { "rustup", "run", "stable", "rust-analyzer" },
+                    -- Chose whichever fits based on the project needs
+                    -- cmd = { "rustup", "run", "stable", "rust-analyzer" },
+                    cmd = { "rustup", "run", "nightly", "rust-analyzer" },
                 },
                 dap = {
                     adapter = "executable",
