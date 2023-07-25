@@ -15,7 +15,7 @@ return {
                 enable_check_bracket_line = true,
                 fast_wrap = {
                     map = '<A-e>',
-                    chars = { '{', '[', '(', '"', "'" },
+                    chars = { '{', '[', '(', '"', "'", "<" },
                     pattern = [=[[%'%"%>%]%)%}%,]]=],
                     end_key = '$',
                     keys = 'qwertyuiopzxcvbnmasdfghjkl',
@@ -30,12 +30,9 @@ return {
             local ts_conds = require('nvim-autopairs.ts-conds')
 
 
-            -- press % => %% only while inside a comment or string
+            -- press < ton rust files
             npairs.add_rules({
-                Rule("%", "%", "lua")
-                    :with_pair(ts_conds.is_ts_node({ 'string', 'comment' })),
-                Rule("$", "$", "lua")
-                    :with_pair(ts_conds.is_not_ts_node({ 'function' }))
+                Rule("<", ">", "rust")
             })
         end
     }
