@@ -31,7 +31,7 @@ return {
             local lsp = require("lsp-zero").preset({})
 
             lsp.ensure_installed({
-                "gopls",
+                "gopls", "lua_ls"
             })
 
             -- Fix Undefined global 'vim'
@@ -97,11 +97,14 @@ return {
             -- Disable completion in comments
             cmp.setup({
                 enabled = function()
-                    if require "cmp.config.context".in_treesitter_capture("comment") == true or require "cmp.config.context".in_syntax_group("Comment") then
-                        return false
-                    else
-                        return true
-                    end
+                    -- Check if the current buffer's filetype is "TelescopePrompt"
+                    local telescope_prompt = vim.bo.filetype == "TelescopePrompt"
+
+                    -- Check if the cursor is inside a comment (treesitter or syntax).
+                    local inside_comment = require("cmp.config.context").in_treesitter_capture("comment") == true
+                        or require("cmp.config.context").in_syntax_group("Comment")
+
+                    return not (telescope_prompt or inside_comment)
                 end,
                 window = {
                     completion = cmp.config.window.bordered(),

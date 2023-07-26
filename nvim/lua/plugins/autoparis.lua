@@ -32,7 +32,8 @@ return {
 
             -- press < ton rust files
             npairs.add_rules({
-                Rule("<", ">", "rust")
+                Rule("<", ">", { "rust", "html", "markdown" })
+                    :with_pair(ts_conds.is_not_ts_node({ "comment" }))
             })
         end
     }
