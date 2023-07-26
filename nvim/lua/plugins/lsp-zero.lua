@@ -189,6 +189,13 @@ return {
             })
             lsp.skip_server_setup({ "rust_analyzer" })
 
+            -- GraphQL setup
+            local util = require 'lspconfig.util'
+            lspconfig.graphql.setup({
+                root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*',
+                    '/config/gqlgen.yaml')
+            })
+
             -- Format on save
             lsp.format_on_save({
                 format_opts = {
