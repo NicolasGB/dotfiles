@@ -41,9 +41,9 @@ augroup END
 -- Diagnostic signs instead of letters
 local signs = {
     Error = " ",
-    Warning = " ",
+    Warn = " ",
     Hint = " ",
-    Information = " "
+    Info = " "
 }
 
 for type, icon in pairs(signs) do
