@@ -45,3 +45,7 @@ vim.api.nvim_set_keymap('n', '<Leader>k', 'O<Esc>j', { noremap = true, silent = 
 
 -- Select all
 vim.api.nvim_set_keymap('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
+
+-- Indentation
+vim.api.nvim_set_keymap('v', '>', '>gv', {})
+vim.api.nvim_set_keymap('v', '<', '<gv', {})

@@ -23,5 +23,10 @@
         "prefix": "context",
         "body": "ctx context.Context",
         "description": "Context"
+    },
+    "mtd": {
+        "prefix": "mtd",
+        "body": "func (${1:m} *${2:receiver}) ${3:method}(${4:args}) (${5:returns}) {\n\t$6\n}",
+        "description": "Function with receiver"
     }
 }

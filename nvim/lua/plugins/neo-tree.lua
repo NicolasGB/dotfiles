@@ -34,7 +34,7 @@ return {
             filesystem = {
                 window = {
                     mappings = {
-                        ["ff"] = "telescope_find",
+                        ["gf"] = "telescope_find",
                         ["gr"] = "telescope_grep",
                     }
                 },
