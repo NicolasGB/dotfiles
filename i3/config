@@ -63,7 +63,8 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty msg create-window || alacritty  
+# bindsym $mod+Return exec alacritty msg create-window || alacritty  
+bindsym $mod+Return exec wezterm
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -264,7 +265,7 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf --backend=xrender
 exec --no-startup-id xrdb ~/.Xresources
 
 #Keyboard layouts
-exec_always --no-startup-id /usr/bin/setxkbmap -layout es,fr 
+# exec_always --no-startup-id /usr/bin/setxkbmap -layout es,fr -option caps:escape
 
 # I3 Gaps
 for_window [class="^.*"] border pixel 2
