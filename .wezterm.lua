@@ -21,11 +21,26 @@ config.window_background_opacity = 0.70
 config.hide_tab_bar_if_only_one_tab = true
 
 -- Font
-config.font = wezterm.font('JetBrains Mono', { weight = 'Regular', stretch = 'Expanded' })
--- config.font = wezterm.font 'JetBrains Mono'
+config.font = wezterm.font_with_fallback({
+    -- { family = 'JetBrains Mono',          weight = 'Regular' },
+    { family = 'JetBrainsMono Nerd Font', weight = 'Regular' },
+    "JetBrainsMono Nerd Font",
+    "Material Design Icons",
+    "Symbols Nerd Font",
+})
 config.font_size = 10.5
+config.adjust_window_size_when_changing_font_size = false
+config.window_padding = {
+    left = 4,
+    right = 4,
+    top = 4,
+    bottom = 4,
+}
 
--- config.max_fps = 144
+config.window_close_confirmation = 'NeverPrompt'
+
+
+config.max_fps = 144
 
 -- and finally, return the configuration to wezterm
 return config

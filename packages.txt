@@ -11,6 +11,7 @@ Playerctl
 Mpv
 snixembed
 Kwallet (pam kwallet)
+Wezterm
 
 
 -- Some usefull packages--
