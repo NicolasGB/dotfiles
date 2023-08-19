@@ -39,8 +39,16 @@ config.window_padding = {
 
 config.window_close_confirmation = 'NeverPrompt'
 
+-- Cursor things
+config.force_reverse_video_cursor = true
+config.hide_mouse_cursor_when_typing = false
 
 config.max_fps = 144
+
+-- Disable fullscreen keybinding to prevent overlap with code actions
+config.keys = {
+    { key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
+}
 
 -- and finally, return the configuration to wezterm
 return config
