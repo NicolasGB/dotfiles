@@ -4,6 +4,21 @@ return {
         'hrsh7th/nvim-cmp',
     },
     {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        config = function()
+            require("mason-tool-installer").setup({
+                ensure_installed = {
+                    "gopls",
+                    "html-lsp",
+                    "json-lsp",
+                    "lua_ls",
+                    "prettier",
+                },
+                auto_update = true,
+            })
+        end,
+    },
+    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         dependencies = {
