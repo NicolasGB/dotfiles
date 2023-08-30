@@ -2,6 +2,9 @@ return {
     { 'folke/tokyonight.nvim' },
     {
         'hrsh7th/nvim-cmp',
+        dependencies = {
+            'hrsh7th/cmp-path',
+        }
     },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -100,7 +103,8 @@ return {
                     },
                     { name = "nvim_lsp" },
                     { name = "buffer" },
-                    { name = "crates" }
+                    { name = "crates" },
+                    { name = "path" },
                 },
                 mapping = cmp_mappings,
                 preselect = 'none',
@@ -178,6 +182,7 @@ return {
                 settings = {
                     gopls = {
                         experimentalPostfixCompletions = true,
+                        staticcheck = true,
                         analyses = {
                             unusedparams = true,
                             unusedresult = true,
@@ -186,6 +191,7 @@ return {
                     },
                 },
             })
+
             lspconfig.yamlls.setup({
                 settings = {
                     yaml = {

@@ -1,35 +1,53 @@
-vim.opt.nu = true
-vim.opt.relativenumber = true
+local opt = vim.opt
 
-vim.opt.cursorline = true
-
-
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-
-vim.opt.wrap = false
-
-vim.opt.backup = false
-vim.opt.swapfile = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+-- Line numbers
+opt.nu = true
+opt.relativenumber = true
+opt.cursorline = true
 
 
-vim.opt.termguicolors = true
+-- Indentationt and formatting
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.smartindent = true
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+opt.wrap = false
 
-vim.opt.updatetime = 50
+-- Undo storing
+opt.backup = false
+opt.swapfile = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
 
-vim.opt.colorcolumn = ""
+opt.hlsearch = false
+opt.incsearch = true  -- Incremental search
+opt.ignorecase = true -- Ignore case when searching...
+opt.smartcase = true  -- ... unless there is a capital letter in the query
+
+-- Splitting
+opt.equalalways = false -- I don't like my windows changing all the time
+opt.splitright = true   -- Prefer windows splitting to the right
+opt.splitbelow = true   -- Prefer windows splitting to the bottom
+
+opt.termguicolors = true
+
+opt.scrolloff = 10 -- Always show 10 lines below cursor
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")
+
+opt.updatetime = 50
+
+-- Disable color column
+opt.colorcolumn = ""
+
+-- Folding
+opt.foldmethod = "marker"
+opt.foldlevel = 0
+opt.modelines = 1
+
+opt.belloff = "all" -- Just turn the dang bell off
 
 -- Remove the 'ro' option from 'formatoptions' to avoid continuing comments
 vim.cmd([[

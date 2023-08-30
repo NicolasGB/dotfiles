@@ -58,6 +58,13 @@ return {
                 end,
                 settings = {
                     gopls = {
+                        experimentalPostfixCompletions = true,
+                        analyses = {
+                            unusedparams = true,
+                            unusedresult = true,
+                            shadow = true,
+                        },
+                        staticcheck = true,
                         hints = {
                             assignVariableTypes = true,
                             compositeLiteralFields = true,

@@ -11,7 +11,7 @@ return {
             return {
                 cwd = path,
                 search_dirs = { path },
-                attach_mappings = function(prompt_bufnr, map)
+                attach_mappings = function(prompt_bufnr, _)
                     local actions = require "telescope.actions"
                     actions.select_default:replace(function()
                         actions.close(prompt_bufnr)
@@ -31,6 +31,17 @@ return {
 
 
         require("neo-tree").setup({
+            default_component_configs = {
+                file_size = {
+                    enabled = false,
+                },
+                last_modified = {
+                    enabled = false,
+                },
+                created = {
+                    enabled = false,
+                },
+            },
             filesystem = {
                 window = {
                     mappings = {
