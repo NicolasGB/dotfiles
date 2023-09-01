@@ -22,9 +22,9 @@ opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 
 opt.hlsearch = false
-opt.incsearch = true  -- Incremental search
-opt.ignorecase = true -- Ignore case when searching...
-opt.smartcase = true  -- ... unless there is a capital letter in the query
+opt.incsearch = true   -- Incremental search
+opt.ignorecase = false -- Ignore case when searching...
+opt.smartcase = true   -- ... unless there is a capital letter in the query
 
 -- Splitting
 opt.equalalways = false -- I don't like my windows changing all the time

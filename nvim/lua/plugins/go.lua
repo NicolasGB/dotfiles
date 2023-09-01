@@ -37,6 +37,9 @@ return {
 
             --Disable colliding binding
             vim.g.go_def_mapping_enabled = 0
+
+            --Use gopls in fillstruct
+            vim.g.go_fillstruct_mode = "gopls"
         end
     }
 }
