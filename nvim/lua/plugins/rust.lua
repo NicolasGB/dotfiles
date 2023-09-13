@@ -5,7 +5,7 @@ return {
         config = function()
             -- Debugger
             -- Update this path
-            local extension_path = vim.env.HOME .. '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2/'
+            local extension_path = vim.env.HOME .. '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/'
             local codelldb_path = extension_path .. 'adapter/codelldb'
             local liblldb_path = extension_path .. 'lldb/lib/liblldb'
             local this_os = vim.loop.os_uname().sysname;
@@ -39,10 +39,6 @@ return {
                     on_attach = function()
                         vim.keymap.set('n', '<leader>ha', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
                     end,
-                    dap = {
-                        adapter = require('rust-tools.dap').get_codelldb_adapter(
-                            codelldb_path, liblldb_path)
-                    },
                     settings = {
                         ["rust-analyzer"] = {
                             cargo = { features = "all" },
@@ -70,10 +66,9 @@ return {
                     -- cmd = { "rustup", "run", "nightly", "rust-analyzer" },
                 },
                 dap = {
-                    adapter = "executable",
-                    command = "lldb_vscode",
-                    name = "rt_lldb",
-                }
+                    adapter = require('rust-tools.dap').get_codelldb_adapter(
+                        codelldb_path, liblldb_path)
+                },
             })
         end
     },

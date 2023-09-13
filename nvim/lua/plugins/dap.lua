@@ -34,6 +34,29 @@ return {
             vim.keymap.set("n", "<F7>", vim.cmd.DapStepInto)
 
             require("dap.ext.vscode").load_launchjs()
+
+            dap.adapters.codelldb = {
+                type = 'server',
+                port = "${port}",
+                executable = {
+                    command = '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/adapter/codelldb',
+                    args = { "--port", "${port}" },
+                }
+            }
+
+            -- dap.configurations.rust = {
+            --     {
+            --         name = "Rust debug",
+            --         type = "codelldb",
+            --         request = "launch",
+            --         showDisassembly = "never",
+            --         program = function()
+            --             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+            --         end,
+            --         cwd = '${workspaceFolder}',
+            --         stopOnEntry = true,
+            --     },
+            -- }
         end
     },
     { "theHamsta/nvim-dap-virtual-text" }
