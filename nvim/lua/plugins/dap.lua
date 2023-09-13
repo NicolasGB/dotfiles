@@ -2,12 +2,19 @@ return {
     {
         "rcarriga/nvim-dap-ui",
         dependencies = "mfussenegger/nvim-dap",
-
+        keys = {
+            {
+                "<leader>db",
+                function()
+                    require("dapui").toggle()
+                end,
+                silent = true,
+            },
+        },
         config = function()
             local dapui = require("dapui")
 
-            dapui.setup()
-            vim.keymap.set("n", "<leader>db", vim.cmd.DapUiToggle)
+            dapui.setup({})
 
             local dap = require("dap")
             dap.listeners.after.event_initialized["dapui_config"] = function()

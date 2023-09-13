@@ -3,6 +3,23 @@ return {
         'simrat39/rust-tools.nvim',
         ft = { 'rust' },
         config = function()
+            -- Debugger
+            -- Update this path
+            local extension_path = vim.env.HOME .. '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2/'
+            local codelldb_path = extension_path .. 'adapter/codelldb'
+            local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+            local this_os = vim.loop.os_uname().sysname;
+
+            -- The path in windows is different
+            if this_os:find "Windows" then
+                codelldb_path = extension_path .. "adapter\\codelldb.exe"
+                liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+            else
+                -- The liblldb extension is .so for linux and .dylib for macOS
+                liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+            end
+
+            -- Rust tools config
             local rust_tools = require("rust-tools")
 
             rust_tools.setup({
@@ -22,6 +39,10 @@ return {
                     on_attach = function()
                         vim.keymap.set('n', '<leader>ha', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
                     end,
+                    dap = {
+                        adapter = require('rust-tools.dap').get_codelldb_adapter(
+                            codelldb_path, liblldb_path)
+                    },
                     settings = {
                         ["rust-analyzer"] = {
                             cargo = { features = "all" },
@@ -45,8 +66,8 @@ return {
                     },
                     standalone = false,
                     -- Chose whichever fits based on the project needs
-                    -- cmd = { "rustup", "run", "stable", "rust-analyzer" },
-                    cmd = { "rustup", "run", "nightly", "rust-analyzer" },
+                    cmd = { "rustup", "run", "stable", "rust-analyzer" },
+                    -- cmd = { "rustup", "run", "nightly", "rust-analyzer" },
                 },
                 dap = {
                     adapter = "executable",
