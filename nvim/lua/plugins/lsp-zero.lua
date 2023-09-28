@@ -16,6 +16,8 @@ return {
                     "json-lsp",
                     "lua_ls",
                     "prettier",
+                    "graphql-language-service-cli",
+                    "yaml-language-server",
                 },
                 auto_update = true,
             })
@@ -53,6 +55,7 @@ return {
             })
 
             -- Fix Undefined global 'vim'
+            -- Note that things are overriden in the inlay-hints part setup
             lsp.configure("lua_ls", {
                 settings = {
                     Lua = {
