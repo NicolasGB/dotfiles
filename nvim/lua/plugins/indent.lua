@@ -27,6 +27,9 @@ return {
                                 'struct_elem',
                                 'struct_field',
                                 'keyed_element',
+                                'const_declaration',
+                                'import_declaration',
+                                'type_declaration',
                             }
                         }
                     }
