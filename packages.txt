@@ -12,6 +12,8 @@ Mpv
 snixembed
 Kwallet (pam kwallet)
 Wezterm
+PCManFM
+nmtui
 
 
 -- Some usefull packages--
