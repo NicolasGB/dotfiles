@@ -14,6 +14,7 @@ Kwallet (pam kwallet)
 Wezterm
 PCManFM
 nmtui
+xclip
 
 
 -- Some usefull packages--
@@ -36,4 +37,6 @@ delta
 set keyboard layout definitive in X11:
     localectl --no-convert set-x11-keymap es,fr '' ''  caps:escape
 
-betterlockscreen -u ~/polybar-themes/wallpapers/bg_17.jpg --fx dim,pixel
+betterlockscreen-u ~/polybar-themes/wallpapers/bg_17.jpg --fx dim,pixel
+
+sugar-candy sddm
