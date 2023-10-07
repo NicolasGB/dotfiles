@@ -32,6 +32,9 @@ fzf
 delta
 
 
+sddm-sugar-candy 
+
+
 -- Useful commands --
 
 set keyboard layout definitive in X11:
@@ -39,4 +42,5 @@ set keyboard layout definitive in X11:
 
 betterlockscreen-u ~/polybar-themes/wallpapers/bg_17.jpg --fx dim,pixel
 
-sddm-sugar-candy 
+
+tips: From polybar clone and launch once the script comming from then then cp again over and icons are up
