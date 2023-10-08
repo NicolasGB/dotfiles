@@ -74,6 +74,7 @@ return {
                         ".env",
                         ".ssh",
                         ".shared",
+                        ".cargo",
 
                         -- Kore
                         ".env.local",
