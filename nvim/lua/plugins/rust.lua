@@ -60,7 +60,7 @@ return {
                             }
                         },
                     },
-                    standalone = false,
+                    standalone = true,
                     -- Chose whichever fits based on the project needs
                     cmd = { "rustup", "run", "stable", "rust-analyzer" },
                     -- cmd = { "rustup", "run", "nightly", "rust-analyzer" },
