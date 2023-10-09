@@ -44,3 +44,5 @@ betterlockscreen-u ~/polybar-themes/wallpapers/bg_17.jpg --fx dim,pixel
 
 
 tips: From polybar clone and launch once the script comming from then then cp again over and icons are up
+
+ln -s  ~/dotfiles/nvim ~/.config/nvim
