@@ -75,6 +75,7 @@ return {
                         ".ssh",
                         ".shared",
                         ".cargo",
+                        ".air.toml",
 
                         -- Kore
                         ".env.local",
