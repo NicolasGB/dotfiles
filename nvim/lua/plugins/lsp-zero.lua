@@ -221,6 +221,7 @@ return {
                     ["lua_ls"] = { "lua" },
                     ["gopls"] = { "go" },
                     ["rust_analyzer"] = { "rust" },
+                    ["jsonls"] = { "json" },
                 }
             })
 
