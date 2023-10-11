@@ -67,6 +67,7 @@ return {
                     hide_dotfiles = true,
                     hide_gitignored = true,
                     always_show = {
+                        ".github",
                         ".gitignore",
                         ".gitlab-ci.yml",
                         "target",

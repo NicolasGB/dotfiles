@@ -203,7 +203,7 @@ assign [class="jetbrains-goland"] $ws2
 assign [class="discord|microsoft-edge"]    $ws3
 
 #Floating for file manager 
-for_window [class="Pcmanfm|Nautilus|Thunar|Toplevel|kruler"] floating enable
+for_window [class="Pcmanfm|Nautilus|Thunar|Toplevel|kruler|Pavucontrol"] floating enable
 
 
 

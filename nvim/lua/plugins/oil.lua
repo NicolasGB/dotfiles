@@ -11,7 +11,7 @@ return {
                 default_file_explorer = false, -- If i get used to might activate it later
                 keymaps = {
                     ["<C-s>"] = "actions.save",
-                    ["<A-c>"] = "actions.close",
+                    ["q"] = "actions.close",
                     ["<A-p>"] = "actions.parent"
                 },
                 view_options = {
