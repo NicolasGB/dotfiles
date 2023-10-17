@@ -24,7 +24,7 @@ return {
     },
     {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
+        branch = 'v3.x',
         dependencies = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
@@ -49,21 +49,9 @@ return {
 
             local lsp = require("lsp-zero").preset({})
 
-            lsp.ensure_installed({
-                "gopls", "lua_ls"
-            })
 
             -- Fix Undefined global 'vim'
             -- Note that things are overriden in the inlay-hints part setup
-            lsp.configure("lua_ls", {
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
-                    },
-                },
-            })
 
             local cmp = require("cmp")
             local cmp_select = { behavior = cmp.SelectBehavior.Replace }
@@ -92,7 +80,7 @@ return {
             end, { "i", "s" })
 
             --- CMP Setup ---
-            lsp.setup_nvim_cmp({
+            cmp.setup({
                 snippet = {
                     expand = function(args)
                         require('luasnip').lsp_expand(args.body)
@@ -113,10 +101,7 @@ return {
                 completion = {
                     completeopt = 'menu,menuone,noinsert',
                 },
-            })
-
-            -- Disable completion in comments
-            cmp.setup({
+                -- Disable completion in comments
                 enabled = function()
                     -- Check if the current buffer's filetype is "TelescopePrompt"
                     local telescope_prompt = vim.bo.filetype == "TelescopePrompt"
@@ -139,14 +124,13 @@ return {
             })
 
             -- some lsp settings
-
             lsp.set_preferences({
                 suggest_lsp_servers = true,
                 sign_icons = {
-                    error = "E",
-                    warn = "W",
-                    hint = "H",
-                    info = "I",
+                    error = " ",
+                    warn = " ",
+                    hint = " ",
+                    info = " "
                 },
             })
 
@@ -178,24 +162,43 @@ return {
 
             -- LSP Servers Setup
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
-
-            lspconfig.yamlls.setup({
-                settings = {
-                    yaml = {
-                        keyOrdering = false
-                    }
-                },
-            })
-            -- Gopls setup in inlay-hints and rus_analyzer in rust-tools
-            lsp.skip_server_setup({ "rust_analyzer", "gopls" })
-
-            -- GraphQL setup
-            local util = require 'lspconfig.util'
-            lspconfig.graphql.setup({
-                root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*',
-                    '/config/gqlgen.yaml')
+            require('mason').setup({})
+            require('mason-lspconfig').setup({
+                ensure_installed = { 'gopls', 'lua_ls', 'yamlls', 'jsonls' },
+                handlers = {
+                    lsp.default_setup,
+                    -- Lua setup
+                    lua_ls = function()
+                        lspconfig.lua_ls.setup({
+                            settings = {
+                                Lua = {
+                                    diagnostics = {
+                                        globals = { "vim" },
+                                    },
+                                },
+                            },
+                        })
+                    end,
+                    -- YAML setup
+                    yamlls = function()
+                        lspconfig.yamlls.setup({
+                            settings = {
+                                yaml = {
+                                    keyOrdering = false
+                                }
+                            },
+                        })
+                    end,
+                    -- GraphQL setup
+                    graphql = function()
+                        local util = require 'lspconfig.util'
+                        lspconfig.graphql.setup({
+                            root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*',
+                                '/config/gqlgen.yaml')
+                        })
+                    end
+                }
             })
 
             -- Format on save
