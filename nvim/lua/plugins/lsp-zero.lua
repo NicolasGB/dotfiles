@@ -1,5 +1,4 @@
 return {
-    { 'folke/tokyonight.nvim' },
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
@@ -181,19 +180,6 @@ return {
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
-            lspconfig.gopls.setup({
-                settings = {
-                    gopls = {
-                        experimentalPostfixCompletions = true,
-                        staticcheck = true,
-                        analyses = {
-                            unusedparams = true,
-                            unusedresult = true,
-                            shadow = true,
-                        },
-                    },
-                },
-            })
 
             lspconfig.yamlls.setup({
                 settings = {
@@ -202,7 +188,8 @@ return {
                     }
                 },
             })
-            lsp.skip_server_setup({ "rust_analyzer" })
+            -- Gopls setup in inlay-hints and rus_analyzer in rust-tools
+            lsp.skip_server_setup({ "rust_analyzer", "gopls" })
 
             -- GraphQL setup
             local util = require 'lspconfig.util'
