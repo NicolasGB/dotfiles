@@ -1,8 +1,17 @@
 return {
     {
         "iamcco/markdown-preview.nvim",
-        build = "cd app && npm install",
-        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        build = function()
+            local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
+            vim.cmd("silent !cd " .. install_path .. " && npm install && git restore .")
+        end,
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+            vim.g.mkdp_auto_close = 0
+        end,
         ft = { "markdown" },
         config = function()
             vim.keymap.set("n", "<leader>md", vim.cmd.MarkdownPreview)

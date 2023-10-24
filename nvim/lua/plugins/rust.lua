@@ -1,77 +1,121 @@
 return {
     {
-        'simrat39/rust-tools.nvim',
-        ft = { 'rust' },
-        config = function()
-            -- Debugger
-            -- Update this path
-            local extension_path = vim.env.HOME .. '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/'
-            local codelldb_path = extension_path .. 'adapter/codelldb'
-            local liblldb_path = extension_path .. 'lldb/lib/liblldb'
-            local this_os = vim.loop.os_uname().sysname;
+        'mrcjkb/rustaceanvim',
+        version = '^3', -- Recommended
+        dependencies = {
+            "lvimuser/lsp-inlayhints.nvim",
+            -- "VonHeikemen/lsp-zero.nvim",
+        },
+        init = function()
+            -- Get inlay hints
+            local ih = require("lsp-inlayhints")
 
-            -- The path in windows is different
-            if this_os:find "Windows" then
-                codelldb_path = extension_path .. "adapter\\codelldb.exe"
-                liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
-            else
-                -- The liblldb extension is .so for linux and .dylib for macOS
-                liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
-            end
 
-            -- Rust tools config
-            local rust_tools = require("rust-tools")
-
-            rust_tools.setup({
-                tools = {
-                    runnables = {
-                        use_telescope = true,
-                    },
-                    inlay_hints = {
-                        auto = true,
-                        show_parameter_hints = true,
-                    },
-                    hover_actions = {
-                        auto_focus = true,
-                    }
-                },
+            -- Configure rustaceanvim here
+            vim.g.rustaceanvim = {
                 server = {
-                    on_attach = function()
-                        vim.keymap.set('n', '<leader>ha', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+                    on_attach = function(client, bufnr)
+                        ih.on_attach(client, bufnr)
                     end,
-                    settings = {
-                        ["rust-analyzer"] = {
-                            cargo = { features = "all" },
-                            assist = {
-                                importEnforceGranularity = true,
-                                importPrefix = "crate"
-                            },
-                            checkOnSave = {
-                                enable = true,
-                                command = "clippy",
-                                features = "all",
-                            },
-                            -- this doesn't seem to do nothing
-                            inlayHints = {
-                                lifetimeElisionHints = {
-                                    enable = true,
-                                    useParameterNames = true
-                                }
-                            }
+                    ["rust-analyzer"] = {
+                        cargo = { features = "all" },
+                        assist = {
+                            importEnforceGranularity = true,
+                            importPrefix = "crate"
                         },
+                        checkOnSave = {
+                            enable = true,
+                            command = "clippy",
+                            features = "all",
+                        },
+                        -- this doesn't seem to do nothing
+                        inlayHints = {
+                            lifetimeElisionHints = {
+                                enable = true,
+                                useParameterNames = true
+                            }
+                        }
                     },
-                    standalone = true,
-                    -- Chose whichever fits based on the project needs
                     cmd = { "rustup", "run", "stable", "rust-analyzer" },
-                    -- cmd = { "rustup", "run", "nightly", "rust-analyzer" },
                 },
-                dap = {
-                    adapter = require('rust-tools.dap').get_codelldb_adapter(
-                        codelldb_path, liblldb_path)
-                },
-            })
-        end
+            }
+        end,
+        ft = { 'rust' },
     },
+    -- {
+    --     'simrat39/rust-tools.nvim',
+    --     -- 'Ciel-MC/rust-tools.nvim',
+    --     ft = { 'rust' },
+    --     config = function()
+    --         -- Debugger
+    --         -- Update this path
+    --         local extension_path = vim.env.HOME .. '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/'
+    --         local codelldb_path = extension_path .. 'adapter/codelldb'
+    --         local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+    --         local this_os = vim.loop.os_uname().sysname;
+    --
+    --         -- The path in windows is different
+    --         if this_os:find "Windows" then
+    --             codelldb_path = extension_path .. "adapter\\codelldb.exe"
+    --             liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+    --         else
+    --             -- The liblldb extension is .so for linux and .dylib for macOS
+    --             liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+    --         end
+    --
+    --         -- Rust tools config
+    --         local rust_tools = require("rust-tools")
+    --
+    --         rust_tools.setup({
+    --             tools = {
+    --                 runnables = {
+    --                     use_telescope = true,
+    --                 },
+    --                 inlay_hints = {
+    --                     auto = true,
+    --                     show_parameter_hints = true,
+    --                 },
+    --                 hover_actions = {
+    --                     auto_focus = true,
+    --                 }
+    --             },
+    --             server = {
+    --                 on_attach = function()
+    --                     vim.keymap.set('n', '<leader>ha', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+    --                 end,
+    --                 settings = {
+    --                     ["rust-analyzer"] = {
+    --                         cargo = { features = "all" },
+    --                         assist = {
+    --                             importEnforceGranularity = true,
+    --                             importPrefix = "crate"
+    --                         },
+    --                         checkOnSave = {
+    --                             enable = true,
+    --                             command = "clippy",
+    --                             features = "all",
+    --                         },
+    --                         -- this doesn't seem to do nothing
+    --                         inlayHints = {
+    --                             lifetimeElisionHints = {
+    --                                 enable = true,
+    --                                 useParameterNames = true
+    --                             }
+    --                         }
+    --                     },
+    --                 },
+    --                 standalone = true,
+    --                 -- Chose whichever fits based on the project needs
+    --                 cmd = { "rustup", "run", "stable", "rust-analyzer" },
+    --                 -- cmd = { "rustup", "run", "nightly", "rust-analyzer" },
+    --             },
+    --             dap = {
+    --                 adapter = require('rust-tools.dap').get_codelldb_adapter(
+    --                     codelldb_path, liblldb_path)
+    --             },
+    --         })
+    --     end
+    -- },
     {
         "saecki/crates.nvim",
         config = function()
