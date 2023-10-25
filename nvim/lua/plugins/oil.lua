@@ -17,6 +17,10 @@ return {
                 view_options = {
                     show_hidden = true,
                 },
+                float = {
+                    max_width = 75,
+                    max_height = 50,
+                }
             })
             vim.keymap.set("n", "-", oil.open_float, { desc = "Open parent directory" })
         end
