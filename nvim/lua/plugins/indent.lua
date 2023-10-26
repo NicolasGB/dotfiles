@@ -30,7 +30,14 @@ return {
                                 'const_declaration',
                                 'import_declaration',
                                 'type_declaration',
+                                'literal_value'
+                            },
+                            rust = {
+                                'declaration_list',
+                                'let_declaration',
+                                'arguments'
                             }
+
                         }
                     }
                 },
