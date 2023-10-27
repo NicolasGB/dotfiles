@@ -4,8 +4,12 @@ return {
         dependencies = {
             'VonHeikemen/lsp-zero.nvim',
         },
+        branch = "anticonceal",
         ft = { "go", "gomod", "lua" },
         config = function()
+            vim.api.nvim_set_hl(0, 'LspInlayHint',
+                { fg = '#6C7E8C', bold = true, ctermfg = 198, cterm = { bold = true } })
+
             local ih = require("lsp-inlayhints")
             require("lsp-inlayhints").setup({
                 inlay_hints = {
@@ -33,7 +37,7 @@ return {
                     -- padding from the left if max_len_align is true
                     max_len_align_padding = 1,
                     -- highlight group
-                    highlight = "Comment", -- This can be set to 'LspInlayHint'
+                    highlight = "LspInlayHint", -- This can be set to 'LspInlayHint'
                     -- virt_text priority
                     priority = 0,
                 },
