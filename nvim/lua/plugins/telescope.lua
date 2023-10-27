@@ -6,6 +6,7 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-ui-select.nvim',
+            "nvim-telescope/telescope-frecency.nvim",
         },
         config = function()
             local builtin = require('telescope.builtin')
@@ -19,9 +20,11 @@ return {
             vim.keymap.set('n', '<leader>gr', builtin.live_grep, {})
             vim.keymap.set('n', '<C-p>', builtin.git_files, {})
             vim.keymap.set('n', '<leader>fc', builtin.current_buffer_fuzzy_find, {})
+            vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
             -- Search in help
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
+            local actions = require("telescope.actions")
             require("telescope").setup {
                 extensions = {
                     ["ui-select"] = {
@@ -29,22 +32,24 @@ return {
                             -- even more opts
                         }
                     }
-                }
-            }
-
-            require("telescope").load_extension("ui-select")
-
-            local actions = require("telescope.actions")
-            require("telescope").setup {
+                },
                 defaults = {
                     mappings = {
                         i = {
                             ["<C-u>"] = false,
                             ["<esc>"] = actions.close,
+                            ["<A-c>"] = actions.delete_buffer,
                         },
+                        n = {
+                            ["<esc>"] = actions.close,
+                            ["<A-c>"] = actions.delete_buffer,
+                        }
                     },
                 }
             }
+
+            require("telescope").load_extension("ui-select")
+            require("telescope").load_extension("frecency")
         end
     },
 }
