@@ -30,9 +30,13 @@ starship
 sad
 fzf
 delta
+libratbag (mouse)
+piper (mouse)
+copyq
 
 
 sddm-sugar-candy 
+
 
 
 -- Useful commands --
