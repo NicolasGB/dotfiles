@@ -33,6 +33,7 @@ delta
 libratbag (mouse)
 piper (mouse)
 copyq
+network-manager-applet
 
 
 sddm-sugar-candy 

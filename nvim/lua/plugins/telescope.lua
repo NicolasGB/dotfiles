@@ -6,7 +6,7 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-ui-select.nvim',
-            "nvim-telescope/telescope-frecency.nvim",
+            -- "nvim-telescope/telescope-frecency.nvim",
         },
         config = function()
             local builtin = require('telescope.builtin')
@@ -49,7 +49,7 @@ return {
             }
 
             require("telescope").load_extension("ui-select")
-            require("telescope").load_extension("frecency")
+            -- require("telescope").load_extension("frecency")
         end
     },
 }

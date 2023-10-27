@@ -50,7 +50,8 @@ return {
             -- Lua setup
             require('lspconfig').lua_ls.setup({
                 on_attach = function(client, bufnr)
-                    ih.on_attach(client, bufnr)
+                    vim.lsp.inlay_hint(bufnr, true)
+                    -- ih.on_attach(client, bufnr)
                 end,
                 settings = {
                     Lua = {
@@ -68,7 +69,8 @@ return {
             -- Golang setup
             lspconfig.gopls.setup({
                 on_attach = function(c, b)
-                    ih.on_attach(c, b)
+                    vim.lsp.inlay_hint(b, true)
+                    -- ih.on_attach(c, b)
                 end,
                 settings = {
                     gopls = {

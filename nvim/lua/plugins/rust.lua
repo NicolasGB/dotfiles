@@ -15,7 +15,8 @@ return {
             vim.g.rustaceanvim = {
                 server = {
                     on_attach = function(client, bufnr)
-                        ih.on_attach(client, bufnr)
+                        vim.lsp.inlay_hint(bufnr, true)
+                        -- ih.on_attach(client, bufnr)
                     end,
                     ["rust-analyzer"] = {
                         cargo = { features = "all" },

@@ -30,6 +30,7 @@ exec_always --no-startup-id /usr/bin/snixembed --fork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+exec --no-startup-id copyq
 
 ###############################
 #          APPARENCE          #
