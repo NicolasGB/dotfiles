@@ -39,6 +39,8 @@ return {
             { 'hrsh7th/nvim-cmp' },     -- Required
             { 'hrsh7th/cmp-nvim-lsp' }, -- Required
             { 'L3MON4D3/LuaSnip' },     -- Required
+            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
+            { "ray-x/lsp_signature.nvim" },
             -- Telescope
             { 'nvim-telescope/telescope.nvim' }
         },
@@ -157,11 +159,16 @@ return {
                 vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
                 vim.keymap.set("n", "gr", telescope.lsp_references, opts)
                 vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
-                -- vim.keymap.set("n", "<leader>vs", function() telescope.lsp_document_symbols({ symbol_width = 80 }) end, opts)
             end)
 
-            -- LSP Servers Setup
-            local lspconfig = require("lspconfig")
+            -- Signature helper
+            local signHelper = require("lsp_signature").setup({
+                floating_window = false,
+            })
+
+            -- Setup LSPs
+
+            local lspconfig = require('lspconfig')
 
             require('mason').setup({})
             require('mason-lspconfig').setup({

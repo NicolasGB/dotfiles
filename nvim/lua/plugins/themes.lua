@@ -4,6 +4,7 @@ return {
         config = function()
             require("everforest").setup({
                 background = "hard",
+                diagnostic_text_highlight = true,
             })
 
             vim.cmd.colorscheme "everforest"
