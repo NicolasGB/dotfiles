@@ -9,7 +9,7 @@ return {
         config = function()
             vim.api.nvim_set_hl(0, 'LspInlayHint',
                 { fg = '#6C7E8C', bold = true, ctermfg = 198, cterm = { bold = true } })
-
+            -- bg = '#353C40'
             local ih = require("lsp-inlayhints")
             require("lsp-inlayhints").setup({
                 inlay_hints = {
@@ -87,7 +87,7 @@ return {
                             compositeLiteralTypes = true,
                             constantValues = true,
                             functionTypeParameters = true,
-                            parameterNames = false,
+                            parameterNames = true,
                             rangeVariableTypes = true,
                         },
                     },
