@@ -18,25 +18,28 @@ return {
                         vim.lsp.inlay_hint(bufnr, true)
                         -- ih.on_attach(client, bufnr)
                     end,
-                    ["rust-analyzer"] = {
-                        cargo = { features = "all" },
-                        assist = {
-                            importEnforceGranularity = true,
-                            importPrefix = "crate"
-                        },
-                        checkOnSave = {
-                            enable = true,
-                            command = "clippy",
-                            features = "all",
-                        },
-                        -- this doesn't seem to do nothing
-                        inlayHints = {
-                            lifetimeElisionHints = {
+                    settings = {
+                        ["rust-analyzer"] = {
+                            cargo = { features = "all" },
+                            assist = {
+                                importEnforceGranularity = true,
+                                importPrefix = "crate"
+                            },
+                            checkOnSave = {
                                 enable = true,
-                                useParameterNames = true
+                                command = "clippy",
+                                features = "all",
+                            },
+                            -- this doesn't seem to do nothing
+                            inlayHints = {
+                                lifetimeElisionHints = {
+                                    enable = true,
+                                    useParameterNames = true
+                                }
                             }
-                        }
+                        },
                     },
+                    standalone = true,
                     cmd = { "rustup", "run", "stable", "rust-analyzer" },
                 },
             }
