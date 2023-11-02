@@ -217,7 +217,7 @@ return {
                 servers = {
                     ["lua_ls"] = { "lua" },
                     ["gopls"] = { "go" },
-                    ["rust_analyzer"] = { "rust" },
+                    ["rust-analyzer"] = { "rust" },
                     ["jsonls"] = { "json" },
                 }
             })
