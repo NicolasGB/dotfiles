@@ -124,7 +124,13 @@ return {
         "saecki/crates.nvim",
         config = function()
             local crates = require("crates")
-            crates.setup()
+            crates.setup {
+                src = {
+                    cmp = {
+                        enabled = true,
+                    },
+                },
+            }
             crates.show()
             -- set keymaps
             local opts = { silent = true }
