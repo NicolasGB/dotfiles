@@ -14,7 +14,8 @@ return {
             vim.keymap.set('n', '<leader>ff', function()
                 builtin.find_files({
                     hidden = true,
-                    find_command = { '/usr/bin/fd', "-H", '--type', 'f', '-I', '-E', '.git', '-E', '.idea' }
+                    find_command = { '/usr/bin/fd', "-H", '--type', 'f', '-I', '-E', '.git', '-E', '.idea', '-E',
+                        'target' }
                 })
             end, { noremap = true, silent = true })
             vim.keymap.set('n', '<leader>gr', builtin.live_grep, {})
