@@ -1,8 +1,8 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        -- or                              , branch = '0.1.1',
+        version = '^0.1',
+        -- or                              , branch = '2.1.1',
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-ui-select.nvim',
@@ -19,7 +19,7 @@ return {
                 })
             end, { noremap = true, silent = true })
             vim.keymap.set('n', '<leader>gr', builtin.live_grep, {})
-            vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+            -- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
             vim.keymap.set('n', '<leader>fc', builtin.current_buffer_fuzzy_find, {})
             vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
             -- Search in help

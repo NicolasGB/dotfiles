@@ -10,7 +10,7 @@ return {
             }
             vim.g.copilot_no_tab_map = true
 
-            vim.api.nvim_set_keymap("i", "<A-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+            vim.api.nvim_set_keymap("i", "<A-m>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
         end
     }
 }
