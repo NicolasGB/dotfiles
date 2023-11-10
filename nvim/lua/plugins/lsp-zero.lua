@@ -41,6 +41,7 @@ return {
             { 'L3MON4D3/LuaSnip' },     -- Required
             { 'hrsh7th/cmp-nvim-lsp-signature-help' },
             { "ray-x/lsp_signature.nvim" },
+            { "onsails/lspkind.nvim" },
             -- Telescope
             { 'nvim-telescope/telescope.nvim' }
         },
@@ -122,6 +123,19 @@ return {
                     trigger_debounce_time = 300,
                     throttle = 60,
                     fetching_timeout = 200,
+                },
+                formatting = {
+                    format = require("lspkind").cmp_format({
+                        mode = "symbol_text",
+                        maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                        ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                        menu = ({
+                            buffer = "[Buffer]",
+                            nvim_lsp = "[LSP]",
+                            luasnip = "[Snip]",
+
+                        })
+                    })
                 }
             })
 
