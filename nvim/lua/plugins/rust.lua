@@ -4,11 +4,9 @@ return {
         version = '^3', -- Recommended
         dependencies = {
             "lvimuser/lsp-inlayhints.nvim",
-            -- "VonHeikemen/lsp-zero.nvim",
         },
         init = function()
             -- Get inlay hints
-            local ih = require("lsp-inlayhints")
 
 
             -- Configure rustaceanvim here
@@ -16,7 +14,6 @@ return {
                 server = {
                     on_attach = function(client, bufnr)
                         vim.lsp.inlay_hint(bufnr, true)
-                        -- ih.on_attach(client, bufnr)
                     end,
                     settings = {
                         ["rust-analyzer"] = {
