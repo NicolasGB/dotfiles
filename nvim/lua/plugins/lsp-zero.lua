@@ -182,20 +182,33 @@ return {
 
             -- Setup LSPs
 
+            -- Inlay hints highlight
+            vim.api.nvim_set_hl(0, 'LspInlayHint',
+                { fg = '#6C7E8C', bold = true, ctermfg = 198, cterm = { bold = true } })
+
             local lspconfig = require('lspconfig')
 
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = { 'gopls', 'lua_ls', 'yamlls', 'jsonls' },
+                ensure_installed = { 'gopls', 'lua_ls', 'yamlls', 'jsonls', 'taplo' },
                 handlers = {
                     lsp.default_setup,
                     -- Lua setup
                     lua_ls = function()
                         lspconfig.lua_ls.setup({
+                            on_attach = function(c, b)
+                                vim.lsp.inlay_hint.enable(b, true)
+                            end,
                             settings = {
                                 Lua = {
                                     diagnostics = {
                                         globals = { "vim" },
+                                    },
+                                    workspace = {
+                                        checkThirdParty = false,
+                                    },
+                                    hint = {
+                                        enable = true,
                                     },
                                 },
                             },
@@ -218,6 +231,34 @@ return {
                             root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*',
                                 '/config/gqlgen.yaml')
                         })
+                    end,
+                    -- Golang
+                    gopls = function()
+                        lspconfig.gopls.setup({
+                            on_attach = function(c, b)
+                                vim.lsp.inlay_hint.enable(b, true)
+                            end,
+                            settings = {
+                                gopls = {
+                                    experimentalPostfixCompletions = true,
+                                    analyses = {
+                                        unusedparams = true,
+                                        unusedresult = true,
+                                        shadow = true,
+                                    },
+                                    staticcheck = true,
+                                    hints = {
+                                        assignVariableTypes = true,
+                                        compositeLiteralFields = true,
+                                        compositeLiteralTypes = true,
+                                        constantValues = true,
+                                        functionTypeParameters = true,
+                                        parameterNames = true,
+                                        rangeVariableTypes = true,
+                                    },
+                                },
+                            },
+                        })
                     end
                 }
             })
@@ -233,6 +274,7 @@ return {
                     ["gopls"] = { "go" },
                     ["rust-analyzer"] = { "rust" },
                     ["jsonls"] = { "json" },
+                    ["taplo"] = { "toml" }
                 }
             })
 

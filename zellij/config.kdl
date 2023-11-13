@@ -11,6 +11,8 @@ keybinds {
         unbind "Ctrl p"
         unbind "Ctrl n"
         unbind "Ctrl o"
+        unbind "Ctrl h"
+        bind "Alt d" { Detach; }
         // bind "Alt t" { SwitchToMode "Tab"; }
     }
     locked {
@@ -47,7 +49,7 @@ keybinds {
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
-        bind "Ctrl h" { SwitchToMode "Normal"; }
+        bind "Alt y" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
@@ -175,7 +177,7 @@ keybinds {
         bind "Alt t" { SwitchToMode "Tab"; }
     }
     shared_except "move" "locked" {
-        bind "Ctrl h" { SwitchToMode "Move"; }
+        bind "Alt y" { SwitchToMode "Move"; }
     }
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }

@@ -2,18 +2,13 @@ return {
     {
         'mrcjkb/rustaceanvim',
         version = '^3', -- Recommended
-        dependencies = {
-            "lvimuser/lsp-inlayhints.nvim",
-        },
+        dependencies = {},
         init = function()
-            -- Get inlay hints
-
-
             -- Configure rustaceanvim here
             vim.g.rustaceanvim = {
                 server = {
-                    on_attach = function(client, bufnr)
-                        vim.lsp.inlay_hint(bufnr, true)
+                    on_attach = function(_, bufnr)
+                        vim.lsp.inlay_hint.enable(bufnr, true)
                     end,
                     settings = {
                         ["rust-analyzer"] = {
