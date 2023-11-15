@@ -18,7 +18,11 @@ return {
                         'target' }
                 })
             end, { noremap = true, silent = true })
-            vim.keymap.set('n', '<leader>gr', builtin.live_grep, {})
+            vim.keymap.set('n', '<leader>gr', function()
+                builtin.live_grep({
+                    additional_args = { '--smart-case' },
+                })
+            end, {})
             -- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
             vim.keymap.set('n', '<leader>fc', builtin.current_buffer_fuzzy_find, {})
             vim.keymap.set('n', '<leader>fb', builtin.buffers, {})

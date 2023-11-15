@@ -25,6 +25,10 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
+-- Pasting up and down
+vim.keymap.set("n", "<leader>pu", ":1pu!<CR><C-o>")
+vim.keymap.set("n", "<leader>pd", ":pu<CR><C-o>")
+
 -- Replace word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 

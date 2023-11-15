@@ -72,9 +72,25 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=180"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo  dirhistory web-search copypath zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)
+plugins=(git sudo  dirhistory web-search copypath zsh-syntax-highlighting zsh-autosuggestions colored-man-pages )
 
 source $ZSH/oh-my-zsh.sh
+
+
+# FZF Config
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+  # CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
 
 # User configuration
 
@@ -103,7 +119,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-alias pacupd="trizen -Syyu && flatpak update"
+alias pacupd="paru && flatpak update"
 alias pacinst="sudo pacman -S"
 alias paclean="sudo pacman -Sc"
 alias pacsearch="pacman -Ss"
@@ -122,7 +138,7 @@ alias updcontract="go get gitlab.com/tmds-io/core-model/hyperion/contract.git"
 alias updkore="go get gitlab.com/tmds-io/core-model/hyperion/kore.git"
 
 export GO_PATH=~/go
-export PATH=$PATH:/$GO_PATH/bin:~/binaries
+export PATH=$PATH:/$GO_PATH/bin:~/binaries:~/.local/share/bob/nvim-bin
 
 alias cd="z"
 alias hx="helix"
@@ -142,7 +158,11 @@ alias lt="ls --tree"
 alias grep="rg"
 
 alias ze="zellij"
+alias zls="zellij ls"
+alias za="zellij attach -c"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -155,11 +155,11 @@ keybinds {
         bind "Alt k" "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
+        bind "Alt z" { PreviousSwapLayout; }
+        bind "Alt x" { NextSwapLayout; }
     }
     shared_except "normal" "locked" {
-        bind "Enter" "Esc" { SwitchToMode "Normal"; }
+        bind "Enter" "Esc" "Space" { SwitchToMode "Normal"; }
     }
     shared_except "pane" "locked" {
         bind "Alt p" { SwitchToMode "Pane"; }
@@ -305,12 +305,12 @@ theme "everforest-dark"
 // Enable or disable automatic copy (and clear) of selection when releasing mouse
 // Default: true
 //
-// copy_on_select false
+ copy_on_select false
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-// scrollback_editor "/usr/bin/vim"
+ scrollback_editor "/home/nicolas/.local/share/bob/nvim-bin/nvim"
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
