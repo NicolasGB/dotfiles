@@ -22,7 +22,7 @@ return {
             "v",
             "<leader>rr",
             "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-            { noremap = true }
+            { noremap = true, { desc = "Refactor selection with Telescope" } }
         )
     end,
 }

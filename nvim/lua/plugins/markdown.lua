@@ -14,7 +14,7 @@ return {
         end,
         ft = { "markdown" },
         config = function()
-            vim.keymap.set("n", "<leader>md", vim.cmd.MarkdownPreview)
+            vim.keymap.set("n", "<leader>md", vim.cmd.MarkdownPreview, { desc = "Markdown preview" })
         end
     }
 }

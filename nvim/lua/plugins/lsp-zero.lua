@@ -196,7 +196,7 @@ return {
                     -- Lua setup
                     lua_ls = function()
                         lspconfig.lua_ls.setup({
-                            on_attach = function(c, b)
+                            on_attach = function(_, b)
                                 vim.lsp.inlay_hint.enable(b, true)
                             end,
                             settings = {
@@ -235,7 +235,7 @@ return {
                     -- Golang
                     gopls = function()
                         lspconfig.gopls.setup({
-                            on_attach = function(c, b)
+                            on_attach = function(_, b)
                                 vim.lsp.inlay_hint.enable(b, true)
                             end,
                             settings = {

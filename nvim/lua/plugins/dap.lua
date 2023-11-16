@@ -9,6 +9,7 @@ return {
                     require("dapui").toggle()
                 end,
                 silent = true,
+                desc = "Toggle DAP UI"
             },
         },
         config = function()

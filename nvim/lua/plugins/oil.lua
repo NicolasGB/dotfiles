@@ -12,7 +12,7 @@ return {
                 keymaps = {
                     ["<C-s>"] = "actions.save",
                     ["q"] = "actions.close",
-                    ["<A-p>"] = "actions.parent"
+                    ["<A-u>"] = "actions.parent"
                 },
                 view_options = {
                     show_hidden = true,
