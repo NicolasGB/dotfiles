@@ -5,12 +5,17 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Move lines up and keep cursor at the beginning
 vim.keymap.set("n", "J", "mzJ`z")
 
--- When searching keep cursor middle and jump to middle page up and down
--- No need of these as its managed by plugin
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "<C-u>", "<C-u>zz")
--- vim.keymap.set("n", "G", "Gzz")
+-- Keymap for duplicating a line
+vim.api.nvim_set_keymap('n', '<leader>m', [[:t.<CR>]], { noremap = true, silent = true })
 
+-- Jump to start and end of line using the home row keys
+vim.api.nvim_set_keymap('n', 'H', '^', { noremap = true })
+vim.api.nvim_set_keymap('n', 'L', '$', { noremap = true })
+-- In visual mode, H and L should also work as expected
+vim.api.nvim_set_keymap('v', 'H', '^', { noremap = true })
+vim.api.nvim_set_keymap('v', 'L', '$', { noremap = true })
+
+-- Moving to occurences with centered
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
@@ -26,8 +31,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Pasting up and down
-vim.keymap.set("n", "<leader>pu", ":1pu!<CR><C-o>")
-vim.keymap.set("n", "<leader>pd", ":pu<CR><C-o>")
+vim.keymap.set("n", "<leader>pu", ":1pu!<CR>")
+vim.keymap.set("n", "<leader>pd", ":pu<CR>")
 
 -- Replace word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
