@@ -2,6 +2,19 @@ return {
     {
         'nvim-lualine/lualine.nvim',
         config = function()
+            -- Get current working directory
+            local function cwd()
+                local c = vim.fn.getcwd()
+                if c == nil then
+                    return ''
+                end
+
+                -- Split and get last
+                local cwd_parts = vim.split(c, '/')
+
+                return "/" .. cwd_parts[#cwd_parts - 1] .. "/" .. cwd_parts[#cwd_parts]
+            end
+
             require('lualine').setup {
                 options = {
                     icons_enabled = true,
@@ -24,9 +37,9 @@ return {
                 sections = {
                     lualine_a = { 'mode' },
                     lualine_b = { 'branch', 'diff', 'diagnostics' },
-                    lualine_c = { 'filename' },
+                    lualine_c = { cwd, 'filename', },
                     lualine_x = { 'encoding', 'fileformat', 'filetype' },
-                    lualine_y = { 'progress' },
+                    lualine_y = { 'progress', },
                     lualine_z = { 'location' }
                 },
                 inactive_sections = {

@@ -20,7 +20,7 @@
         "description": "Consts"
     },
     "context": {
-        "prefix": "context",
+        "prefix": "gco",
         "body": "ctx context.Context",
         "description": "Context"
     },

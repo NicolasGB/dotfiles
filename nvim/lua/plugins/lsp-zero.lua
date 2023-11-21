@@ -13,8 +13,8 @@ return {
                     "gopls",
                     "html-lsp",
                     "json-lsp",
+                    "taplo",
                     "lua_ls",
-                    "prettier",
                     "graphql-language-service-cli",
                     "yaml-language-server",
                 },
@@ -48,6 +48,7 @@ return {
         config = function()
             vim.diagnostic.config({
                 virtual_text = true,
+                update_in_insert = true,
             })
 
             local lsp = require("lsp-zero").preset({})
@@ -61,6 +62,8 @@ return {
             local cmp_mappings = lsp.defaults.cmp_mappings({
                 ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
                 ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+                ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
             })
@@ -127,7 +130,7 @@ return {
                 formatting = {
                     format = require("lspkind").cmp_format({
                         mode = "symbol_text",
-                        maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                        maxwidth = 100,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                         ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                         menu = ({
                             buffer = "[Buffer]",
@@ -171,7 +174,7 @@ return {
                 vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
                 vim.keymap.set("n", "<leader>R", function() vim.lsp.buf.rename() end, opts)
                 vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-                vim.keymap.set("n", "gr", telescope.lsp_references, opts)
+                vim.keymap.set("n", "gr", function() telescope.lsp_references({ include_declaration = false }) end, opts)
                 vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
             end)
 
@@ -259,7 +262,7 @@ return {
                                 },
                             },
                         })
-                    end
+                    end,
                 }
             })
 

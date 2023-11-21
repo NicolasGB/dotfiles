@@ -12,10 +12,12 @@ keybinds {
         unbind "Ctrl n"
         unbind "Ctrl o"
         unbind "Ctrl h"
+        unbind "Alt ["
+        unbind "Alt ]"
         bind "Alt d" { Detach; }
-        // bind "Alt t" { SwitchToMode "Tab"; }
     }
     locked {
+        unbind "Ctrl g"
         bind "Alt g" { SwitchToMode "Normal"; }
     }
     resize {
@@ -32,6 +34,7 @@ keybinds {
         bind "-" { Resize "Decrease"; }
     }
     pane {
+        unbind "Ctrl p"
         bind "Alt p" { SwitchToMode "Normal"; }
         bind "h" "Left" { MoveFocus "Left"; }
         bind "l" "Right" { MoveFocus "Right"; }
@@ -49,6 +52,7 @@ keybinds {
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
+        unbind "Ctrl h"
         bind "Alt y" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
         bind "p" { MovePaneBackwards; }
@@ -58,6 +62,7 @@ keybinds {
         bind "l" "Right" { MovePane "Right"; }
     }
     tab {
+        unbind "Ctrl t"
         bind "Alt t" { SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "h" "Left" "Up" "k" { GoToPreviousTab; }
@@ -118,6 +123,7 @@ keybinds {
         bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
     }
     session {
+        unbind "Ctrl o"
         bind "Alt o" { SwitchToMode "Normal"; }
         bind "Alt s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
