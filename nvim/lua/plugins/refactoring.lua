@@ -18,10 +18,12 @@ return {
         require("telescope").load_extension("refactoring")
 
         -- remap to open the Telescope refactoring menu in visual mode
-        vim.api.nvim_set_keymap(
+        vim.keymap.set(
             "v",
             "<leader>rr",
-            "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+            function()
+                require("telescope").extensions.refactoring.range_refactors()
+            end,
             { noremap = true, { desc = "Refactor selection with Telescope" } }
         )
     end,

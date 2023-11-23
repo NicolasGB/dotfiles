@@ -17,6 +17,7 @@ return {
                     "lua_ls",
                     "graphql-language-service-cli",
                     "yaml-language-server",
+                    "tsserver"
                 },
                 auto_update = true,
             })
@@ -263,6 +264,27 @@ return {
                             },
                         })
                     end,
+                    tsserver = function()
+                        require("lspconfig").tsserver.setup({
+                            on_attach = function(_, b)
+                                vim.lsp.inlay_hint.enable(b, true)
+                            end,
+                            init_options = {
+                                preferences = {
+                                    includeInlayParameterNameHints = 'all',
+                                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                                    includeInlayFunctionParameterTypeHints = true,
+                                    includeInlayVariableTypeHints = true,
+                                    includeInlayPropertyDeclarationTypeHints = true,
+                                    includeInlayFunctionLikeReturnTypeHints = true,
+                                    includeInlayEnumMemberValueHints = true,
+                                    importModuleSpecifierPreference = "non-relative",
+                                },
+                            },
+                            single_file_support = true,
+                            root_dir = require("lspconfig.util").root_pattern("package.json"),
+                        })
+                    end,
                 }
             })
 
@@ -277,7 +299,8 @@ return {
                     ["gopls"] = { "go" },
                     ["rust-analyzer"] = { "rust" },
                     ["jsonls"] = { "json" },
-                    ["taplo"] = { "toml" }
+                    ["taplo"] = { "toml" },
+                    ["tsserver"] = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
                 }
             })
 
