@@ -2,7 +2,8 @@ return {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
         { "nvim-lua/plenary.nvim" },
-        { "nvim-treesitter/nvim-treesitter" }
+        { "nvim-treesitter/nvim-treesitter" },
+        { "nvim-telescope/telescope.nvim" }
     },
     config = function()
         require("refactoring").setup({
@@ -18,13 +19,11 @@ return {
         require("telescope").load_extension("refactoring")
 
         -- remap to open the Telescope refactoring menu in visual mode
+
         vim.keymap.set(
-            "v",
+            "x",
             "<leader>rr",
-            function()
-                require("telescope").extensions.refactoring.range_refactors()
-            end,
-            { noremap = true, { desc = "Refactor selection with Telescope" } }
+            function() require('telescope').extensions.refactoring.refactors() end
         )
     end,
 }

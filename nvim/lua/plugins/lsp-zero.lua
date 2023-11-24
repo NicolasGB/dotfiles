@@ -17,7 +17,8 @@ return {
                     "lua_ls",
                     "graphql-language-service-cli",
                     "yaml-language-server",
-                    "tsserver"
+                    "tsserver",
+                    "marksman",
                 },
                 auto_update = true,
             })
@@ -236,7 +237,7 @@ return {
                                 '/config/gqlgen.yaml')
                         })
                     end,
-                    -- Golang
+                    -- Golang setup
                     gopls = function()
                         lspconfig.gopls.setup({
                             on_attach = function(_, b)
@@ -264,6 +265,7 @@ return {
                             },
                         })
                     end,
+                    -- TS Server setup
                     tsserver = function()
                         require("lspconfig").tsserver.setup({
                             on_attach = function(_, b)
