@@ -12,7 +12,7 @@ return {
                 -- Split and get last
                 local cwd_parts = vim.split(c, '/')
 
-                return "/" .. cwd_parts[#cwd_parts - 1] .. "/" .. cwd_parts[#cwd_parts]
+                return "../" .. cwd_parts[#cwd_parts - 1] .. "/" .. cwd_parts[#cwd_parts]
             end
 
             require('lualine').setup {
@@ -37,8 +37,8 @@ return {
                 sections = {
                     lualine_a = { 'mode' },
                     lualine_b = { 'branch', 'diff', 'diagnostics' },
-                    lualine_c = { cwd, 'filename', },
-                    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+                    lualine_c = { 'filename', },
+                    lualine_x = { cwd, 'encoding', 'fileformat', 'filetype' },
                     lualine_y = { 'progress', },
                     lualine_z = { 'location' }
                 },
