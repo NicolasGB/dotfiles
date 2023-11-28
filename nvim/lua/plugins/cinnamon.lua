@@ -5,7 +5,7 @@ return {
         config = function()
             require('cinnamon').setup {
                 extra_keymaps = true,
-                extended_keymaps = true,
+                extended_keymaps = false,
                 override_keymaps = false,
                 max_length = 500,
                 centered = true,
