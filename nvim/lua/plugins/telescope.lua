@@ -28,6 +28,12 @@ return {
             -- Search in help
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find in help" })
 
+            vim.keymap.set('n', '<leader>fS', function()
+                builtin.lsp_workspace_symbols({
+                    query = vim.fn.input("Query > "),
+                })
+            end, { desc = "Search in workspace symbols" })
+
             local actions = require("telescope.actions")
             require("telescope").setup {
                 extensions = {

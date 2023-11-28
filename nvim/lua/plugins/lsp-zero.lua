@@ -245,6 +245,7 @@ return {
                             end,
                             settings = {
                                 gopls = {
+                                    directoryFilters = { "-**/graph/generated", "-**/node_modules" },
                                     experimentalPostfixCompletions = true,
                                     analyses = {
                                         unusedparams = true,
