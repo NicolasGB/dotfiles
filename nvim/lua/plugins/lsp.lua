@@ -24,7 +24,15 @@ return {
         config = function()
             -- Diagnostics
             vim.diagnostic.config({
-                virtual_text = true,
+                virtual_text = {
+                    prefix = '●',
+                },
+                float = {
+                    focusable = false,
+                    style = 'minimal',
+                    border = 'rounded',
+                    source = 'if_many',
+                },
                 update_in_insert = true,
             })
 
@@ -66,7 +74,7 @@ return {
             })
 
             -- Lsp Signature Helper
-            local signHelper = require("lsp_signature").setup({
+            local _ = require("lsp_signature").setup({
                 floating_window = false,
             })
 

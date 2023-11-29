@@ -22,7 +22,6 @@ vim.api.nvim_create_autocmd("WinLeave", {
 })
 
 -- Remap gf to open files with relative paths in the same window but closing the terminal if it's open
-
 vim.keymap.set("n", "gf", function()
     local line = vim.api.nvim_get_current_line()
     local filename = vim.fn.expand("<cfile>")
