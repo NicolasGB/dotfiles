@@ -22,6 +22,25 @@ return {
             { "folke/neodev.nvim" },
         },
         config = function()
+            -- Set border globally, found on wiki nvim-lsp-config
+            local border = {
+                { "🭽", "FloatBorder" },
+                { "▔", "FloatBorder" },
+                { "🭾", "FloatBorder" },
+                { "▕", "FloatBorder" },
+                { "🭿", "FloatBorder" },
+                { "▁", "FloatBorder" },
+                { "🭼", "FloatBorder" },
+                { "▏", "FloatBorder" },
+            }
+
+            local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+            function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+                opts = opts or {}
+                opts.border = opts.border or border
+                return orig_util_open_floating_preview(contents, syntax, opts, ...)
+            end
+
             -- Diagnostics
             vim.diagnostic.config({
                 virtual_text = {
@@ -30,7 +49,7 @@ return {
                 float = {
                     focusable = false,
                     style = 'minimal',
-                    border = 'rounded',
+                    border = border,
                     source = 'if_many',
                 },
                 update_in_insert = true,
