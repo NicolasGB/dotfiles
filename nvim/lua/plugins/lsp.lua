@@ -22,37 +22,35 @@ return {
             { "folke/neodev.nvim" },
         },
         config = function()
-            -- Set border globally, found on wiki nvim-lsp-config
-            local border = {
-                { "🭽", "FloatBorder" },
-                { "▔", "FloatBorder" },
-                { "🭾", "FloatBorder" },
-                { "▕", "FloatBorder" },
-                { "🭿", "FloatBorder" },
-                { "▁", "FloatBorder" },
-                { "🭼", "FloatBorder" },
-                { "▏", "FloatBorder" },
-            }
+            -- Set Borders on hovers
+            local border_style = 'rounded'
+            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+                vim.lsp.handlers.hover,
+                { border = border_style }
+            )
 
-            local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-            function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-                opts = opts or {}
-                opts.border = opts.border or border
-                return orig_util_open_floating_preview(contents, syntax, opts, ...)
-            end
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+                vim.lsp.handlers["signature_help"],
+                { border = border_style }
+            )
 
             -- Diagnostics
             vim.diagnostic.config({
                 virtual_text = {
                     prefix = '●',
                 },
-                float = {
-                    focusable = false,
-                    style = 'minimal',
-                    border = border,
-                    source = 'if_many',
-                },
                 update_in_insert = true,
+                underline = true,
+                severity_sort = true,
+
+                float = {
+                    severity_sort = true,
+                    header = "Diagnostics",
+                    source = "if_many",
+                    prefix = "• ",
+
+                    border = "rounded",
+                },
             })
 
             -- Color Inlay hints highlight matching everforest

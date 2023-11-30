@@ -5,7 +5,7 @@ return {
         config = function()
             require 'nvim-treesitter.configs'.setup {
                 -- A list of parser names, or "all" (the five listed parsers should always be installed)
-                ensure_installed = { "lua", "go", "rust", "toml", "yaml" },
+                ensure_installed = { "lua", "go", "rust", "toml", "yaml", "markdown_inline", "json" },
 
                 -- Install parsers synchronously (only applied to `ensure_installed`)
                 sync_install = false,
@@ -78,7 +78,7 @@ return {
 
                     lsp_interop = {
                         enable = true,
-                        border = 'none',
+                        border = 'rounded',
                         floating_preview_opts = {},
                         peek_definition_code = {
                             ["<leader>vf"] = "@function.outer",
