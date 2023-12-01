@@ -1,7 +1,12 @@
 return {
     {
         'williamboman/mason.nvim',
-        build = ":MasonUpdate"
+        build = ":MasonUpdate",
+        opts = {
+            ui = {
+                border = "rounded"
+            }
+        }
     },
     { 'williamboman/mason-lspconfig.nvim' },
     {

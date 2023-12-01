@@ -89,5 +89,13 @@ return {
             }
         end
     },
-    { 'nvim-treesitter/nvim-treesitter-context' }
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        event = "VeryLazy",
+        config = function()
+            require('treesitter-context').setup({})
+            -- Color TreeSitter context
+            vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = '#1E2326' })
+        end
+    }
 }
