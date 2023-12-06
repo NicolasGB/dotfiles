@@ -207,7 +207,7 @@ floating_maximum_size -1 x -1
 
 #Bind apps to some workspaces
 # Workspace 1 navigator
-assign [class="firefox"] $ws1
+assign [class="firefox|thorium-browser"] $ws1
 # Workspace 2 Development
 assign [class="jetbrains-goland"] $ws2
 # Workspace 3 chats
@@ -308,6 +308,7 @@ exec --no-startup-id betterlockscreen -w dim
 ###############################
 #         AutoStart           #
 ###############################
-exec --no-startup-id firefox
+# exec --no-startup-id firefox
+exec --no-startup-id thorium-browser
 exec --no-startup-id discord
 exec --no-startup-id 1password
