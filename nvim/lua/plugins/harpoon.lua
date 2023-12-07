@@ -49,5 +49,10 @@ return {
                 desc = "Select 4 harpoon",
             },
         },
+        config = function()
+            local harpoon = require("harpoon")
+
+            harpoon:setup()
+        end,
     },
 }

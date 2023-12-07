@@ -308,7 +308,7 @@ exec --no-startup-id betterlockscreen -w dim
 ###############################
 #         AutoStart           #
 ###############################
-# exec --no-startup-id firefox
-exec --no-startup-id thorium-browser
+exec --no-startup-id firefox
+# exec --no-startup-id thorium-browser
 exec --no-startup-id discord
 exec --no-startup-id 1password
