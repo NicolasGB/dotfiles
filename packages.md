@@ -78,7 +78,7 @@ ln -s ~/dotfiles/networkmanager-dmenu/ ~/.config/networkmanager-dmenu/
 
 -- Paru
 ```sh
-paru -S autorandr brightnessctl rofi polybar blueman nitrogen picom playerctl mpv snixembed kwallet-pam wezterm pcmanfm nmtui xclip lsd bat fd ripgrep zoxide lazydocker lazygit starship sad fzf delta libratbag piper copyq network-manager-applet bob docker sddm-sugar-candy kwalletmanager 1password discord firefox spectacle spotify pavucontrol arandr microsoft-edge-stable-bin surrealist rustup go gcc cmake meld nvidia xournal freeoffice ttf-jetbrains-mono-nerd ttf-fira-code-nerd ttf-ms-fonts wine peek thorium-broswer-bin
+paru -S autorandr brightnessctl rofi polybar blueman nitrogen picom playerctl mpv snixembed kwallet-pam wezterm pcmanfm nmtui xclip lsd bat fd ripgrep zoxide lazydocker lazygit starship sad fzf delta libratbag piper copyq network-manager-applet bob docker sddm-sugar-candy kwalletmanager 1password discord firefox spectacle spotify pavucontrol arandr microsoft-edge-stable-bin surrealist rustup go gcc cmake meld nvidia xournal freeoffice ttf-jetbrains-mono-nerd ttf-fira-code-nerd ttf-ms-fonts wine peek noto-fonts-emoji
 ```
 
 
