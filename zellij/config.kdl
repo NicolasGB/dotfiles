@@ -1,8 +1,10 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
+#include "slanted.kdl"
+
 keybinds {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
-        //bind "Ctrl C" { Copy; }
+        // bind "Alt y" { Copy; }
         // bind "Ctrl Shift d" {SwitchToMode "Session"; Detach;}
         unbind "Ctrl s"
         unbind "Ctrl q"
@@ -15,6 +17,17 @@ keybinds {
         unbind "Alt ["
         unbind "Alt ]"
         bind "Alt d" { Detach; }
+
+        // Move to tabs fastly
+        bind "Alt 1" { GoToTab 1; SwitchToMode "Normal"; }
+        bind "Alt 2" { GoToTab 2; SwitchToMode "Normal"; }
+        bind "Alt 3" { GoToTab 3; SwitchToMode "Normal"; }
+        bind "Alt 4" { GoToTab 4; SwitchToMode "Normal"; }
+        bind "Alt 5" { GoToTab 5; SwitchToMode "Normal"; }
+        bind "Alt 6" { GoToTab 6; SwitchToMode "Normal"; }
+        bind "Alt 7" { GoToTab 7; SwitchToMode "Normal"; }
+        bind "Alt 8" { GoToTab 8; SwitchToMode "Normal"; }
+        bind "Alt 9" { GoToTab 9; SwitchToMode "Normal"; }
     }
     locked {
         unbind "Ctrl g"
@@ -93,7 +106,7 @@ keybinds {
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
         // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
+        bind "Alt y" { Copy; }
     }
     search {
         bind "Ctrl f" { SwitchToMode "Normal"; }
@@ -295,7 +308,7 @@ theme "everforest-dark"
 // that will be used by default if this option is not set.
 // Examples:
 //
-// copy_command "xclip -selection clipboard" // x11
+copy_command "xclip -selection clipboard" // x11
 // copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 
@@ -327,8 +340,10 @@ theme "everforest-dark"
 
 // The folder in which Zellij will look for layouts
 //
-// layout_dir "/path/to/my/layout_dir"
+layout_dir "/home/nicolas/.config/zellij/layouts"
 
 // The folder in which Zellij will look for themes
 //
 // theme_dir "/path/to/my/theme_dir"
+
+

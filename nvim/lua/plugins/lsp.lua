@@ -70,6 +70,7 @@ return {
                     local opts = { buffer = event.buf }
 
                     vim.keymap.set("n", "gd", telescope.lsp_definitions, opts)
+                    vim.keymap.set("n", "gt", telescope.lsp_type_definitions, opts)
                     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
                     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
                     -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)

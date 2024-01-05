@@ -102,6 +102,6 @@ return {
         })
 
 
-        vim.keymap.set("n", "<leader>pv", vim.cmd.Neotree, { desc = "Toggle Project View" })
+        vim.keymap.set("n", "-", vim.cmd.Neotree, { desc = "Toggle Project View" })
     end
 }

@@ -22,7 +22,7 @@ return {
                     max_height = 50,
                 }
             })
-            vim.keymap.set("n", "-", oil.open_float, { desc = "Open parent directory" })
+            vim.keymap.set("n", "<leader>pv", oil.open_float, { desc = "Open parent directory" })
         end
     }
 }
