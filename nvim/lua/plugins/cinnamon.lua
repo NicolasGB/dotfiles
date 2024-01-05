@@ -9,7 +9,7 @@ return {
                 override_keymaps = false,
                 max_length = 500,
                 centered = true,
-                scroll_limit = -1,
+                scroll_limit = 500,
             }
 
             -- We like it centered
