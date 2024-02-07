@@ -42,7 +42,7 @@ return {
                 desc = "Select 3 harpoon",
             },
             {
-                "<C-ñ>",
+                "<C-;>",
                 function()
                     require("harpoon"):list():select(4)
                 end,
