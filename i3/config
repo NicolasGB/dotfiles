@@ -312,5 +312,5 @@ exec --no-startup-id betterlockscreen -w dim
 ###############################
 exec --no-startup-id firefox
 # exec --no-startup-id thorium-browser
-exec --no-startup-id discord
+exec --no-startup-id prime-run discord
 exec --no-startup-id 1password

@@ -27,13 +27,14 @@ return {
                                     enable = true,
                                     useParameterNames = true
                                 }
-                            }
+                            },
                         },
                     },
                     standalone = true,
                     cmd = { "rustup", "run", "stable", "rust-analyzer" },
                 },
             }
+            vim.keymap.set('n', '<leader>oc', function() vim.cmd.RustLsp('openCargo') end, { desc = "Open Cargo.toml" })
         end,
         ft = { 'rust' },
     },

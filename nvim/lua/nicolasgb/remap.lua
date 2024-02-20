@@ -6,7 +6,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- Keymap for duplicating a line
-vim.api.nvim_set_keymap('n', '<leader>m', [[:t.<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>m', [[:t.<CR>]], { noremap = true, silent = true })
 
 -- Jump to start and end of line using the home row keys
 vim.api.nvim_set_keymap('n', 'H', '^', { noremap = true })
