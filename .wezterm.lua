@@ -24,7 +24,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font_with_fallback({
     -- { family = 'JetBrains Mono',          weight = 'Regular' },
     { family = 'JetBrainsMono Nerd Font', weight = 'Regular' },
-    "JetBrainsMono Nerd Font",
+    "Noto Sans CJK",
     "Material Design Icons",
     "Symbols Nerd Font",
 })
