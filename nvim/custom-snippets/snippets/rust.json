@@ -19,7 +19,7 @@
         "body": "// region:    --- ${1}\n\n${2}\n\n// endregion: --- ${1}",
         "description": "A code region"
     },
-    "cerr":{
+    "cerr": {
         "prefix": "cerr",
         "body": "pub type Result<T> = core::result::Result<T, Error>;\n\n#[derive(Debug)]\npub enum Error {}\n\nimpl core::fmt::Display for Error {\n    fn fmt(&self, fmt: &mut std::fmt::Formatter) -> std::fmt::Result {\n        write!(fmt, \"{self:?}\")\n    }\n}\n\nimpl std::error::Error for Error {}",
         "description": "Custom error boilerplate in rust"
@@ -28,5 +28,10 @@
         "prefix": "ctest",
         "body": "#[cfg(test)]\nmod tests {\n    use super::*;\n    use anyhow::Result;\n\n}",
         "description": "Boilerplate for a test module in rust"
+    },
+    "serde": {
+        "prefix": "serde",
+        "body": "#[derive(Serialize, Deserialize)]",
+        "description": "Derive serde traits"
     }
 }
