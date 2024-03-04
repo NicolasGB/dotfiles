@@ -219,7 +219,7 @@ return {
                                 -- Defaults to error.
                                 diagnosticSeverity = "Information"
                             },
-                            single_file_support = false,
+                            single_file_support = true,
                         })
                     end
                 }

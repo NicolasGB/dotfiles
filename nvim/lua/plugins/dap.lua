@@ -33,32 +33,19 @@ return {
             vim.keymap.set("n", "<F9>", vim.cmd.DapContinue)
             vim.keymap.set("n", "<F8>", vim.cmd.DapStepOver)
             vim.keymap.set("n", "<F7>", vim.cmd.DapStepInto)
-
-            require("dap.ext.vscode").load_launchjs()
-
-            dap.adapters.codelldb = {
-                type = 'server',
-                port = "${port}",
-                executable = {
-                    command = '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/adapter/codelldb',
-                    args = { "--port", "${port}" },
-                }
-            }
-
-            -- dap.configurations.rust = {
-            --     {
-            --         name = "Rust debug",
-            --         type = "codelldb",
-            --         request = "launch",
-            --         showDisassembly = "never",
-            --         program = function()
-            --             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
-            --         end,
-            --         cwd = '${workspaceFolder}',
-            --         stopOnEntry = true,
-            --     },
-            -- }
         end
     },
-    { "theHamsta/nvim-dap-virtual-text" }
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        config = function()
+            -- Change hl group for better visibility
+            vim.api.nvim_set_hl(0, 'NvimDapVirtualText',
+                { fg = '#FFFFED', bold = true, ctermfg = 198, cterm = { bold = true } })
+
+
+            require("nvim-dap-virtual-text").setup({
+                virt_text_pos = 'inline'
+            })
+        end
+    }
 }

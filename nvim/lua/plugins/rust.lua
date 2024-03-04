@@ -33,6 +33,8 @@ return {
                     standalone = true,
                     cmd = { "rustup", "run", "stable", "rust-analyzer" },
                 },
+                -- DAP configuration
+                dap = {},
             }
             vim.keymap.set('n', '<leader>oc', function() vim.cmd.RustLsp('openCargo') end, { desc = "Open Cargo.toml" })
         end,
