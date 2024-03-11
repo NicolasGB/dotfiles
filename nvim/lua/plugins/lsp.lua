@@ -106,7 +106,7 @@ return {
 
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = { 'gopls', 'lua_ls', 'yamlls', 'jsonls', 'taplo' },
+                ensure_installed = { 'gopls', 'lua_ls', 'yamlls', 'jsonls', 'taplo', 'typos_lsp' },
                 handlers = {
                     default_setup,
                     -- Lua setup
@@ -179,6 +179,7 @@ return {
                                         parameterNames = true,
                                         rangeVariableTypes = true,
                                     },
+                                    gofumpt = true,
                                 },
                             },
                         })
@@ -209,7 +210,7 @@ return {
                         require('lspconfig').typos_lsp.setup({
                             config              = {
                                 -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
-                                cmd_env = { RUST_LOG = "DEBUG" }
+                                cmd_env = { RUST_LOG = "ERROR" }
                             },
                             init_options        = {
                                 -- Custom config. Used together with any workspace config files, taking precedence for

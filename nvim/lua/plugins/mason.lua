@@ -23,6 +23,7 @@ return {
                     "yaml-language-server",
                     "tsserver",
                     "marksman",
+                    "typos_lsp"
                 },
                 auto_update = true,
             })
