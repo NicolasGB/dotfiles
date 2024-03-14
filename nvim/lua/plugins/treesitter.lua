@@ -97,5 +97,9 @@ return {
             -- Color TreeSitter context
             vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = '#1E2326' })
         end
+    },
+    {
+        "NoahTheDuke/vim-just",
+        ft = { "just" },
     }
 }
