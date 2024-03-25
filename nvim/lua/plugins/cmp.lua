@@ -72,7 +72,7 @@ return {
                     documentation = cmp.config.window.bordered(),
                 },
                 performance = {
-                    trigger_debounce_time = 300,
+                    debounce = 300,
                     throttle = 60,
                     fetching_timeout = 200,
                 },

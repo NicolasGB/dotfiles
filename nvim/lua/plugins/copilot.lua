@@ -38,7 +38,7 @@ return {
     },
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        branch = "canary",
+        version = "^v2",
         keys = {
             {
                 "<leader>ccq",

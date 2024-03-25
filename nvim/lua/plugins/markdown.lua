@@ -16,5 +16,17 @@ return {
         config = function()
             vim.keymap.set("n", "<leader>md", vim.cmd.MarkdownPreview, { desc = "Markdown preview" })
         end
+    },
+    {
+        -- init.lua
+        "lukas-reineke/headlines.nvim",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require("headlines").setup({
+                markdown = {
+                    headline_highlights = false,
+                },
+            })
+        end
     }
 }
