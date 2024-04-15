@@ -21,9 +21,10 @@ return {
             require("copilot").setup({
                 -- Set
                 suggestion = {
-                    auto_trigger = true,
+                    auto_trigger = false,
                     keymap = {
                         accept = "<A-m>",
+                        next = "<A-g>"
                     }
                 },
                 --

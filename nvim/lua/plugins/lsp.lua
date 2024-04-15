@@ -141,7 +141,7 @@ return {
                         lspconfig.yamlls.setup({
                             settings = {
                                 yaml = {
-                                    keyOrdering = false
+                                    keyOrdering = false,
                                 }
                             },
                         })
@@ -221,6 +221,13 @@ return {
                                 diagnosticSeverity = "Information"
                             },
                             single_file_support = true,
+                            root_dir            = function(fname)
+                                return require('lspconfig.util').root_pattern('typos.toml', '_typos.toml',
+                                        '.typos.toml')(
+                                        fname)
+                                    or vim.fn.getcwd()
+                            end,
+                            filetypes           = { "go", "gomod", "gowork", "rust", "yaml", "toml", "cucumber", "graphql", "md", "lua", "ts", ".", "proto" }
                         })
                     end
                 }
@@ -250,7 +257,6 @@ return {
                     end
                 end
             })
-            --
         end
     }
 }
