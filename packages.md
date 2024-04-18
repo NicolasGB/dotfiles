@@ -83,7 +83,7 @@ pacman -S $(cat package.list) --noconfirm
 ```
 
 ```sh
-pacman -S $(cat package.list) --noconfirm --overwrite "\*"
+pacman -S $(cat package.list) --noconfirm --overwrite "*"
 ```
 
 -- Paru
