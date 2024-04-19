@@ -227,7 +227,7 @@ return {
                                         fname)
                                     or vim.fn.getcwd()
                             end,
-                            filetypes           = { "go", "gomod", "gowork", "rust", "yaml", "toml", "cucumber", "graphql", "md", "lua", "ts", ".", "proto" }
+                            filetypes           = { "go", "gomod", "gowork", "rust", "yaml", "toml", "cucumber", "graphql", "markdown", "lua", "ts", ".", "proto" }
                         })
                     end
                 }

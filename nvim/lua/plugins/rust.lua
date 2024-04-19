@@ -7,8 +7,8 @@ return {
             -- Configure rustaceanvim here
             vim.g.rustaceanvim = {
                 server = {
-                    on_attach = function(_, bufnr)
-                        vim.lsp.inlay_hint.enable(bufnr, true)
+                    on_attach = function(_, b)
+                        vim.lsp.inlay_hint.enable(true, { bufnr = b })
                     end,
                     settings = {
                         ["rust-analyzer"] = {
