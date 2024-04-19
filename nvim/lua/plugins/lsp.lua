@@ -113,7 +113,7 @@ return {
                     lua_ls = function()
                         lspconfig.lua_ls.setup({
                             on_attach = function(_, b)
-                                vim.lsp.inlay_hint.enable(b, true)
+                                vim.lsp.inlay_hint.enable(true, { bufnr = b })
                             end,
                             settings = {
                                 Lua = {
@@ -158,7 +158,7 @@ return {
                     gopls = function()
                         lspconfig.gopls.setup({
                             on_attach = function(_, b)
-                                vim.lsp.inlay_hint.enable(b, true)
+                                vim.lsp.inlay_hint.enable(true, { bufnr = b })
                             end,
                             settings = {
                                 gopls = {
@@ -188,7 +188,7 @@ return {
                     tsserver = function()
                         require("lspconfig").tsserver.setup({
                             on_attach = function(_, b)
-                                vim.lsp.inlay_hint.enable(b, true)
+                                vim.lsp.inlay_hint.enable(true, { bufnr = b })
                             end,
                             init_options = {
                                 preferences = {
