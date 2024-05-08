@@ -5,6 +5,7 @@ return {
             'hrsh7th/cmp-path',
             "onsails/lspkind.nvim",
         },
+        event = { "InsertEnter", "CmdlineEnter" },
         config = function()
             local cmp = require("cmp")
             local cmp_select = { behavior = cmp.SelectBehavior.Replace }
@@ -85,7 +86,6 @@ return {
                             buffer = "[Buffer]",
                             nvim_lsp = "[LSP]",
                             luasnip = "[Snip]",
-
                         })
                     })
                 }
