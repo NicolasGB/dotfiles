@@ -58,7 +58,7 @@ set keyboard layout definitive in X11:
 betterlockscreen-u ~/polybar-themes/wallpapers/bg_17.jpg --fx dim,pixel
 ```
 
-tips: From polybar clone and launch once the script comming from then then cp again over and icons are up
+tips: From polybar clone and launch once the script coming from then then cp again over and icons are up
 
 ##### Symbolic links
 
@@ -72,6 +72,7 @@ ln -s  ~/dotfiles/picom ~/.config/picom/
 ln -s  ~/dotfiles/dunst ~/.config/dunst/
 ln -s  ~/dotfiles/mpd/ ~/.config/mpd/
 ln -s ~/dotfiles/networkmanager-dmenu/ ~/.config/networkmanager-dmenu/
+ln -s ~/dotfiles/nushell/ ~/.config/nushell/
 ```
 
 ##### Command for installing

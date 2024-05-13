@@ -45,10 +45,11 @@ return {
         config = function()
             local crates = require("crates")
             crates.setup {
-                src = {
-                    cmp = {
-                        enabled = true,
-                    },
+                lsp = {
+                    enabled = true,
+                    actions = true,
+                    completion = true,
+                    hover = true,
                 },
             }
             crates.show()

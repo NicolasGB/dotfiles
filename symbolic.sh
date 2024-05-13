@@ -37,6 +37,7 @@ case "$1" in
         create_symlink dunst dunst
         create_symlink mpd mpd
         create_symlink networkmanager-dmenu networkmanager-dmenu
+        create_symlink nushell nushell
         echo "Setup completed!"
         ;;
     "remove")
@@ -49,6 +50,7 @@ case "$1" in
         remove_symlink dunst
         remove_symlink mpd
         remove_symlink networkmanager-dmenu
+        remove_symlink nushell
         echo "Removal completed!"
         ;;
     *)

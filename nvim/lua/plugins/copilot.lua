@@ -35,39 +35,49 @@ return {
                     TelescopePrompt = false
                 }
             })
+
+            -- Toggle copilot autogrigger, useful when writing mocks etc
+            vim.keymap.set("n", "<leader>cat", function()
+                require("copilot.suggestion").toggle_auto_trigger()
+            end, { desc = "Copilot toggle auto_trigger" })
         end,
     },
     {
         "CopilotC-Nvim/CopilotChat.nvim",
         version = "^v2",
-        keys = {
-            {
+        dependencies = {
+            { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+            { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+        },
+        config = function()
+            local copilot_chat = require("CopilotChat").setup({
+                debug = true, -- Enable debugging
+                -- See Configuration section for rest
+            })
+
+            -- -- Trigger quick chat
+            vim.keymap.set(
+                "n",
                 "<leader>ccq",
                 function()
                     local input = vim.fn.input("Quick Chat: ")
                     if input ~= "" then
-                        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+                        copilot_chat.ask(input, { selection = require("CopilotChat.select").buffer })
                     end
                 end,
-                desc = "CopilotChat - Quick chat",
-            },
-            {
+                { desc = "CopilotChat - Quick chat" }
+            )
+            -- -- Trigger actions
+            vim.keymap.set(
+                "n",
                 "<leader>ccp",
                 function()
                     local actions = require("CopilotChat.actions")
                     require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
                 end,
-                desc = "CopilotChat - Prompt actions",
-            },
-        },
-        dependencies = {
-            { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-            { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
-        },
-        opts = {
-            debug = true, -- Enable debugging
-            -- See Configuration section for rest
-        },
+                { noremap = true, desc = "CopilotChat - Prompt actions" }
+            )
+        end
         -- See Commands section for default commands if you want to lazy load on them
     },
 }

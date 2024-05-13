@@ -24,7 +24,7 @@ return {
             end, { noremap = true, silent = true, desc = "Hop treesitter nodes" })
 
             -- Camel Case hop
-            vim.keymap.set('n', '<leader>c', ":HopCamelCaseMW<CR>", { noremap = true, silent = true })
+            vim.keymap.set('n', '<leader>C', ":HopCamelCaseMW<CR>", { noremap = true, silent = true })
 
             -- Remote yanking and pasting
             vim.keymap.set("n", "<leader>yr", function()

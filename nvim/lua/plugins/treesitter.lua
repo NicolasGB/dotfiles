@@ -2,6 +2,10 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        dependencies = {
+            -- NOTE: additional parser
+            { "nushell/tree-sitter-nu" },
+        },
         config = function()
             require 'nvim-treesitter.configs'.setup {
                 -- A list of parser names, or "all" (the five listed parsers should always be installed)

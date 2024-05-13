@@ -49,7 +49,6 @@ return {
                         option = { use_show_condition = false, show_autosnippets = true }
                     },
                     { name = "buffer" },
-                    { name = "crates" },
                     { name = "path" },
                 },
                 mapping = cmp_mappings,
