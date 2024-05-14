@@ -1,6 +1,6 @@
 # Nushell Environment Config File
 #
-# version = "0.92.2"
+# version = "0.93"
 
 def create_left_prompt [] {
     let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
@@ -106,6 +106,9 @@ path add ~/.cargo/bin
 path add ~/.local/share/bob/nvim-bin
 path add ~/binaries
 
+
+# Plugins
+plugin add /home/nicolas/.cargo/bin/nu_plugin_highlight
 
 # Zoxide env
 zoxide init nushell | save -f ~/.zoxide.nu

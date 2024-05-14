@@ -233,6 +233,9 @@ return {
                 }
             })
 
+            -- Nushell (not in mason)
+            require('lspconfig').nushell.setup({})
+
             -- Formatting on Save
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("format_lsp_attach", { clear = true }),
