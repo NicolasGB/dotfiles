@@ -8,6 +8,12 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- Keymap for duplicating a line
 -- vim.api.nvim_set_keymap('n', '<leader>m', [[:t.<CR>]], { noremap = true, silent = true })
 
+-- Fast moving
+vim.keymap.set("n", "<c-h>", "<c-w><c-h>")
+vim.keymap.set("n", "<c-j>", "<c-w><c-j>")
+vim.keymap.set("n", "<c-k>", "<c-w><c-k>")
+vim.keymap.set("n", "<c-l>", "<c-w><c-l>")
+
 -- Jump to start and end of line using the home row keys
 vim.api.nvim_set_keymap('n', 'H', '^', { noremap = true })
 vim.api.nvim_set_keymap('n', 'L', '$', { noremap = true })
@@ -15,7 +21,7 @@ vim.api.nvim_set_keymap('n', 'L', '$', { noremap = true })
 vim.api.nvim_set_keymap('v', 'H', '^', { noremap = true })
 vim.api.nvim_set_keymap('v', 'L', '$', { noremap = true })
 
--- Moving to occurences with centered
+-- Moving to occurrences with centered
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 

@@ -8,7 +8,7 @@ return {
             -- animation = true,
             -- …etc
         },
-        version = "^1.0.0", -- optional: only update when a new 1.x version is released
+        branch = "master",
         config = function()
             local filetreename = "neo-tree"
             local function get_filetree_window()
