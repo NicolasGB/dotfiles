@@ -6,6 +6,20 @@ return {
         init = function()
             -- Configure rustaceanvim here
             vim.g.rustaceanvim = {
+                tools = {
+                    float_win_config = {
+                        border = {
+                            { '╭', 'FloatBorder' },
+                            { '─', 'FloatBorder' },
+                            { '╮', 'FloatBorder' },
+                            { '│', 'FloatBorder' },
+                            { '╯', 'FloatBorder' },
+                            { '─', 'FloatBorder' },
+                            { '╰', 'FloatBorder' },
+                            { '│', 'FloatBorder' },
+                        },
+                    }
+                },
                 server = {
                     on_attach = function(_, b)
                         vim.lsp.inlay_hint.enable(true, { bufnr = b })

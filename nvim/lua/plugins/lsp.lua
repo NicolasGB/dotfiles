@@ -62,9 +62,6 @@ return {
                 }
             })
 
-            -- Color Inlay hints highlight matching everforest
-            vim.api.nvim_set_hl(0, 'LspInlayHint',
-                { fg = '#6C7E8C', bold = true, ctermfg = 198, cterm = { bold = true } })
 
             -- LspConfig
             local lspconfig = require('lspconfig')
