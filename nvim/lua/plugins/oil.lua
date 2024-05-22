@@ -12,7 +12,8 @@ return {
                 keymaps = {
                     ["<C-s>"] = "actions.save",
                     ["q"] = "actions.close",
-                    ["<A-u>"] = "actions.parent"
+                    ["<A-u>"] = "actions.parent",
+                    ["<C-h>"] = "actions.select_vsplit",
                 },
                 view_options = {
                     show_hidden = true,
