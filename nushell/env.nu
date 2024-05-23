@@ -109,6 +109,7 @@ path add ~/binaries
 
 # Plugins
 plugin add /home/nicolas/.cargo/bin/nu_plugin_highlight
+plugin add /home/nicolas/dev/rust-projects/nu_plugin_clipboard/target/release/nu_plugin_clipboard
 
 # Zoxide env
 zoxide init nushell | save -f ~/.zoxide.nu

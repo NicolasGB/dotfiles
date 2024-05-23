@@ -15,11 +15,11 @@ vim.keymap.set("n", "<c-k>", "<c-w><c-k>")
 vim.keymap.set("n", "<c-l>", "<c-w><c-l>")
 
 -- Jump to start and end of line using the home row keys
-vim.api.nvim_set_keymap('n', 'H', '^', { noremap = true })
-vim.api.nvim_set_keymap('n', 'L', '$', { noremap = true })
+vim.api.nvim_set_keymap("n", "H", "^", { noremap = true })
+vim.api.nvim_set_keymap("n", "L", "$", { noremap = true })
 -- In visual mode, H and L should also work as expected
-vim.api.nvim_set_keymap('v', 'H', '^', { noremap = true })
-vim.api.nvim_set_keymap('v', 'L', '$', { noremap = true })
+vim.api.nvim_set_keymap("v", "H", "^", { noremap = true })
+vim.api.nvim_set_keymap("v", "L", "$", { noremap = true })
 
 -- Moving to occurrences with centered
 vim.keymap.set("n", "n", "nzzzv")
@@ -53,17 +53,16 @@ vim.keymap.set("n", "<C-q>", ":qa<CR>")
 vim.keymap.set("i", "<C-q>", "<Esc>:qa<CR>")
 vim.keymap.set("v", "<C-q>", "<Esc>:qa<CR>")
 
-
 -- New lines
-vim.api.nvim_set_keymap('n', '<Leader>j', 'o<Esc>k', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>k', 'O<Esc>j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>j", "o<Esc>k", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>k", "O<Esc>j", { noremap = true, silent = true })
 
 -- Select all
-vim.api.nvim_set_keymap('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true, silent = true })
 
 -- Indentation
-vim.api.nvim_set_keymap('v', '>', '>gv', {})
-vim.api.nvim_set_keymap('v', '<', '<gv', {})
+vim.api.nvim_set_keymap("v", ">", ">gv", {})
+vim.api.nvim_set_keymap("v", "<", "<gv", {})
 
 -- NoOp
 vim.keymap.set("n", "Q", "<nop>")

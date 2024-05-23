@@ -1,16 +1,15 @@
 return {
-    {
-        'L3MON4D3/LuaSnip',
-        dependencies = { 'hrsh7th/nvim-cmp', "rafamadriz/friendly-snippets" },
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./custom-snippets" } })
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "hrsh7th/nvim-cmp", "rafamadriz/friendly-snippets" },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load { paths = { "./custom-snippets" } }
 
-            local luasnip = require("luasnip")
+      local luasnip = require "luasnip"
 
-            luasnip.config.setup({})
-        end
-
-    },
-    { "saadparwaiz1/cmp_luasnip" }
+      luasnip.config.setup {}
+    end,
+  },
+  { "saadparwaiz1/cmp_luasnip" },
 }

@@ -1,10 +1,10 @@
 return {
-    {
-        'stevearc/dressing.nvim',
-        opts = {
-            select = {
-                enabled = false
-            }
-        },
-    }
+  {
+    "stevearc/dressing.nvim",
+    opts = {
+      select = {
+        enabled = false,
+      },
+    },
+  },
 }
