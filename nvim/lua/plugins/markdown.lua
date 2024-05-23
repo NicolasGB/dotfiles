@@ -4,10 +4,8 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    build = function()
-      local install_path = vim.fn.stdpath "data" .. "/lazy/markdown-preview.nvim/app"
-      vim.cmd("silent !cd " .. install_path .. " && npm install && git restore .")
-    end,
+    -- Replace this with && if on bash
+    build = "cd app; yarn install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_auto_close = 0
