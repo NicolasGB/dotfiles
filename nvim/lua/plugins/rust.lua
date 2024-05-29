@@ -42,6 +42,9 @@ return {
                   useParameterNames = true,
                 },
               },
+              procMacro = {
+                enable = true,
+              },
             },
           },
           standalone = true,
