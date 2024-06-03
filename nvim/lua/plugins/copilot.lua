@@ -67,6 +67,11 @@ return {
         local actions = require "CopilotChat.actions"
         require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
       end, { noremap = true, desc = "CopilotChat - Prompt actions" })
+
+      vim.keymap.set("v", "<leader>ccp", function()
+        local actions = require "CopilotChat.actions"
+        require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+      end, { noremap = true, desc = "CopilotChat - Prompt actions" })
     end,
     -- See Commands section for default commands if you want to lazy load on them
   },
