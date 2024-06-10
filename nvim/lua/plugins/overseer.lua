@@ -2,6 +2,7 @@ return {
   {
     "stevearc/overseer.nvim",
     opts = {
+      -- template_cache_threshold = 0,
       task_list = {
         direction = "bottom",
         min_height = 25,

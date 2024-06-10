@@ -1,18 +1,4 @@
 return {
-  -- {
-  --     "github/copilot.vim",
-  --     config = function()
-  --         vim.g.copilot_filetypes = {
-  --             markdown = true,
-  --             yaml = true,
-  --             rust = false,
-  --             TelescopePrompt = false
-  --         }
-  --         vim.g.copilot_no_tab_map = true
-  --
-  --         vim.api.nvim_set_keymap("i", "<A-m>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-  --     end
-  -- },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -62,6 +48,14 @@ return {
           copilot_chat.ask(input, { selection = require("CopilotChat.select").buffer })
         end
       end, { desc = "CopilotChat - Quick chat" })
+
+      vim.keymap.set("v", "<leader>ccq", function()
+        local input = vim.fn.input "Quick Chat: "
+        if input ~= "" then
+          copilot_chat.ask(input, { selection = require("CopilotChat.select").buffer })
+        end
+      end, { desc = "CopilotChat - Quick chat" })
+
       -- -- Trigger actions
       vim.keymap.set("n", "<leader>ccp", function()
         local actions = require "CopilotChat.actions"

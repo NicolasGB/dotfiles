@@ -6,6 +6,9 @@
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
 # https://github.com/nushell/nu_scripts/tree/main/themes
+
+use ./nu_scripts/themes/nu-themes/everforest.nu
+
 let dark_theme = {
     # color for nushell primitives
     separator: white
@@ -909,7 +912,6 @@ alias lg = lazygit
 alias ld = lazydocker
 
 alias v = nvim
-alias cat = bat
 
 alias l = ls -l
 alias la = ls -a
@@ -956,3 +958,6 @@ def pacupd [] {
 
 # Load starship
 use ~/.cache/starship/init.nu
+
+
+$env.config.color_config = (everforest)

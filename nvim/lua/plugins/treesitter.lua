@@ -5,6 +5,10 @@ return {
     dependencies = {
       -- NOTE: additional parser
       { "nushell/tree-sitter-nu" },
+      {
+        "tree-sitter-kestrel",
+        dir = "~/dev/kestrel-rs/treesitter-kes/",
+      },
     },
     config = function()
       require("nvim-treesitter.configs").setup {
@@ -20,6 +24,8 @@ return {
 
         highlight = {
           enable = true,
+          -- Seems bugged currently
+          disable = { "dockerfile" },
 
           -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
           -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
