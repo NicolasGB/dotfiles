@@ -98,10 +98,11 @@ $env.NU_PLUGIN_DIRS = [
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
-
+$env.EDITOR = /home/nicolas/.local/share/bob/nvim-bin/nvim
 
 # PATH
 use std "path add"
+path add ~/go
 path add ~/go
 path add ~/.cargo/bin
 path add ~/.local/share/bob/nvim-bin
@@ -110,7 +111,7 @@ path add ~/binaries
 
 # Plugins
 plugin add /home/nicolas/.cargo/bin/nu_plugin_highlight
-# plugin add /home/nicolas/dev/rust-projects/nu_plugin_clipboard/target/release/nu_plugin_clipboard
+plugin add /home/nicolas/dev/rust-projects/nu_plugin_clipboard/target/release/nu_plugin_clipboard
 
 # Zoxide env
 zoxide init nushell | save -f ~/.zoxide.nu

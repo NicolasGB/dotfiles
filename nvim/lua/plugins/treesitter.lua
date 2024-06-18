@@ -5,10 +5,26 @@ return {
     dependencies = {
       -- NOTE: additional parser
       { "nushell/tree-sitter-nu" },
+
+      -- Kestrel prod
       {
         "tree-sitter-kestrel",
-        dir = "~/dev/kestrel-rs/treesitter-kes/",
+        url = "git@github.com:kestrel-rs/treesitter-kes.git",
+        branch = "main",
+        init = function()
+          vim.g.kestrel_parser_url = "~/.local/share/nvim/lazy/treesitter-kes/"
+        end,
       },
+
+      -- Kestrel dev
+      -- {
+      --   "tree-sitter-kestrel",
+      --   dir = "~/dev/kestrel-rs/treesitter-kes",
+      --   branch = "main",
+      --   init = function()
+      --     vim.g.kestrel_parser_url = "~/dev/kestrel-rs/treesitter-kes"
+      --   end,
+      -- },
     },
     config = function()
       require("nvim-treesitter.configs").setup {

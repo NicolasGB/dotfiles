@@ -14,7 +14,9 @@ return {
       local function get_filetree_window()
         for _, windowId in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
           local buffer = vim.api.nvim_win_get_buf(windowId)
-          if vim.api.nvim_buf_get_option(buffer, "ft") == filetreename then
+          local opts = { buf = buffer }
+          local filetype = vim.api.nvim_get_option_value("filetype", opts)
+          if filetype == filetreename then
             return windowId
           end
         end

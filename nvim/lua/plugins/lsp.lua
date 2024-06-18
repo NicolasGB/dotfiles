@@ -322,17 +322,20 @@ return {
           lua = { "stylua" },
           markdown = { "prettier" },
         },
+        format_on_save = function(bufnr)
+          return { lsp_format = "fallback", quiet = true, bufnr = bufnr }
+        end,
       }
 
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        callback = function(args)
-          require("conform").format {
-            bufnr = args.buf,
-            lsp_fallback = true,
-            quiet = true,
-          }
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   callback = function(args)
+      --     require("conform").format {
+      --       bufnr = args.buf,
+      --       lsp_format = "fallback",
+      --       quiet = true,
+      --     }
+      --   end,
+      -- })
     end,
   },
 }

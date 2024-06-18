@@ -4,13 +4,12 @@ return {
     opts = {},
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
-
     config = function()
       local oil = require "oil"
       oil.setup {
         default_file_explorer = false, -- If i get used to might activate it later
         keymaps = {
-          ["<C-s>"] = "actions.save",
+          ["<C-s>"] = vim.cmd.w,
           ["q"] = "actions.close",
           ["<A-u>"] = "actions.parent",
           ["<C-h>"] = "actions.select_vsplit",

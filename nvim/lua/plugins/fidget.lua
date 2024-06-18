@@ -19,7 +19,7 @@ return {
 
       -- Hack to close fidget notification when progress is finished
       vim.api.nvim_create_autocmd("LspProgress", {
-        pattern = { "end" },
+        pattern = "end",
         callback = function(ev)
           local token = ev.data.params.token
           local client_id = ev.data.client_id
