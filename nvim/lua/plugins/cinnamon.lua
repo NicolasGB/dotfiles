@@ -1,32 +1,33 @@
 return {
   {
     "declancm/cinnamon.nvim",
-    event = "VeryLazy",
     config = function()
       require("cinnamon").setup {
-        extra_keymaps = true,
-        extended_keymaps = false,
-        override_keymaps = false,
-        max_length = 500,
-        centered = true,
-        scroll_limit = 500,
-        hide_cursor = true,
+        keymaps = { extra = false },
       }
+      local cinnamon = require "cinnamon"
 
-      -- We like it centered
-      vim.keymap.set({ "n", "x" }, "G", "<Cmd>lua Scroll('G', 0, 1)<CR>zz")
+      -- Centered scrolling:
+      vim.keymap.set("n", "<C-u>", function()
+        cinnamon.scroll "<C-u>zz"
+      end)
+      vim.keymap.set({ "n", "x" }, "<C-d>", function()
+        cinnamon.scroll "<C-d>zz"
+      end)
+      vim.keymap.set({ "n", "x" }, "G", function()
+        cinnamon.scroll "Gzz"
+      end)
+
+      -- Line scroll
+      vim.keymap.set({ "n", "v" }, "H", function()
+        cinnamon.scroll "^"
+      end)
+      vim.keymap.set({ "n", "v" }, "L", function()
+        cinnamon.scroll "$"
+      end)
+      vim.keymap.set({ "n", "x" }, "0", function()
+        cinnamon.scroll "0"
+      end)
     end,
   },
-  -- {
-  --     "karb94/neoscroll.nvim",
-  --     config = function()
-  --         require('neoscroll').setup {
-  --             easinc_function = "quintic",
-  --             post_hook = function(_)
-  --                 vim.cmd("normal! zz")
-  --             end,
-  --         }
-  --         vim.keymap.set({ 'n', 'x' }, 'G', "Gzz")
-  --     end
-  -- }
 }

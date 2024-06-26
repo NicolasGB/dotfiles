@@ -12,7 +12,6 @@ return {
       { "L3MON4D3/LuaSnip" }, -- Required
 
       -- Signature
-      { "hrsh7th/cmp-nvim-lsp-signature-help" },
       { "ray-x/lsp_signature.nvim" },
 
       -- Telescope

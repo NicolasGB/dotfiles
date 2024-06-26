@@ -12,7 +12,7 @@ return {
         url = "git@github.com:kestrel-rs/treesitter-kes.git",
         branch = "main",
         init = function()
-          vim.g.kestrel_parser_url = "~/.local/share/nvim/lazy/treesitter-kes/"
+          vim.g.kestrel_parser_url = "~/.local/share/nvim/lazy/treesitter-kestrel/"
         end,
       },
 

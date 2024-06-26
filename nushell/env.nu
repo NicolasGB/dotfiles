@@ -103,7 +103,7 @@ $env.EDITOR = /home/nicolas/.local/share/bob/nvim-bin/nvim
 # PATH
 use std "path add"
 path add ~/go
-path add ~/go
+path add ~/go/bin/
 path add ~/.cargo/bin
 path add ~/.local/share/bob/nvim-bin
 path add ~/binaries
