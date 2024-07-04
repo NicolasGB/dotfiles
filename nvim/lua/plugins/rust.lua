@@ -29,7 +29,7 @@ return {
               cargo = { features = "all" },
               assist = {
                 importEnforceGranularity = true,
-                importPrefix = "crate",
+                importPrefix = "module",
               },
               checkOnSave = {
                 enable = true,

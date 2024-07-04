@@ -74,69 +74,46 @@ return {
         group = vim.api.nvim_create_augroup("lsp_keybindings", { clear = true }),
         desc = "LSP actions",
         callback = function(event)
+          -- stylua: ignore start
           local opts = { buffer = event.buf }
 
           -- Go to definition
           vim.keymap.set("n", "gd", telescope.lsp_definitions, opts)
           -- Go to type definition
           vim.keymap.set("n", "gt", telescope.lsp_type_definitions, opts)
-          -- Go to devlaration
-          vim.keymap.set("n", "gD", function()
-            vim.lsp.buf.declaration()
-          end, opts)
-
+          -- Go to declaration
+          vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
           -- Hover
-          vim.keymap.set("n", "K", function()
-            vim.lsp.buf.hover()
-          end, opts)
+          vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
 
           -- View diagnostics
-          vim.keymap.set("n", "<leader>vd", function()
-            vim.diagnostic.open_float()
-          end, opts)
+          vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
 
           -- Go to next error
-          vim.keymap.set("n", "ge", function()
-            vim.diagnostic.goto_next()
-          end, opts)
+          vim.keymap.set("n", "ge", function() vim.diagnostic.jump({count = 1})() end, opts)
 
           -- Go to previous error
-          vim.keymap.set("n", "gpe", function()
-            vim.diagnostic.goto_prev()
-          end, opts)
-
+          vim.keymap.set("n", "gpe", function() vim.diagnostic.jump({count = -1}) end, opts)
           -- List errors with telescope
           vim.keymap.set("n", "<leader>le", telescope.diagnostics, opts)
 
           -- Good old JetBrains
-          vim.keymap.set("n", "<A-CR>", function()
-            vim.lsp.buf.code_action()
-          end, opts)
-          vim.keymap.set("v", "<A-CR>", function()
-            vim.lsp.buf.code_action()
-          end, opts)
-
+          vim.keymap.set("n", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
+          vim.keymap.set("v", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
           -- View references
-          vim.keymap.set("n", "<leader>vr", function()
-            vim.lsp.buf.references()
-          end, opts)
+          vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
 
           -- Rename
-          vim.keymap.set("n", "<leader>R", function()
-            vim.lsp.buf.rename()
-          end, opts)
+          vim.keymap.set("n", "<leader>R", function() vim.lsp.buf.rename() end, opts)
 
           -- Signature help
-          vim.keymap.set("i", "<C-h>", function()
-            vim.lsp.buf.signature_help()
-          end, opts)
+          vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
           -- Get references
-          vim.keymap.set("n", "gr", function()
-            telescope.lsp_references { include_declaration = false }
-          end, opts)
+          vim.keymap.set("n", "gr", function() telescope.lsp_references { include_declaration = false } end, opts)
 
           vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
+          -- stylua: ignore end
         end,
       })
 

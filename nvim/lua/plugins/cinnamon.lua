@@ -28,6 +28,29 @@ return {
       vim.keymap.set({ "n", "x" }, "0", function()
         cinnamon.scroll "0"
       end)
+
+      -- End
+      vim.keymap.set({ "n", "x" }, "e", function()
+        cinnamon.scroll "e"
+      end)
+      vim.keymap.set({ "n", "x" }, "E", function()
+        cinnamon.scroll "E"
+      end)
+      -- Backward
+      vim.keymap.set({ "n", "x" }, "b", function()
+        cinnamon.scroll "b"
+      end)
+      vim.keymap.set({ "n", "x" }, "B", function()
+        cinnamon.scroll "B"
+      end)
+      -- Down
+      vim.keymap.set({ "n", "x" }, "j", function()
+        cinnamon.scroll "j"
+      end)
+      -- Up
+      vim.keymap.set({ "n", "x" }, "k", function()
+        cinnamon.scroll "k"
+      end)
     end,
   },
 }
