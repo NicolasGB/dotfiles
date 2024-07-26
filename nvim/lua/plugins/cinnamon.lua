@@ -1,6 +1,7 @@
 return {
   {
     "declancm/cinnamon.nvim",
+    version = "1.2.3",
     config = function()
       require("cinnamon").setup {
         keymaps = { extra = false },

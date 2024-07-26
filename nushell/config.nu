@@ -956,6 +956,11 @@ def pacupd [] {
     cargo install-update -a  
 }
 
+def neo [] {
+    cd ~/neorg
+    nvim
+}
+
 # Load starship
 use ~/.cache/starship/init.nu
 
