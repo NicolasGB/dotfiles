@@ -98,8 +98,9 @@ return {
           vim.keymap.set("n", "<leader>le", telescope.diagnostics, opts)
 
           -- Good old JetBrains
-          vim.keymap.set("n", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
-          vim.keymap.set("v", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
+          -- vim.keymap.set("n", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
+          -- vim.keymap.set("v", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
+
           -- View references
           vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
 
@@ -303,15 +304,15 @@ return {
         end,
       }
 
-      -- vim.api.nvim_create_autocmd("BufWritePre", {
-      --   callback = function(args)
-      --     require("conform").format {
-      --       bufnr = args.buf,
-      --       lsp_format = "fallback",
-      --       quiet = true,
-      --     }
-      --   end,
-      -- })
+      -- When using injections and this kinds of things if the server can return semantic tokens, treesitter highlihgting is killed
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client ~= nil then
+            client.server_capabilities.semanticTokensProvider = nil
+          end
+        end,
+      })
     end,
   },
 }

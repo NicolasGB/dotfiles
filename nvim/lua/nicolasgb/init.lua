@@ -11,15 +11,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- For nightly neovim which is brokeybroke
-vim.api.nvim_create_autocmd("WinLeave", {
-  callback = function()
-    if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
-    end
-  end,
-})
-
 -- Remap gf to open files with relative paths in the same window but closing the terminal if it's open
 vim.keymap.set("n", "gf", function()
   local line = vim.api.nvim_get_current_line()
