@@ -90,7 +90,7 @@ return {
           vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
 
           -- Go to next error
-          vim.keymap.set("n", "ge", function() vim.diagnostic.jump({count = 1})() end, opts)
+          vim.keymap.set("n", "ge", function() vim.diagnostic.jump({count = 1}) end, opts)
 
           -- Go to previous error
           vim.keymap.set("n", "gpe", function() vim.diagnostic.jump({count = -1}) end, opts)
@@ -303,16 +303,6 @@ return {
           return { lsp_format = "fallback", quiet = true, bufnr = bufnr }
         end,
       }
-
-      -- When using injections and this kinds of things if the server can return semantic tokens, treesitter highlihgting is killed
-      vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if client ~= nil then
-            client.server_capabilities.semanticTokensProvider = nil
-          end
-        end,
-      })
     end,
   },
 }

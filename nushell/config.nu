@@ -922,6 +922,8 @@ def cv [] {
     cd ~/.config/nvim;
     nvim
 }
+# Update neovim
+alias bun = bob update nightly
 
 # Load zoxide
 source ~/.zoxide.nu

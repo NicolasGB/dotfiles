@@ -25,6 +25,8 @@ return {
             ".idea",
             "-E",
             "target",
+            "-E",
+            "node_modules",
           },
         }
       end, { noremap = true, silent = true, desc = "Find files using fd" })
