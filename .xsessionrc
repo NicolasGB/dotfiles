@@ -1,2 +1,2 @@
-xmodmap -e "keysym ISO_Level3_Shift = Multi_key"
+xmodmap -e "keycode 108 = Multi_key"
 

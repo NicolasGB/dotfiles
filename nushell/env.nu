@@ -98,7 +98,10 @@ $env.NU_PLUGIN_DIRS = [
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
-$env.EDITOR = /home/nicolas/.local/share/bob/nvim-bin/nvim
+$env.EDITOR = "/home/nicolas/.local/share/bob/nvim-bin/nvim"
+
+#  Load my secrets
+source secrets.nu
 
 # PATH
 use std "path add"

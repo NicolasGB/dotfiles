@@ -49,7 +49,7 @@ pacman -> /etc/pacman.conf
 
 ```sh
 set keyboard layout definitive in X11:
-    localectl --no-convert set-x11-keymap es,fr '' ''  caps:escape
+    localectl --no-convert set-x11-keymap us,es,fr '' ''  caps:escape
 ```
 
 #### Set lockscreen
@@ -78,6 +78,13 @@ ln -s ~/dotfiles/nushell/ ~/.config/nushell/
 ##### Command for installing
 
 -- Pacman
+
+Dump:
+
+```sh
+pacman -Qq | grep -vx "$(pacman -Qmq)" > packages.list #Non AUR
+pacman -Qmq > aur.list #AUR
+```
 
 ```sh
 pacman -S $(cat package.list) --noconfirm
