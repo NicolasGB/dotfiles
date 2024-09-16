@@ -119,8 +119,24 @@ return {
     event = "VeryLazy",
     config = function()
       require("treesitter-context").setup {}
-      -- Color TreeSitter context
-      vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#1E2326" })
+
+      -- Color TreeSitter context based on the mode
+      local function set_tree_sitter_context_colors()
+        if vim.o.background == "dark" then
+          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#1E2326" })
+        else
+          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#D3D5D0" })
+        end
+      end
+
+      -- Set colors initially
+      set_tree_sitter_context_colors()
+
+      -- Create an autocommand to update colors when the colorscheme changes
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("TreeSitterContextColors", { clear = true }),
+        callback = set_tree_sitter_context_colors,
+      })
     end,
   },
 }

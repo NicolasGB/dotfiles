@@ -62,4 +62,23 @@ vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "FloatTitle", { bg = "NONE" })
 
 -- Color Inlay hints highlight matching everforest
-vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#6C7E8C", bold = true, ctermfg = 198, cterm = { bold = true } })
+local function set_inlay_hint_colors()
+  if vim.o.background == "dark" then
+    vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#6C7E8C", bold = true, ctermfg = 198, cterm = { bold = true } })
+  else
+    vim.api.nvim_set_hl(
+      0,
+      "LspInlayHint",
+      { fg = "#445C6F", bg = "#E5E9DD", bold = true, ctermfg = 198, cterm = { bold = true } }
+    )
+  end
+end
+
+-- Set colors initially
+set_inlay_hint_colors()
+
+-- Create an autocommand to update colors when the colorscheme changes
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("InlayHintColors", { clear = true }),
+  callback = set_inlay_hint_colors,
+})

@@ -36,33 +36,21 @@ return {
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
     config = function()
-      local copilot_chat = require("CopilotChat").setup {
+      require("CopilotChat").setup {
         debug = true, -- Enable debugging
         -- See Configuration section for rest
       }
 
       -- -- Trigger quick chat
-      vim.keymap.set("n", "<leader>ccq", function()
+      vim.keymap.set({ "n", "v" }, "<leader>ccq", function()
         local input = vim.fn.input "Quick Chat: "
         if input ~= "" then
-          copilot_chat.ask(input, { selection = require("CopilotChat.select").buffer })
-        end
-      end, { desc = "CopilotChat - Quick chat" })
-
-      vim.keymap.set("v", "<leader>ccq", function()
-        local input = vim.fn.input "Quick Chat: "
-        if input ~= "" then
-          copilot_chat.ask(input, { selection = require("CopilotChat.select").buffer })
+          require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
         end
       end, { desc = "CopilotChat - Quick chat" })
 
       -- -- Trigger actions
-      vim.keymap.set("n", "<leader>ccp", function()
-        local actions = require "CopilotChat.actions"
-        require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-      end, { noremap = true, desc = "CopilotChat - Prompt actions" })
-
-      vim.keymap.set("v", "<leader>ccp", function()
+      vim.keymap.set({ "n", "v" }, "<leader>ccp", function()
         local actions = require "CopilotChat.actions"
         require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
       end, { noremap = true, desc = "CopilotChat - Prompt actions" })

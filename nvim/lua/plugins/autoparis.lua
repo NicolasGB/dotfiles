@@ -8,9 +8,11 @@ return {
         require("ultimate-autopair").extend_default {
           fastwarp = {
             multi = true,
-            {},
             { faster = true, map = "<A-e>", cmap = "<A-e>" },
           },
+          -- internal_pairs = {
+          --   { "<", ">", fly = true, dosuround = true, newline = true, space = true },
+          -- },
         },
         { profile = require("ultimate-autopair.experimental.cmpair").init },
       }
