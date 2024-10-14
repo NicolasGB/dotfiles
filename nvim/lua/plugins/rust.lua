@@ -48,8 +48,8 @@ return {
             },
           },
           standalone = true,
-          -- cmd = { "rustup", "run", "stable", "rust-analyzer" },
-          cmd = { "/usr/bin/rust-analyzer" },
+          cmd = { "rustup", "run", "stable", "rust-analyzer" },
+          -- cmd = { "/usr/bin/rust-analyzer" },
         },
         -- DAP configuration
         dap = {},

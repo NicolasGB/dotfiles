@@ -954,7 +954,8 @@ alias pacrem = sudo pacman -Rns
 def pacupd [] {
     sudo systemctl daemon-reload;
     paru;
-    cargo install-update -a  
+    cargo install-update -a;
+    bun;
 }
 
 def neo [] {

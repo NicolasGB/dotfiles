@@ -9,7 +9,7 @@ return {
     },
     config = function()
       local builtin = require "telescope.builtin"
-      -- vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+      -- Find files
       vim.keymap.set("n", "<leader>ff", function()
         builtin.find_files {
           hidden = true,
@@ -30,22 +30,20 @@ return {
           },
         }
       end, { noremap = true, silent = true, desc = "Find files using fd" })
+      -- Grep current file
       vim.keymap.set("n", "<leader>gr", function()
         builtin.live_grep {
           additional_args = { "--smart-case" },
         }
       end, { desc = "Live grep whole project" })
-      -- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+      -- Find in current
       vim.keymap.set("n", "<leader>fc", builtin.current_buffer_fuzzy_find, { desc = "Find in current buffer" })
+      -- Find buffers
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
       -- Search in help
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find in help" })
 
-      vim.keymap.set("n", "<leader>fS", function()
-        builtin.lsp_workspace_symbols {
-          query = vim.fn.input "Query > ",
-        }
-      end, { desc = "Search in workspace symbols" })
+      vim.keymap.set("n", "<leader>fS", builtin.lsp_document_symbols, { desc = "Search in document symbols" })
 
       local actions = require "telescope.actions"
       require("telescope").setup {

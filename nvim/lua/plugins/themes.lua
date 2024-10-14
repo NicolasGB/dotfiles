@@ -5,14 +5,10 @@ return {
       require("everforest").setup {
         background = "hard",
         float_style = "dim",
+        on_highlights = function(hl, _)
+          hl.LspInlayHint = { fg = "#6C7E8C", bold = true, ctermfg = 198, cterm = { bold = true } }
+        end,
       }
-
-      -- local hour = tonumber(os.date "%H")
-      -- if hour >= 7 and hour < 12 then
-      --   vim.o.background = "light"
-      -- else
-      --   vim.o.background = "dark"
-      -- end
 
       vim.cmd.colorscheme "everforest"
     end,

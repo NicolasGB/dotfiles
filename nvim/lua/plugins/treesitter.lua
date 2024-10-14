@@ -7,14 +7,14 @@ return {
       { "nushell/tree-sitter-nu" },
 
       -- Kestrel prod
-      {
-        "tree-sitter-kestrel",
-        url = "git@github.com:kestrel-rs/treesitter-kes.git",
-        branch = "main",
-        init = function()
-          vim.g.kestrel_parser_url = "~/.local/share/nvim/lazy/tree-sitter-kestrel/"
-        end,
-      },
+      -- {
+      --   "tree-sitter-kestrel",
+      --   url = "git@github.com:kestrel-rs/treesitter-kes.git",
+      --   branch = "main",
+      --   init = function()
+      --     vim.g.kestrel_parser_url = "~/.local/share/nvim/lazy/tree-sitter-kestrel/"
+      --   end,
+      -- },
 
       -- Kestrel dev
       -- {
