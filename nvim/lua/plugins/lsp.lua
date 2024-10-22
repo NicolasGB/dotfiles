@@ -38,9 +38,10 @@ return {
 
       -- Diagnostics
       vim.diagnostic.config {
-        virtual_text = {
-          prefix = "●",
-        },
+        -- virtual_text = {
+        --   prefix = "●",
+        -- },
+        virtual_text = false,
         -- update_in_insert = true,
         underline = true,
         severity_sort = true,
@@ -287,6 +288,17 @@ return {
               },
             }
           end,
+          cucumber_language_server = function()
+            -- We just want formatting since cucumber needs the source code sadly
+            require("lspconfig").cucumber_language_server.setup {
+              on_init = function(client, _)
+                client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+              end,
+              handlers = {
+                ["textDocument/publishDiagnostics"] = function() end,
+              },
+            }
+          end,
         },
       }
 
@@ -303,6 +315,13 @@ return {
           return { lsp_format = "fallback", quiet = true, bufnr = bufnr }
         end,
       }
+    end,
+  },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach", -- Or `LspAttach`
+    config = function()
+      require("tiny-inline-diagnostic").setup()
     end,
   },
 }

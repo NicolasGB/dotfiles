@@ -38,6 +38,7 @@ case "$1" in
         create_symlink mpd mpd
         create_symlink networkmanager-dmenu networkmanager-dmenu
         create_symlink nushell nushell
+        create_symlink kitty kitty
         echo "Setup completed!"
         ;;
     "remove")
@@ -52,6 +53,7 @@ case "$1" in
         remove_symlink networkmanager-dmenu
         remove_symlink nushell
         remove_symlink lazygit
+        remove_symlink kitty
         echo "Removal completed!"
         ;;
     *)

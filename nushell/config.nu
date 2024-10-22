@@ -963,6 +963,9 @@ def neo [] {
     nvim
 }
 
+# Kitty things
+alias icat = kitten icat
+
 # Load starship
 use ~/.cache/starship/init.nu
 

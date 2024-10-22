@@ -55,15 +55,18 @@ vim.keymap.set("i", "<C-q>", "<Esc>:qa<CR>")
 vim.keymap.set("v", "<C-q>", "<Esc>:qa<CR>")
 
 -- New lines
-vim.api.nvim_set_keymap("n", "<Leader>j", "o<Esc>k", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>k", "O<Esc>j", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>j", "o<Esc>k", { noremap = true, silent = true, desc = "Add new line on bottom" })
+vim.api.nvim_set_keymap("n", "<Leader>k", "O<Esc>j", { noremap = true, silent = true, desc = "Add new line on top" })
 
 -- Select all
-vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true, silent = true, desc = "Select all" })
 
 -- Indentation
-vim.api.nvim_set_keymap("v", ">", ">gv", {})
-vim.api.nvim_set_keymap("v", "<", "<gv", {})
+vim.api.nvim_set_keymap("v", ">", ">gv", { desc = "Indent right" })
+vim.api.nvim_set_keymap("v", "<", "<gv", { desc = "Indent left" })
 
 -- NoOp
 vim.keymap.set("n", "Q", "<nop>")
+
+-- Pasting the old way in insert mode
+vim.api.nvim_set_keymap("i", "<C-v>", '<C-r>"', { desc = "Paste in insert mode" })
