@@ -87,7 +87,7 @@ return {
           vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
 
           -- View diagnostics
-          vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+          vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end, opts)
 
           -- Go to next error
           vim.keymap.set("n", "ge", function() vim.diagnostic.jump({count = 1}) end, opts)

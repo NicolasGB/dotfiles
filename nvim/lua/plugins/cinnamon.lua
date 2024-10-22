@@ -45,13 +45,13 @@ return {
         cinnamon.scroll "B"
       end)
       -- Down
-      vim.keymap.set({ "n", "x" }, "j", function()
-        cinnamon.scroll "j"
-      end)
-      -- Up
-      vim.keymap.set({ "n", "x" }, "k", function()
-        cinnamon.scroll "k"
-      end)
+      -- vim.keymap.set({ "n", "x" }, "j", function()
+      --   cinnamon.scroll "j"
+      -- end)
+      -- -- Up
+      -- vim.keymap.set({ "n", "x" }, "k", function()
+      --   cinnamon.scroll "k"
+      -- end)
     end,
   },
 }
