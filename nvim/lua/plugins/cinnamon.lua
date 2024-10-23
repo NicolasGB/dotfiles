@@ -4,7 +4,12 @@ return {
     version = "1.2.3",
     config = function()
       require("cinnamon").setup {
-        keymaps = { extra = false },
+        keymaps = { basic = true },
+        options = {
+          max_delta = {
+            line = 150,
+          },
+        },
       }
       local cinnamon = require "cinnamon"
 
@@ -17,6 +22,9 @@ return {
       end)
       vim.keymap.set({ "n", "x" }, "G", function()
         cinnamon.scroll "Gzz"
+      end)
+      vim.keymap.set({ "n", "x" }, "gg", function()
+        cinnamon.scroll "gg"
       end)
 
       -- Line scroll
@@ -44,14 +52,6 @@ return {
       vim.keymap.set({ "n", "x" }, "B", function()
         cinnamon.scroll "B"
       end)
-      -- Down
-      -- vim.keymap.set({ "n", "x" }, "j", function()
-      --   cinnamon.scroll "j"
-      -- end)
-      -- -- Up
-      -- vim.keymap.set({ "n", "x" }, "k", function()
-      --   cinnamon.scroll "k"
-      -- end)
     end,
   },
 }

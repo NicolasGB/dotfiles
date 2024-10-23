@@ -319,9 +319,22 @@ return {
   },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach", -- Or `LspAttach`
+    event = "LspAttach",
     config = function()
-      require("tiny-inline-diagnostic").setup()
+      require("tiny-inline-diagnostic").setup {
+        options = {
+          -- If multiple diagnostics are under the cursor, display all of them.
+          multiple_diag_under_cursor = true,
+          -- Enable diagnostic message on all lines.
+          multilines = true,
+          -- Show all diagnostics on the cursor line.
+          show_all_diags_on_cursorline = true,
+          -- Avoid conflict with gitsigns
+          virt_exts = {
+            priority = 2048,
+          },
+        },
+      }
     end,
   },
 }
