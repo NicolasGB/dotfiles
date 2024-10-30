@@ -1,16 +1,4 @@
 return {
-  -- {
-  --     'simrat39/symbols-outline.nvim',
-  --     config = function()
-  --         require("symbols-outline").setup({
-  --             wrap = true,
-  --             width = 30,
-  --             -- auto_close = true,
-  --         })
-  --         -- vim.keymap.set("n", "<leader>vs", ":SymbolsOutline<CR>")
-  --     end
-  --
-  -- },
   {
     "hedyhli/outline.nvim",
     lazy = true,
@@ -19,10 +7,15 @@ return {
       { "<leader>vs", "<cmd>Outline<CR>", desc = "Toggle outline" },
     },
     opts = {
+      preview_window = {
+        auto_preview = true,
+        width = 40,
+      },
       -- Your setup opts here
       outline_window = {
         wrpa = true,
         width = 30,
+        auto_close = true,
       },
     },
   },

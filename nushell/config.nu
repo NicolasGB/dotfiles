@@ -963,8 +963,12 @@ def neo [] {
     nvim
 }
 
-# Kitty things
-alias icat = kitten icat
+# Some git things
+alias gco = git checkout
+alias grpo = git remote prune origin
+
+alias sg = ast-grep
+
 
 # Load starship
 use ~/.cache/starship/init.nu

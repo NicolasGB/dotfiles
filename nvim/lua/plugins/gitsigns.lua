@@ -2,7 +2,8 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     config = function()
-      require("gitsigns").setup {
+      local gitsigns = require "gitsigns"
+      gitsigns.setup {
         signs = {
           add = { text = "│" },
           change = { text = "│" },
@@ -26,7 +27,7 @@ return {
           virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
           delay = 100,
           ignore_whitespace = false,
-          -- virt_text_priority = 2048,
+          virt_text_priority = 2048,
         },
         current_line_blame_formatter = "| <author>, <author_time:%Y-%m-%d> - <summary> |",
         sign_priority = 6,
@@ -42,6 +43,9 @@ return {
           col = 1,
         },
       }
+
+      vim.keymap.set("n", "<leader>bl", gitsigns.blame_line, { desc = "Blame current line" })
+      vim.keymap.set("n", "<leader>gb", gitsigns.blame, { desc = "Blame buffer" })
     end,
   },
 }

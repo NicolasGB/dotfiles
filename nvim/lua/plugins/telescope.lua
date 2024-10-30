@@ -45,6 +45,9 @@ return {
 
       vim.keymap.set("n", "<leader>fS", builtin.lsp_document_symbols, { desc = "Search in document symbols" })
 
+      -- Resume last search
+      vim.keymap.set({ "n", "v" }, "<leader>tr", builtin.resume, { desc = "Resume last telescope search" })
+
       local actions = require "telescope.actions"
       require("telescope").setup {
         extensions = {

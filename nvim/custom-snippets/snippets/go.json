@@ -19,11 +19,6 @@
         "body": "const (\n\t$1 = \"$1\"\n)",
         "description": "Consts"
     },
-    "context": {
-        "prefix": "gco",
-        "body": "ctx context.Context",
-        "description": "Context"
-    },
     "mtd": {
         "prefix": "mtd",
         "body": "func (${1:m} *${2:receiver}) ${3:method}(${4:args}) (${5:returns}) {\n\t$6\n}",
