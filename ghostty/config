@@ -1,0 +1,69 @@
+# Font
+font-size = 10.5
+
+# Theme
+theme = EverforestHard
+background-opacity = 0.7
+
+# Cursor
+cursor-invert-fg-bg = true
+
+mouse-hide-while-typing = true
+
+# Keybingds
+# Config 
+keybind = ctrl+comma=open_config
+keybind = alt+a>r=reload_config
+
+# Tabs and Splits
+keybind = alt+a>+t=new_tab
+keybind = alt+a>s=new_split:down
+keybind = alt+n=new_split:right
+keybind = ctrl+shift+n=new_window
+keybind = alt+a>c=close_surface
+
+# Resize splits
+keybind = alt+a>equal=equalize_splits
+keybind = alt+shift+h=resize_split:left,20
+keybind = alt+shift+k=resize_split:up,20
+keybind = alt+shift+j=resize_split:down,20
+keybind = alt+shift+l=resize_split:right,20
+
+# Moving around
+keybind = alt+h=goto_split:left
+keybind = alt+k=goto_split:top
+keybind = alt+j=goto_split:bottom
+keybind = alt+l=goto_split:right
+
+keybind = alt+one=goto_tab:1
+keybind = alt+two=goto_tab:2
+keybind = alt+three=goto_tab:3
+keybind = alt+four=goto_tab:4
+keybind = alt+five=goto_tab:5
+keybind = alt+six=goto_tab:6
+keybind = alt+seven=goto_tab:7
+keybind = alt+eight=goto_tab:8
+keybind = alt+nine=goto_tab:9
+
+#Clipboard
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+
+# Quitting
+keybind = ctrl+shift+q=quit
+
+#Window 
+# This in the future should allow multiple things see: https://github.com/ghostty-org/ghostty/issues/1392
+window-inherit-working-directory = true
+window-decoration = false
+window-new-tab-position = end
+window-theme = ghostty
+
+confirm-close-surface = false
+
+unfocused-split-opacity = 0.8
+
+# GTK Decoration
+adw-toolbar-style = flat
+gtk-wide-tabs = false
+

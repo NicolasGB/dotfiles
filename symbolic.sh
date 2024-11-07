@@ -38,7 +38,8 @@ case "$1" in
         create_symlink mpd mpd
         create_symlink networkmanager-dmenu networkmanager-dmenu
         create_symlink nushell nushell
-        create_symlink kitty kitty
+        create_symlink ghostty ghostty
+        create_symlink gtk-4.0 gtk-4.0 
         echo "Setup completed!"
         ;;
     "remove")
@@ -53,7 +54,8 @@ case "$1" in
         remove_symlink networkmanager-dmenu
         remove_symlink nushell
         remove_symlink lazygit
-        remove_symlink kitty
+        remove_symlink ghostty
+        remove_symlink gtk-4.0
         echo "Removal completed!"
         ;;
     *)

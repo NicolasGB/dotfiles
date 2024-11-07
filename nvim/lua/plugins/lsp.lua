@@ -29,45 +29,6 @@ return {
       require("neodev").setup {
         library = { plugins = { "nvim-dap-ui" }, types = true },
       }
-      -- Set Borders on hovers
-      local border_style = "rounded"
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border_style })
-
-      vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers["signature_help"], { border = border_style })
-
-      -- Diagnostics
-      vim.diagnostic.config {
-        -- virtual_text = {
-        --   prefix = "●",
-        -- },
-        virtual_text = false,
-        -- update_in_insert = true,
-        underline = true,
-        severity_sort = true,
-
-        float = {
-          severity_sort = true,
-          header = "Diagnostics",
-          source = "if_many",
-          prefix = "• ",
-
-          border = "rounded",
-        },
-        signs = {
-          -- Set nice text signs
-          text = {
-            [vim.diagnostic.severity.ERROR] = " ",
-            [vim.diagnostic.severity.WARN] = " ",
-            [vim.diagnostic.severity.HINT] = " ",
-            [vim.diagnostic.severity.INFO] = " ",
-          },
-        },
-      }
-
-      -- LspConfig
-      local lspconfig = require "lspconfig"
-      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- On LSP attach setup telescope mappings with lsp actions
       local telescope = require "telescope.builtin"
@@ -85,7 +46,7 @@ return {
           -- Go to declaration
           vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
           -- Hover
-          vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+          vim.keymap.set("n", "K", function() vim.lsp.buf.hover({border = "rounded"}) end, opts)
 
           -- View diagnostics
           vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end, opts)
@@ -109,7 +70,7 @@ return {
           vim.keymap.set("n", "<leader>R", function() vim.lsp.buf.rename() end, opts)
 
           -- Signature help
-          vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+          vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help({border = "rounded"}) end, opts)
 
           -- Get references
           vim.keymap.set("n", "gr", function() telescope.lsp_references { include_declaration = false } end, opts)
@@ -128,6 +89,10 @@ return {
           below = "↖ ", -- when the hint is on the line below the current line
         },
       }
+
+      -- LspConfig
+      local lspconfig = require "lspconfig"
+      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Lsp Default setup
       local default_setup = function(server)
@@ -310,30 +275,14 @@ return {
         formatters_by_ft = {
           lua = { "stylua" },
           markdown = { "prettier" },
+          go = {
+            "goimports",
+            "gofumpt",
+          },
         },
         format_on_save = function(bufnr)
           return { lsp_format = "fallback", quiet = true, bufnr = bufnr }
         end,
-      }
-    end,
-  },
-  {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach",
-    config = function()
-      require("tiny-inline-diagnostic").setup {
-        options = {
-          -- If multiple diagnostics are under the cursor, display all of them.
-          multiple_diag_under_cursor = true,
-          -- Enable diagnostic message on all lines.
-          multilines = true,
-          -- Show all diagnostics on the cursor line.
-          show_all_diags_on_cursorline = true,
-          -- Avoid conflict with gitsigns
-          virt_exts = {
-            priority = 2048,
-          },
-        },
       }
     end,
   },

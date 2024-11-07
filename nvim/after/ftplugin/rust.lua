@@ -11,8 +11,10 @@ end, { desc = "Clear fidget spinner" })
 -- When using injections and this kinds of things if the server can return semantic tokens, treesitter highlihgting is killed
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "Use treesitter syntax highlighting for comments with custom injecitons.",
-  callback = function(args)
+  callback = function(_)
     vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
     vim.api.nvim_set_hl(0, "@lsp.type.string", {})
   end,
 })
+
+vim.keymap.set("n", "<leader>K", "<cmd>RustLsp hover actions<CR>", { desc = "Rust hover actions", buffer = true })

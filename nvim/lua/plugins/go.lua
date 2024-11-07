@@ -1,16 +1,22 @@
 return {
   {
-    "fatih/vim-go",
-    ft = { "go", "gomod" },
+    "ray-x/go.nvim",
+    dependencies = {
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
     config = function()
-      vim.keymap.set("n", "<leader>fs", ":GoFillStruct<CR>", { desc = "Fill struct" })
-      vim.keymap.set("n", "<leader>at", ":GoAddTags json,omitempty<CR>", { desc = "Add tags" })
-
-      --Disable colliding binding
-      vim.g.go_def_mapping_enabled = 0
-
-      --Use gopls in fillstruct
-      vim.g.go_fillstruct_mode = "gopls"
+      require("go").setup {
+        tag_options = "",
+        -- Not managed here
+        diagnostic = false,
+        lsp_document_formatting = false,
+        lsp_inlay_hints = nil,
+      }
     end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 }

@@ -10,7 +10,7 @@ return {
             multi = true,
             { faster = true, map = "<A-e>", cmap = "<A-e>" },
           },
-          { "<", ">", fly = true, dosuround = true, multiline = false, space = true, surround = true },
+          -- { "<", ">", fly = true, dosuround = true, multiline = false, space = true, surround = true },
         },
         { profile = require("ultimate-autopair.experimental.cmpair").init },
       }

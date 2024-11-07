@@ -12,3 +12,6 @@ vim.keymap.set("ia", "gco", "ctx context.Context,", { desc = "Golang context fun
 vim.keymap.set("n", "<space>dt", function()
   require("dap-go").debug_test()
 end, { buffer = 0, desc = "debug test" })
+
+vim.keymap.set("n", "<leader>fs", ":GoFillStruct<CR>", { desc = "Fill struct" })
+vim.keymap.set("n", "<leader>at", ":GoAddTag json -add-options json=omitempty<CR>", { desc = "Add tags" })
