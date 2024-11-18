@@ -123,7 +123,7 @@ return {
       -- Color TreeSitter context based on the mode
       local function set_tree_sitter_context_colors()
         if vim.o.background == "dark" then
-          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#1E2326" })
+          vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#1B2228" })
         else
           vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#D3D5D0" })
         end
