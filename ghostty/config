@@ -1,8 +1,9 @@
 # Font
+font-family = JetBrainsMono Nerd Font
 font-size = 10.5
 
 # Theme
-theme = EverforestHard
+theme = Everforest Dark - Hard
 background-opacity = 0.7
 
 # Cursor
@@ -21,6 +22,12 @@ keybind = alt+a>s=new_split:down
 keybind = alt+n=new_split:right
 keybind = ctrl+shift+n=new_window
 keybind = alt+a>c=close_surface
+keybind = ctrl+a>l=next_tab
+keybind = ctrl+a>h=previous_tab
+
+# Window
+keybind = ctrl+enter=unbind
+keybind = alt+f4=unbind
 
 # Resize splits
 keybind = alt+a>equal=equalize_splits
@@ -58,12 +65,14 @@ window-inherit-working-directory = true
 window-decoration = false
 window-new-tab-position = end
 window-theme = ghostty
+window-padding-x = 3
 
 confirm-close-surface = false
 
-unfocused-split-opacity = 0.8
+unfocused-split-opacity = 0.7
+resize-overlay = never
 
 # GTK Decoration
 adw-toolbar-style = flat
-gtk-wide-tabs = false
+gtk-wide-tabs = true
 
