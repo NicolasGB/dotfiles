@@ -7,8 +7,7 @@ return {
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
       -- Autocompletion
-      { "hrsh7th/nvim-cmp" }, -- Required
-      { "hrsh7th/cmp-nvim-lsp" }, -- Required
+      { "saghen/blink.cmp" },
       { "L3MON4D3/LuaSnip" }, -- Required
 
       -- Signature
@@ -92,7 +91,7 @@ return {
 
       -- LspConfig
       local lspconfig = require "lspconfig"
-      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
 
       -- Lsp Default setup
       local default_setup = function(server)
