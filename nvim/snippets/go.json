@@ -1,0 +1,51 @@
+{
+    "if error": {
+        "prefix": "iferr",
+        "body": [
+            "if err := ${1:func}; err != nil {\n\t$2\n}"
+        ],
+        "description": "if err function"
+    },
+    "kore variable log": {
+        "prefix": "vlog",
+        "body": [
+            "log.Info().Msgf(\"${1} %+v\", ${2})"
+        ],
+        "description": "Log a variable in kore"
+    },
+    "kore service": {
+        "prefix": "serv",
+        "body": [
+            "@Service(${1})"
+        ],
+        "description": "Service annotation"
+    },
+    "consts": {
+        "prefix": "consts",
+        "body": [
+            "const (\n\t$1 = \"$1\"\n)"
+        ],
+        "description": "Consts"
+    },
+    "mtd": {
+        "prefix": "mtd",
+        "body": [
+            "func (${1:m} *${2:receiver}) ${3:method}(${4:args}) (${5:returns}) {\n\t$6\n}"
+        ],
+        "description": "Function with receiver"
+    },
+    "todo": {
+        "prefix": "todo",
+        "body": [
+            "//TODO: ${CURRENT_DATE}/${CURRENT_MONTH}/${CURRENT_YEAR} - ${1}"
+        ],
+        "description": "TODO comment"
+    },
+    "fixme": {
+        "prefix": "fixme",
+        "body": [
+            "//FIXME: ${CURRENT_DATE}/${CURRENT_MONTH}/${CURRENT_YEAR} - ${1}"
+        ],
+        "description": "FIXME comment"
+    }
+}

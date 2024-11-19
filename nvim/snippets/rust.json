@@ -1,0 +1,51 @@
+{
+    "macro": {
+        "prefix": "macro",
+        "body": [
+            "#[${1}]"
+        ],
+        "description": "A macro"
+    },
+    "closure": {
+        "prefix": "closure",
+        "body": [
+            "|${1}| ${2}"
+        ],
+        "description": "A closure"
+    },
+    "async function": {
+        "prefix": "afn",
+        "body": [
+            "async fn ${1}(${2}) -> ${3} {\n\t${4:unimplemented!()}\n}"
+        ],
+        "description": "An async function"
+    },
+    "code region": {
+        "prefix": "region",
+        "body": [
+            "// region:    --- ${1}\n\n${2}\n\n// endregion: --- ${1}"
+        ],
+        "description": "A code region"
+    },
+    "cerr": {
+        "prefix": "cerr",
+        "body": [
+            "pub type Result<T> = core::result::Result<T, Error>;\n\n#[derive(Debug)]\npub enum Error {}\n\nimpl core::fmt::Display for Error {\n    fn fmt(&self, fmt: &mut std::fmt::Formatter) -> std::fmt::Result {\n        write!(fmt, \"{self:?}\")\n    }\n}\n\nimpl std::error::Error for Error {}"
+        ],
+        "description": "Custom error boilerplate in rust"
+    },
+    "ctest": {
+        "prefix": "ctest",
+        "body": [
+            "#[cfg(test)]\nmod tests {\n    use super::*;\n    use anyhow::Result;\n\n}"
+        ],
+        "description": "Boilerplate for a test module in rust"
+    },
+    "serde": {
+        "prefix": "serde",
+        "body": [
+            "#[derive(Serialize, Deserialize)]"
+        ],
+        "description": "Derive serde traits"
+    }
+}

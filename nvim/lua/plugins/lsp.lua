@@ -12,7 +12,7 @@ return {
       { "L3MON4D3/LuaSnip" }, -- Required
 
       -- Signature
-      { "ray-x/lsp_signature.nvim" },
+      -- { "ray-x/lsp_signature.nvim" },
 
       -- Telescope
       { "nvim-telescope/telescope.nvim" },
@@ -81,14 +81,14 @@ return {
       })
 
       -- Lsp Signature Helper
-      local _ = require("lsp_signature").setup {
-        floating_window = false,
-        hint_prefix = {
-          above = "↙ ", -- when the hint is on the line above the current line
-          current = "← ", -- when the hint is on the same line
-          below = "↖ ", -- when the hint is on the line below the current line
-        },
-      }
+      -- local _ = require("lsp_signature").setup {
+      --   floating_window = false,
+      --   hint_prefix = {
+      --     above = "↙ ", -- when the hint is on the line above the current line
+      --     current = "← ", -- when the hint is on the same line
+      --     below = "↖ ", -- when the hint is on the line below the current line
+      --   },
+      -- }
 
       -- LspConfig
       local lspconfig = require "lspconfig"

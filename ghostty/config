@@ -22,8 +22,7 @@ keybind = alt+a>s=new_split:down
 keybind = alt+n=new_split:right
 keybind = ctrl+shift+n=new_window
 keybind = alt+a>c=close_surface
-keybind = ctrl+a>l=next_tab
-keybind = ctrl+a>h=previous_tab
+
 
 # Window
 keybind = ctrl+enter=unbind
@@ -37,11 +36,13 @@ keybind = alt+shift+j=resize_split:down,20
 keybind = alt+shift+l=resize_split:right,20
 
 # Moving around
+## Splits
 keybind = alt+h=goto_split:left
 keybind = alt+k=goto_split:top
 keybind = alt+j=goto_split:bottom
 keybind = alt+l=goto_split:right
 
+## Tabs
 keybind = alt+one=goto_tab:1
 keybind = alt+two=goto_tab:2
 keybind = alt+three=goto_tab:3
@@ -52,15 +53,21 @@ keybind = alt+seven=goto_tab:7
 keybind = alt+eight=goto_tab:8
 keybind = alt+nine=goto_tab:9
 
-#Clipboard
+keybind = alt+a>l=next_tab
+keybind = alt+a>h=previous_tab
+
+# Clipboard
 keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+v=paste_from_clipboard
 
 # Quitting
 keybind = ctrl+shift+q=quit
 
-#Window 
-# This in the future should allow multiple things see: https://github.com/ghostty-org/ghostty/issues/1392
+
+keybind = alt+f=toggle_split_zoom
+
+# Window 
+## This in the future should allow multiple things see: https://github.com/ghostty-org/ghostty/issues/1392
 window-inherit-working-directory = true
 window-decoration = false
 window-new-tab-position = end
