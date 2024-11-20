@@ -2,9 +2,7 @@ return {
   {
     "saghen/blink.cmp",
     event = "InsertEnter",
-
     dependencies = {
-      -- This is already init in its file ./luasnip.lua
       "saghen/blink.compat",
     },
     build = "cargo build --release",
@@ -45,6 +43,17 @@ return {
           },
           signature_help = {
             border = "rounded",
+          },
+        },
+        sources = {
+          -- add lazydev to sources
+          completion = {
+            enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+          },
+          providers = {
+            -- dont show LuaLS require statements when lazydev has items
+            lsp = { fallback_for = { "lazydev" } },
+            lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
           },
         },
       }

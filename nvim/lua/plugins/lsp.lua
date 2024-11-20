@@ -16,8 +16,6 @@ return {
       -- Telescope
       { "nvim-telescope/telescope.nvim" },
 
-      -- Neodev for vim api lsp
-      { "folke/neodev.nvim" },
       -- Autoformatting
       "stevearc/conform.nvim",
 
@@ -25,10 +23,6 @@ return {
       "b0o/schemastore.nvim",
     },
     config = function()
-      require("neodev").setup {
-        library = { plugins = { "nvim-dap-ui" }, types = true },
-      }
-
       -- On LSP attach setup telescope mappings with lsp actions
       local telescope = require "telescope.builtin"
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -57,10 +51,6 @@ return {
           vim.keymap.set("n", "gpe", function() vim.diagnostic.jump({count = -1}) end, opts)
           -- List errors with telescope
           vim.keymap.set("n", "<leader>le", telescope.diagnostics, opts)
-
-          -- Good old JetBrains
-          -- vim.keymap.set("n", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
-          -- vim.keymap.set("v", "<A-CR>", function() vim.lsp.buf.code_action() end, opts)
 
           -- View references
           vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
@@ -119,9 +109,6 @@ return {
                   },
                   runtime = {
                     version = "LuaJIT",
-                  },
-                  diagnostics = {
-                    globals = { "vim" },
                   },
                   workspace = {
                     checkThirdParty = false,
