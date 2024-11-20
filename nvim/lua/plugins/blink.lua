@@ -3,7 +3,6 @@ return {
     "saghen/blink.cmp",
     dependencies = {
       -- This is already init in its file ./luasnip.lua
-      "L3MON4D3/LuaSnip",
       "saghen/blink.compat",
     },
     build = "cargo build --release",
