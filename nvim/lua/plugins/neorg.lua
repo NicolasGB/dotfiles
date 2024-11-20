@@ -1,11 +1,11 @@
 return {
   {
     "nvim-neorg/neorg",
-    event = "VeryLazy",
     dependencies = {
       "nvim-neorg/lua-utils.nvim",
       "pysan3/pathlib.nvim",
     },
+    ft = "neorg",
     version = "*", -- Pin Neorg to the latest stable release
     config = function()
       require("neorg").setup {

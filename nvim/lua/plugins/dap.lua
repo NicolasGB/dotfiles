@@ -1,6 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    event = "VeryLazy",
     dependencies = {
       "leoluz/nvim-dap-go",
       "rcarriga/nvim-dap-ui",
@@ -52,6 +53,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    event = "VeryLazy",
     config = function()
       -- Change hl group for better visibility
       vim.api.nvim_set_hl(
