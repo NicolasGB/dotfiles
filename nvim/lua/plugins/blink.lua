@@ -1,6 +1,8 @@
 return {
   {
     "saghen/blink.cmp",
+    event = "InsertEnter",
+
     dependencies = {
       -- This is already init in its file ./luasnip.lua
       "saghen/blink.compat",

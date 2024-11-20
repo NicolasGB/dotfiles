@@ -1,6 +1,7 @@
 return {
   {
     "nvim-neorg/neorg",
+    event = "VeryLazy",
     dependencies = {
       "nvim-neorg/lua-utils.nvim",
       "pysan3/pathlib.nvim",
