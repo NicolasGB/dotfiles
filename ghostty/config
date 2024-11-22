@@ -68,14 +68,14 @@ keybind = ctrl+shift+q=quit
 # Window 
 ## This in the future should allow multiple things see: https://github.com/ghostty-org/ghostty/issues/1392
 window-inherit-working-directory = true
-window-decoration = false
+# window-decoration = false
 window-new-tab-position = end
 window-theme = ghostty
 window-padding-x = 3
 
 confirm-close-surface = false
 
-unfocused-split-opacity = 0.6
+unfocused-split-opacity = 0.7
 unfocused-split-fill = #1B231F
 resize-overlay = never
 

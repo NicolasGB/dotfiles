@@ -4,15 +4,17 @@ return {
     event = "InsertEnter",
     dependencies = {
       "saghen/blink.compat",
+      opts = { impersonate_nvim_cmp = true },
     },
     build = "cargo build --release",
     -- version = "v0.*",
     config = function()
       require("blink.cmp").setup {
         keymap = {
-          preset = "enter",
+          preset = "default",
           ["<C-y>"] = { "accept", "fallback" },
         },
+        opts_extend = { "sources.completion.enabled_providers" },
         accept = {
           auto_brackets = {
             enabled = true,
@@ -33,6 +35,7 @@ return {
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 
             -- Similar to nvim cmp visually
+            ---@diagnostic disable-next-line: missing-fields
             draw = {
               columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
             },
@@ -52,6 +55,7 @@ return {
           },
           providers = {
             -- dont show LuaLS require statements when lazydev has items
+            ---@diagnostic disable-next-line: missing-fields
             lsp = { fallback_for = { "lazydev" } },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
           },
