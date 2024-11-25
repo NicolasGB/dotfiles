@@ -27,6 +27,7 @@ return {
       -- },
     },
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup {
         -- A list of parser names, or "all" (the five listed parsers should always be installed)
         ensure_installed = { "lua", "go", "rust", "toml", "yaml", "markdown_inline", "json" },
@@ -58,6 +59,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup {
         textobjects = {
           select = {

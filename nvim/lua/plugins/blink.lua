@@ -35,7 +35,6 @@ return {
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 
             -- Similar to nvim cmp visually
-            ---@diagnostic disable-next-line: missing-fields
             draw = {
               columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
             },
@@ -43,6 +42,7 @@ return {
           documentation = {
             border = "rounded",
             auto_show = true,
+            auto_show_delay = 50,
           },
           signature_help = {
             border = "rounded",
@@ -55,7 +55,6 @@ return {
           },
           providers = {
             -- dont show LuaLS require statements when lazydev has items
-            ---@diagnostic disable-next-line: missing-fields
             lsp = { fallback_for = { "lazydev" } },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
           },
