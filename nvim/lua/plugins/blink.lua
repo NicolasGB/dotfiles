@@ -3,19 +3,30 @@ return {
     "saghen/blink.cmp",
     event = "InsertEnter",
     dependencies = {
-      "saghen/blink.compat",
-      opts = { impersonate_nvim_cmp = true },
+      "L3MON4D3/LuaSnip",
+      "leiserfg/blink_luasnip",
+      {
+        "saghen/blink.compat",
+        opts = { impersonate_nvim_cmp = true },
+      },
     },
     build = "cargo build --release",
     -- version = "v0.*",
     config = function()
       require("blink.cmp").setup {
+        -- Keymaps
         keymap = {
           preset = "default",
           ["<C-y>"] = { "accept", "fallback" },
         },
+        -- Allow expansion
         opts_extend = { "sources.completion.enabled_providers" },
+
+        -- General config later
         accept = {
+          expand_snippet = function(snippet)
+            require("luasnip").lsp_expand(snippet)
+          end,
           auto_brackets = {
             enabled = true,
           },
@@ -51,12 +62,24 @@ return {
         sources = {
           -- add lazydev to sources
           completion = {
-            enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+            enabled_providers = { "lsp", "path", "luasnip", "buffer", "lazydev" },
           },
           providers = {
             -- dont show LuaLS require statements when lazydev has items
             lsp = { fallback_for = { "lazydev" } },
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+            -- Luasnip
+            luasnip = {
+              name = "luasnip",
+              module = "blink_luasnip",
+
+              score_offset = -1,
+
+              opts = {
+                use_show_condition = false,
+                show_autosnippets = true,
+              },
+            },
           },
         },
       }
