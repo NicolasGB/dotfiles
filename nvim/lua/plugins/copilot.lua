@@ -30,7 +30,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    version = "^v2",
+    version = "^v3",
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper

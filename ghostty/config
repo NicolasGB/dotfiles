@@ -83,3 +83,6 @@ resize-overlay = never
 adw-toolbar-style = flat
 gtk-wide-tabs = true
 
+# Behavior
+# Reuse the instance, instead of launching a new process every time
+gtk-single-instance = true

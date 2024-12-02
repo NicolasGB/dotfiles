@@ -18,40 +18,72 @@ local default_values = {
     if info then
       info.index = info.index + 1
 
-      return c(info.index, {
-        t(info.err_name),
-        -- Some kore handling errors
-        sn(nil, {
-          t "kerrors.Wrapf(",
+      -- If the error name is not given,
+      -- It means there is no error to wrap, then it's a new error for sure, at this point the choices are different
+      -- We then want to create a new error
+      if info.err_name == nil then
+        info.err_name = "err"
+        return c(
+          info.index,
+          -- Kore error new
+          {
+            sn(nil, {
+              t "kerrors.Newf(",
+              t "http.",
+              i(1, "StatusInternalServerError"),
+              t ', "',
+              i(2, ""),
+              t '", ',
+              i(3, ""),
+              t ")",
+            }),
+            -- Just in case also a errors new
+            sn(nil, {
+              t 'errors.New("',
+              i(1, ""),
+              t '")',
+            }),
+            sn(nil, {
+              i(1, "err"),
+            }),
+          }
+        )
+      else
+        return c(info.index, {
           t(info.err_name),
-          t ', "',
-          i(1, ""),
-          t '", ',
-          i(2, ""),
-          t ")",
-        }),
-        sn(nil, {
-          t "kerrors.WrapWithCodef(",
-          t(info.err_name),
-          t ", http.",
-          i(1, "StatusInternalServerError"),
-          t ', "',
-          i(2, ""),
-          t '", ',
-          i(3, ""),
-          t ")",
-        }),
-        sn(nil, {
-          t "kerrors.Newf(",
-          t "http.",
-          i(1, "StatusInternalServerError"),
-          t ', "',
-          i(2, ""),
-          t '", ',
-          i(3, ""),
-          t ")",
-        }),
-      })
+          -- Some kore handling errors
+          sn(nil, {
+            t "kerrors.Wrapf(",
+            t(info.err_name),
+            t ', "',
+            i(1, ""),
+            t '", ',
+            i(2, ""),
+            t ")",
+          }),
+          sn(nil, {
+            t "kerrors.WrapWithCodef(",
+            t(info.err_name),
+            t ", http.",
+            i(1, "StatusInternalServerError"),
+            t ', "',
+            i(2, ""),
+            t '", ',
+            i(3, ""),
+            t ")",
+          }),
+          sn(nil, {
+            t "kerrors.Newf(",
+            t "http.",
+            i(1, "StatusInternalServerError"),
+            t ', "',
+            i(2, ""),
+            t '", ',
+            i(3, ""),
+            t ")",
+          }),
+        })
+      end
     else
       return t "err"
     end
@@ -166,19 +198,28 @@ end
 
 -- New node with the err name
 local go_return_values = function(args)
-  return sn(
-    nil,
-    go_result_type {
-      index = 0,
-      err_name = args[1][1],
-    }
-  )
+  if args[1] then
+    return sn(
+      nil,
+      go_result_type {
+        index = 0,
+        err_name = args[1][1],
+      }
+    )
+  else
+    return sn(
+      nil,
+      go_result_type {
+        index = 0,
+      }
+    )
+  end
 end
 
 ls.add_snippets("go", {
   -- Error func
   s(
-    "erf",
+    "erfunc",
     fmta(
       [[
 <val>, <err> := <f>(<args>)
@@ -211,6 +252,37 @@ if <err_same> != nil {
       {
         err = i(1, "err"),
         result = d(2, go_return_values, { 1 }),
+        finish = i(0),
+      }
+    )
+  ),
+  -- Error return
+  s(
+    "rhe",
+    fmta(
+      [[
+        return <result>
+        <finish>
+      ]],
+      {
+        result = d(1, go_return_values, {}),
+        finish = i(0),
+      }
+    )
+  ),
+  -- Conditional return
+  s(
+    "rce",
+    fmta(
+      [[
+        if <cond> {
+          return <result>
+        }
+        <finish>
+      ]],
+      {
+        cond = i(1),
+        result = d(2, go_return_values, {}),
         finish = i(0),
       }
     )

@@ -4,7 +4,7 @@ return {
     build = ":TSUpdate",
     dependencies = {
       -- NOTE: additional parser
-      { "nushell/tree-sitter-nu" },
+      { "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
 
       -- Kestrel prod
       -- {
@@ -30,7 +30,7 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup {
         -- A list of parser names, or "all" (the five listed parsers should always be installed)
-        ensure_installed = { "lua", "go", "rust", "toml", "yaml", "markdown_inline", "json" },
+        ensure_installed = { "lua", "go", "rust", "toml", "yaml", "markdown_inline", "json", "nu" },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,

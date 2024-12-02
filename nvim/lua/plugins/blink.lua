@@ -13,7 +13,23 @@ return {
     build = "cargo build --release",
     -- version = "v0.*",
     config = function()
+      local ls = require "luasnip"
       require("blink.cmp").setup {
+        -- Snippets
+        snippets = {
+          expand = function(snippet)
+            ls.lsp_expand(snippet)
+          end,
+          active = function(filter)
+            if filter and filter.direction then
+              return ls.jumpable(filter.direction)
+            end
+            return ls.in_snippet()
+          end,
+          jump = function(direction)
+            ls.jump(direction)
+          end,
+        },
         -- Keymaps
         keymap = {
           preset = "default",
@@ -21,12 +37,14 @@ return {
         },
         -- Allow expansion
         opts_extend = { "sources.completion.enabled_providers" },
+        -- Appearance
+        ---@diagnostic disable-next-line: missing-fields
+        appearance = {
+          use_nvim_cmp_as_default = true,
+        },
 
         -- General config later
         accept = {
-          expand_snippet = function(snippet)
-            require("luasnip").lsp_expand(snippet)
-          end,
           auto_brackets = {
             enabled = true,
           },
@@ -36,27 +54,32 @@ return {
             enabled = true,
           },
         },
-        highlight = {
-          use_nvim_cmp_as_default = true,
-        },
-        windows = {
-          autocomplete = {
+        ---@diagnostic disable-next-line: missing-fields
+        completion = {
+          ---@diagnostic disable-next-line: missing-fields
+          menu = {
             -- Better highlights and roudnded text
             border = "rounded",
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-
             -- Similar to nvim cmp visually
             draw = {
               columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
             },
           },
+          ---@diagnostic disable-next-line: missing-fields
           documentation = {
-            border = "rounded",
             auto_show = true,
             auto_show_delay = 50,
+            ---@diagnostic disable-next-line: missing-fields
+            window = {
+              border = "rounded",
+            },
           },
-          signature_help = {
-            border = "rounded",
+          signature = {
+            enabled = true,
+            window = {
+              border = "rounded",
+            },
           },
         },
         sources = {
