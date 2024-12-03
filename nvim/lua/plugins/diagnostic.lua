@@ -33,6 +33,7 @@ return {
       }
 
       require("tiny-inline-diagnostic").setup {
+        preset = "modern",
         options = {
           -- If multiple diagnostics are under the cursor, display all of them.
           multiple_diag_under_cursor = true,

@@ -37,11 +37,6 @@ return {
         },
         -- Allow expansion
         opts_extend = { "sources.completion.enabled_providers" },
-        -- Appearance
-        ---@diagnostic disable-next-line: missing-fields
-        appearance = {
-          use_nvim_cmp_as_default = true,
-        },
 
         -- General config later
         accept = {
@@ -54,6 +49,7 @@ return {
             enabled = true,
           },
         },
+
         ---@diagnostic disable-next-line: missing-fields
         completion = {
           ---@diagnostic disable-next-line: missing-fields
@@ -63,6 +59,8 @@ return {
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
             -- Similar to nvim cmp visually
             draw = {
+              -- Add treesitter highlighting on labels
+              treesitter = true,
               columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
             },
           },
@@ -75,11 +73,13 @@ return {
               border = "rounded",
             },
           },
-          signature = {
-            enabled = true,
-            window = {
-              border = "rounded",
-            },
+        },
+        ---@diagnostic disable-next-line: missing-fields
+        signature = {
+          enabled = true,
+          ---@diagnostic disable-next-line: missing-fields
+          window = {
+            border = "rounded",
           },
         },
         sources = {
@@ -106,6 +106,9 @@ return {
           },
         },
       }
+
+      -- Highlights
+      vim.api.nvim_set_hl(0, "BLinkCmpLabelMatch", { fg = "#D699B6" })
     end,
   },
 }
