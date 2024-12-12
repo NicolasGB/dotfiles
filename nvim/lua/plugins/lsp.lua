@@ -94,6 +94,7 @@ return {
       require("mason").setup {}
       require("mason-lspconfig").setup {
         ensure_installed = { "gopls", "lua_ls", "yamlls", "jsonls", "taplo", "typos_lsp" },
+        automatic_installation = true,
         handlers = {
           default_setup,
           -- Lua setup
@@ -250,6 +251,12 @@ return {
               },
             }
           end,
+          -- html = function()
+          --   require("lspconfig").html.setup {
+          --     -- Lol go templates can be recognized by treesitter as html angular
+          --     filetypes = { "htmlangular", "html", "templ" },
+          --   }
+          -- end,
         },
       }
 
@@ -257,15 +264,16 @@ return {
       lspconfig.nushell.setup {}
 
       -- nukleus
-      -- require("lspconfig.configs").nukleus = {
-      --   default_config = {
-      --     cmd = { "/home/nicolas/dev/work/nukleus-lsp/target/debug/nukleus-lsp" },
-      --     filetypes = { "go" },
-      --     root_dir = lspconfig.util.root_pattern "go.mod",
-      --     settings = {},
-      --   },
-      -- }
-      -- lspconfig.nukleus.setup {}
+      require("lspconfig.configs").nukleus = {
+        default_config = {
+          cmd = { "/home/nicolas/dev/work/nukleus-lsp/target/debug/nukleus-lsp" },
+          filetypes = { "yaml" },
+          root_dir = lspconfig.util.find_git_ancestor,
+          -- root_dir = lspconfig.util.root_pattern "go.mod",
+          settings = {},
+        },
+      }
+      lspconfig.nukleus.setup {}
 
       -- Autoformatting with conform
       require("conform").setup {

@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   {
     "saghen/blink.cmp",
@@ -36,7 +37,7 @@ return {
           ["<C-y>"] = { "accept", "fallback" },
         },
         -- Allow expansion
-        opts_extend = { "sources.completion.enabled_providers" },
+        opts_extend = { "sources.default" },
 
         -- General config later
         accept = {
@@ -50,9 +51,7 @@ return {
           },
         },
 
-        ---@diagnostic disable-next-line: missing-fields
         completion = {
-          ---@diagnostic disable-next-line: missing-fields
           menu = {
             -- Better highlights and roudnded text
             border = "rounded",
@@ -64,45 +63,42 @@ return {
               columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
             },
           },
-          ---@diagnostic disable-next-line: missing-fields
           documentation = {
             auto_show = true,
             auto_show_delay = 50,
-            ---@diagnostic disable-next-line: missing-fields
             window = {
               border = "rounded",
             },
           },
         },
-        ---@diagnostic disable-next-line: missing-fields
         signature = {
           enabled = true,
-          ---@diagnostic disable-next-line: missing-fields
           window = {
             border = "rounded",
           },
         },
         sources = {
+          -- default = { "lsp", "path", "luasnip", "buffer", "lazydev" },
+          default = function()
+            local node = vim.treesitter.get_node()
+            if vim.bo.filetype == "lua" then
+              return { "lsp", "path", "luasnip", "lazydev" }
+            elseif vim.bo.filetype == "proto" then
+              return { "buffer", "path" }
+            elseif node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+              return { "buffer" }
+            else
+              return { "lsp", "path", "luasnip" }
+            end
+          end,
+
           -- add lazydev to sources
-          completion = {
-            enabled_providers = { "lsp", "path", "luasnip", "buffer", "lazydev" },
-          },
           providers = {
             -- dont show LuaLS require statements when lazydev has items
-            lsp = { fallback_for = { "lazydev" } },
-            lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
-            -- Luasnip
-            luasnip = {
-              name = "luasnip",
-              module = "blink_luasnip",
-
-              score_offset = -1,
-
-              opts = {
-                use_show_condition = false,
-                show_autosnippets = true,
-              },
-            },
+            lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" } },
+            luasnip = { score_offset = 0 },
+            path = { score_offset = 0 },
+            buffer = { score_offset = -3 },
           },
         },
       }
