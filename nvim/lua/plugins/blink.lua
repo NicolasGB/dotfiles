@@ -36,22 +36,14 @@ return {
           preset = "default",
           ["<C-y>"] = { "accept", "fallback" },
         },
-        -- Allow expansion
-        opts_extend = { "sources.default" },
-
-        -- General config later
-        accept = {
-          auto_brackets = {
-            enabled = true,
-          },
-        },
-        trigger = {
-          signature_help = {
-            enabled = true,
-          },
-        },
-
         completion = {
+          -- General config later
+          accept = {
+            auto_brackets = {
+              enabled = true,
+            },
+          },
+
           menu = {
             -- Better highlights and roudnded text
             border = "rounded",
@@ -65,7 +57,7 @@ return {
           },
           documentation = {
             auto_show = true,
-            auto_show_delay = 50,
+            auto_show_delay_ms = 50,
             window = {
               border = "rounded",
             },
@@ -80,16 +72,28 @@ return {
         sources = {
           -- default = { "lsp", "path", "luasnip", "buffer", "lazydev" },
           default = function()
-            local node = vim.treesitter.get_node()
+            -- Fast path: check filetype first
             if vim.bo.filetype == "lua" then
               return { "lsp", "path", "luasnip", "lazydev" }
             elseif vim.bo.filetype == "proto" then
               return { "buffer", "path" }
-            elseif node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
-              return { "buffer" }
-            else
-              return { "lsp", "path", "luasnip" }
             end
+
+            -- Only get treesitter node if needed
+            local node = vim.treesitter.get_node()
+            if node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+              return { "buffer" }
+            end
+
+            -- Check if the line starts with a comment, in go/rust it seems that the treesitter node is not constantly updated
+            -- therefore the source only worked when modifying an already existent comment in the range
+            local line_to_cursor = vim.api.nvim_get_current_line():sub(1, select(2, vim.api.nvim_win_get_cursor(0)))
+            if line_to_cursor:match "^%s*[//#%-%-]" then
+              return { "buffer" }
+            end
+
+            -- Otherwise return the defaults
+            return { "lsp", "path", "luasnip" }
           end,
 
           -- add lazydev to sources

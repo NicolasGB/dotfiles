@@ -39,6 +39,7 @@ return {
       require("CopilotChat").setup {
         debug = true, -- Enable debugging
         -- See Configuration section for rest
+        model = "claude-3.5-sonnet",
       }
 
       -- -- Trigger quick chat
