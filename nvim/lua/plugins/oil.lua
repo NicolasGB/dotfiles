@@ -18,7 +18,7 @@ return {
           show_hidden = true,
         },
         float = {
-          max_width = 75,
+          max_width = 100,
           max_height = 50,
         },
       }
