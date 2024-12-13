@@ -5,14 +5,8 @@ return {
     event = "InsertEnter",
     dependencies = {
       "L3MON4D3/LuaSnip",
-      "leiserfg/blink_luasnip",
-      {
-        "saghen/blink.compat",
-        opts = { impersonate_nvim_cmp = true },
-      },
     },
     build = "cargo build --release",
-    -- version = "v0.*",
     config = function()
       local ls = require "luasnip"
       require("blink.cmp").setup {

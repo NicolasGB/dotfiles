@@ -39,3 +39,6 @@ require("lazy").setup("plugins", {
 })
 
 require "nicolasgb"
+
+-- Easyly open lazy nvim
+vim.keymap.set("n", "<leader>la", vim.cmd.Lazy, { desc = "Open Lazy nvim" })
