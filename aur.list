@@ -2,7 +2,6 @@
 betterlockscreen
 bfg
 downgrade
-drawio-desktop-bin
 electron25-bin
 electron26-bin
 filecrab-bin
@@ -14,11 +13,9 @@ lazydocker-bin
 lxqt-build-tools-git
 microsoft-edge-stable-bin
 nvm
-obsidian-bin
 onlyoffice-bin
 orchis-theme
 paru
-paru-debug
 postman-bin
 sddm-sugar-candy-git
 snixembed

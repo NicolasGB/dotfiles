@@ -45,7 +45,7 @@ return {
             -- Similar to nvim cmp visually
             draw = {
               -- Add treesitter highlighting on labels
-              treesitter = true,
+              treesitter = { "lsp" },
               columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
             },
           },

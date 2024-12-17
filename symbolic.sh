@@ -40,6 +40,7 @@ case "$1" in
         create_symlink nushell nushell
         create_symlink ghostty ghostty
         create_symlink gtk-4.0 gtk-4.0 
+        create_symlink lazygit lazygit
         echo "Setup completed!"
         ;;
     "remove")
@@ -56,6 +57,7 @@ case "$1" in
         remove_symlink lazygit
         remove_symlink ghostty
         remove_symlink gtk-4.0
+        remove_symlink lazygit
         echo "Removal completed!"
         ;;
     *)
