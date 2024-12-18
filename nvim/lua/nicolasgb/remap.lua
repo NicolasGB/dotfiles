@@ -70,3 +70,6 @@ vim.keymap.set("n", "Q", "<nop>")
 
 -- Pasting the old way in insert mode
 vim.api.nvim_set_keymap("i", "<C-v>", '<C-r>"', { desc = "Paste in insert mode" })
+
+-- Remove highlight
+vim.api.nvim_set_keymap("n", "<leader>h", ":noh<CR>", { desc = "Remove highlight from search" })
