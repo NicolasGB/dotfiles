@@ -47,11 +47,11 @@ pacman -Qmq > aur.list #AUR
 ```
 
 ```sh
-pacman -S $(cat package.list) --noconfirm
+pacman -S $(cat package.list) --noconfirm --needed
 ```
 
 ```sh
-pacman -S $(cat package.list) --noconfirm --overwrite "*"
+pacman -S $(cat package.list) --noconfirm --overwrite "*" --needed
 ```
 
 -- Paru

@@ -7,6 +7,7 @@ return {
       "L3MON4D3/LuaSnip",
     },
     build = "cargo build --release",
+    -- version = "v0.*",
     config = function()
       local ls = require "luasnip"
       require("blink.cmp").setup {
@@ -94,8 +95,8 @@ return {
           providers = {
             -- dont show LuaLS require statements when lazydev has items
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" } },
-            luasnip = { score_offset = 0 },
-            path = { score_offset = 0 },
+            luasnip = { score_offset = -1 },
+            path = { score_offset = 3 },
             buffer = { score_offset = -3 },
           },
         },

@@ -32,7 +32,7 @@ return {
       }
 
       vim.keymap.set({ "n", "v" }, "<A-CR>", function()
-        require("tiny-code-action").code_action()
+        require("tiny-code-action").code_action {}
       end, { noremap = true, silent = true })
     end,
   },

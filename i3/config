@@ -321,3 +321,7 @@ exec --no-startup-id zen-browser
 # exec --no-startup-id thorium-browser
 exec --no-startup-id prime-run discord
 exec --no-startup-id 1password
+
+
+## Temporary while my keyboard doesn't work
+exec --no-startup-id xinput float 16
