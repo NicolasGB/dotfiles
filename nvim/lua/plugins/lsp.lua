@@ -10,12 +10,6 @@ return {
       { "saghen/blink.cmp" },
       { "L3MON4D3/LuaSnip" }, -- Required
 
-      -- Signature
-      -- { "ray-x/lsp_signature.nvim" },
-
-      -- Telescope
-      { "nvim-telescope/telescope.nvim" },
-
       -- Autoformatting
       "stevearc/conform.nvim",
 
@@ -31,13 +25,6 @@ return {
         callback = function(event)
           -- stylua: ignore start
           local opts = { buffer = event.buf }
-
-          -- Go to definition
-          vim.keymap.set("n", "gd", telescope.lsp_definitions, opts)
-          -- Go to type definition
-          vim.keymap.set("n", "gt", telescope.lsp_type_definitions, opts)
-          -- Go to declaration
-          vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
           -- Hover
           vim.keymap.set("n", "K", function() vim.lsp.buf.hover({border = "rounded"}) end, opts)
 
@@ -49,8 +36,6 @@ return {
 
           -- Go to previous error
           vim.keymap.set("n", "gpe", function() vim.diagnostic.jump({count = -1}) end, opts)
-          -- List errors with telescope
-          vim.keymap.set("n", "<leader>le", telescope.diagnostics, opts)
 
           -- View references
           vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
@@ -61,23 +46,9 @@ return {
           -- Signature help
           vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help({border = "rounded"}) end, opts)
 
-          -- Get references
-          vim.keymap.set("n", "gr", function() telescope.lsp_references { include_declaration = false } end, opts)
-
-          vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
           -- stylua: ignore end
         end,
       })
-
-      -- Lsp Signature Helper
-      -- local _ = require("lsp_signature").setup {
-      --   floating_window = false,
-      --   hint_prefix = {
-      --     above = "↙ ", -- when the hint is on the line above the current line
-      --     current = "← ", -- when the hint is on the same line
-      --     below = "↖ ", -- when the hint is on the line below the current line
-      --   },
-      -- }
 
       -- LspConfig
       local lspconfig = require "lspconfig"

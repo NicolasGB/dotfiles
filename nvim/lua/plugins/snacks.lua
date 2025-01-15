@@ -22,99 +22,34 @@ return {
       lazygit = {
         win = { border = "rounded" },
       },
+      picker = {
+        enabled = true,
+        win = {
+          input = {
+            keys = {
+              ["<c-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+              ["<c-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+            },
+          },
+        },
+      },
     },
     keys = {
-      {
-        "<leader>z",
-        function()
-          Snacks.zen()
-        end,
-        desc = "Toggle Zen Mode",
-      },
-      {
-        "<leader>.",
-        function()
-          Snacks.scratch()
-        end,
-        desc = "Toggle Scratch Buffer",
-      },
-      {
-        "<leader>S",
-        function()
-          Snacks.scratch.select()
-        end,
-        desc = "Select Scratch Buffer",
-      },
-      {
-        "<leader>n",
-        function()
-          Snacks.notifier.show_history()
-        end,
-        desc = "Notification History",
-      },
-      {
-        "<leader>bd",
-        function()
-          Snacks.bufdelete()
-        end,
-        desc = "Delete Buffer",
-      },
-      {
-        "<leader>cR",
-        function()
-          Snacks.rename.rename_file()
-        end,
-        desc = "Rename File",
-      },
-      {
-        "<leader>gB",
-        function()
-          Snacks.gitbrowse()
-        end,
-        desc = "Git Browse",
-      },
-      {
-        "<leader>gf",
-        function()
-          Snacks.lazygit.log_file()
-        end,
-        desc = "Lazygit Current File History",
-      },
-      {
-        "<leader>lg",
-        function()
-          Snacks.lazygit()
-        end,
-        desc = "Lazygit",
-      },
-      {
-        "<leader>gl",
-        function()
-          Snacks.lazygit.log()
-        end,
-        desc = "Lazygit Log (cwd)",
-      },
-      {
-        "<leader>un",
-        function()
-          Snacks.notifier.hide()
-        end,
-        desc = "Dismiss All Notifications",
-      },
-      {
-        "<c-/>",
-        function()
-          Snacks.terminal()
-        end,
-        desc = "Toggle Terminal",
-      },
-      {
-        "<leader>N",
-        desc = "Neovim News",
-        function()
-          Snacks.win {
-            file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-            width = 0.6,
+      -- stylua: ignore start
+      { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode"},
+      { "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer"},
+      { "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer"},
+      { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notification History"},
+      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer"},
+      { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File"},
+      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse"},
+      { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History"},
+      { "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit"},
+      { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)"},
+      { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications"},
+      { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal"},
+      { "<leader>N", desc = "Neovim News", function() Snacks.win { 
+        file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1], width = 0.6,
             height = 0.6,
             wo = {
               spell = false,
@@ -126,6 +61,27 @@ return {
           }
         end,
       },
+      -- Pickers
+      -- Files and text
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files"},
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers"},
+      { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep in files"},
+      { "<leader>rr", function() Snacks.picker.resume() end, desc = "Resume search"},
+      { "<leader>fc", function() Snacks.picker.lines() end, desc = "Search in current buffer"},
+      { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" }},
+       -- git
+      { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+      -- Nvim help
+      { "<leader>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
+      -- LSP
+      { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+      { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+      { "gi", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+      { "gt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+      { "<leader>le", function() Snacks.picker.diagnostics() end, desc = "Goto T[y]pe Definition" },
+      -- stylua: ignore end
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {

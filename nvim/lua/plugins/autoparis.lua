@@ -6,6 +6,10 @@ return {
     config = function()
       require("ultimate-autopair").init {
         require("ultimate-autopair").extend_default {
+          extensions = {
+            -- Disable in telescope and snacks picker input
+            filetype = { nft = { "TelescopePrompt", "snacks_picker_input" } },
+          },
           fastwarp = {
             multi = true,
             { faster = true, map = "<A-e>", cmap = "<A-e>" },

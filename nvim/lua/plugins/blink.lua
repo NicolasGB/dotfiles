@@ -9,23 +9,10 @@ return {
     build = "cargo build --release",
     -- version = "v0.*",
     config = function()
-      local ls = require "luasnip"
+      -- local ls = require "luasnip"
       require("blink.cmp").setup {
         -- Snippets
-        snippets = {
-          expand = function(snippet)
-            ls.lsp_expand(snippet)
-          end,
-          active = function(filter)
-            if filter and filter.direction then
-              return ls.jumpable(filter.direction)
-            end
-            return ls.in_snippet()
-          end,
-          jump = function(direction)
-            ls.jump(direction)
-          end,
-        },
+        snippets = { preset = "luasnip" },
         -- Keymaps
         keymap = {
           preset = "default",
@@ -69,7 +56,7 @@ return {
           default = function()
             -- Fast path: check filetype first
             if vim.bo.filetype == "lua" then
-              return { "lsp", "path", "luasnip", "lazydev" }
+              return { "lsp", "path", "snippets", "lazydev" }
             elseif vim.bo.filetype == "proto" then
               return { "buffer", "path" }
             end
@@ -88,14 +75,14 @@ return {
             end
 
             -- Otherwise return the defaults
-            return { "lsp", "path", "luasnip" }
+            return { "lsp", "path", "snippets" }
           end,
 
           -- add lazydev to sources
           providers = {
             -- dont show LuaLS require statements when lazydev has items
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" } },
-            luasnip = { score_offset = -1 },
+            snippets = { score_offset = -1 },
             path = { score_offset = 3 },
             buffer = { score_offset = -3 },
           },
