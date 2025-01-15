@@ -66,7 +66,7 @@ tiling_drag modifier titlebar
 # start a terminal
 # bindsym $mod+Return exec alacritty msg create-window || alacritty  
 # bindsym $mod+Return exec wezterm
-bindsym $mod+Return exec ghostty
+bindsym $mod+Return exec DRI_PRIME=1 ghostty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -209,7 +209,7 @@ floating_maximum_size -1 x -1
 
 #Bind apps to some workspaces
 # Workspace 1 navigator
-assign [class="firefox|zen-alpha"] $ws1
+assign [class="firefox|zen"] $ws1
 # Workspace 2 Development
 assign [class="jetbrains-goland"] $ws2
 # Workspace 3 chats
@@ -317,11 +317,8 @@ exec --no-startup-id xmodmap -e "keycode 108 = Multi_key"
 #         AutoStart           #
 ###############################
 # exec --no-startup-id firefox
-exec --no-startup-id zen-browser
+exec --no-startup-id DRI_PRIME=1 zen-browser
 # exec --no-startup-id thorium-browser
-exec --no-startup-id prime-run discord
-exec --no-startup-id 1password
+exec --no-startup-id DRI_PRIME=1 discord
+exec --no-startup-id DRI_PRIME=1 1password
 
-
-## Temporary while my keyboard doesn't work
-exec --no-startup-id xinput float 16
