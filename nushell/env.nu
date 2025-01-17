@@ -3,7 +3,7 @@
 # version = "0.94"
 
 def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+    let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
@@ -113,7 +113,7 @@ path add ~/binaries
 
 
 # Plugins
-plugin add /home/nicolas/dev/rust-projects/nu_plugin_clipboard/target/release/nu_plugin_clipboard
+# plugin add /home/nicolas/dev/rust-projects/nu_plugin_clipboard/target/release/nu_plugin_clipboard
 
 # Zoxide env
 zoxide init nushell | save -f ~/.zoxide.nu

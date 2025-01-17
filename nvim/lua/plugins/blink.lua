@@ -57,7 +57,7 @@ return {
             -- Fast path: check filetype first
             if vim.bo.filetype == "lua" then
               return { "lsp", "path", "snippets", "lazydev" }
-            elseif vim.bo.filetype == "proto" then
+            elseif vim.bo.filetype == "proto" or vim.bo.filetype == "cucumber" then
               return { "buffer", "path" }
             end
 

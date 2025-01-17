@@ -21,7 +21,7 @@ return {
       end, { noremap = true, silent = true, desc = "Hop to char in current line" })
 
       -- Treesitter hop
-      vim.keymap.set("n", "<leader>t", function()
+      vim.keymap.set("n", "<leader>tn", function()
         require("hop-treesitter").hint_nodes()
       end, { noremap = true, silent = true, desc = "Hop treesitter nodes" })
 

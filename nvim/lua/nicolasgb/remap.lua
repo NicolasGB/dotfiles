@@ -42,7 +42,7 @@ vim.keymap.set("n", "<leader>pu", ":1pu!<CR>")
 vim.keymap.set("n", "<leader>pd", ":pu<CR>")
 
 -- Replace word
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Saving the old way
 vim.keymap.set("n", "<C-s>", ":w<CR>")
