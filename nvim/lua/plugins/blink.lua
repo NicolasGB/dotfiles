@@ -33,7 +33,7 @@ return {
             -- Similar to nvim cmp visually
             draw = {
               -- Add treesitter highlighting on labels
-              treesitter = { "lsp" },
+              -- treesitter = { "lsp" },
               columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
             },
           },
@@ -90,7 +90,10 @@ return {
       }
 
       -- Highlights
-      vim.api.nvim_set_hl(0, "BLinkCmpLabelMatch", { fg = "#D699B6" })
+      vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", { fg = "#D699B6" })
+      -- Labels
+      vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { fg = "#d79a66" })
+      vim.api.nvim_set_hl(0, "BlinkCmpLabelDetail", { fg = "#6c7b95" })
     end,
   },
 }

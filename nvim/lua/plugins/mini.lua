@@ -15,7 +15,12 @@ return {
     "echasnovski/mini.surround",
     version = "*",
     config = function()
-      require("mini.surround").setup {}
+      local spec_treesitter = require("mini.ai").gen_spec.treesitter
+      require().setup {
+        custom_textobjects = {
+          f = spec_treesitter { a = "@function.outer", i = "@function.inner" },
+        },
+      }
     end,
   },
 }

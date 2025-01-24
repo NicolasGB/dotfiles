@@ -73,3 +73,30 @@ vim.api.nvim_set_keymap("i", "<C-v>", '<C-r>"', { desc = "Paste in insert mode" 
 
 -- Remove highlight
 vim.api.nvim_set_keymap("n", "<leader>h", ":noh<CR>", { desc = "Remove highlight from search" })
+
+-- CR to split braces
+vim.keymap.set("n", "<CR>", function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+  local prev_char = line:sub(col, col)
+  local current_char = line:sub(col + 1, col + 1)
+
+  if prev_char == "{" and current_char == "}" then
+    local indent = string.rep(" ", vim.fn.indent(vim.fn.line "."))
+    local before_brace = line:sub(1, col - 1)
+    local after_brace = line:sub(col + 2)
+    local current_line_num = vim.fn.line "." - 1
+    local new_lines = {
+      before_brace .. "{",
+      indent .. "    ",
+      indent .. "}" .. after_brace,
+    }
+    vim.api.nvim_buf_set_lines(0, current_line_num, current_line_num + 1, false, new_lines)
+    -- Move cursor to the middle line
+    vim.api.nvim_win_set_cursor(0, { current_line_num + 2, #indent + 4 })
+    vim.cmd "startinsert"
+  else
+    -- Normal <CR> behavior
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", false)
+  end
+end, { desc = "Split {} into multiple lines, or normal behavior" })

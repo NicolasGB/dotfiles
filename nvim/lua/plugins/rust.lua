@@ -47,8 +47,8 @@ return {
               },
             },
           },
-          standalone = true,
-          cmd = { "rustup", "run", "stable", "rust-analyzer" },
+          -- standalone = true,
+          -- cmd = { "rustup", "run", "stable", "rust-analyzer" },
           -- cmd = { "/usr/bin/rust-analyzer" },
         },
         -- DAP configuration

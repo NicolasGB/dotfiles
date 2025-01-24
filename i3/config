@@ -308,7 +308,7 @@ exec --no-startup-id betterlockscreen -w dim
 
 # exec --no-startup-id sleep 1 && ~/.xsessionrc
 
-exec --no-startup-id xmodmap -e "keycode 108 = Multi_key"
+exec --no-startup-id sleep 1 && xmodmap -e "keycode 108 = Multi_key"
 
 #Handy openers
 

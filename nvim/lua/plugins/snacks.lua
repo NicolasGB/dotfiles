@@ -64,7 +64,7 @@ return {
       { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep in files"},
       { "<leader>rr", function() Snacks.picker.resume() end, desc = "Resume search"},
       { "<leader>sc", function() Snacks.picker.lines() end, desc = "Search in current buffer"},
-      { "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Search in open buffers"},
+      { "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep buffers"},
       { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" }},
       { "<leader>sm", function() Snacks.picker.smart() end, desc = "Smart picker"},
       -- Keymaps
@@ -83,6 +83,8 @@ return {
       { "gt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
       { "<leader>le", function() Snacks.picker.diagnostics_buffer() end, desc = "Goto T[y]pe Definition" },
+      -- TODO
+      { "<leader>td", function() Snacks.picker.todo_comments() end, desc = "Todo" },
       -- stylua: ignore end
     },
     init = function()
