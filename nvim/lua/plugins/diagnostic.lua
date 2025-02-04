@@ -36,7 +36,7 @@ return {
         preset = "modern",
         options = {
           -- If multiple diagnostics are under the cursor, display all of them.
-          multiple_diag_under_cursor = true,
+          -- multiple_diag_under_cursor = true,
           -- Enable diagnostic message on all lines.
           multilines = {
             enabled = true,

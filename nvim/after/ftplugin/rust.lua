@@ -20,4 +20,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.keymap.set("n", "<leader>K", "<cmd>RustLsp hover actions<CR>", { desc = "Rust hover actions", buffer = true })
 
 vim.keymap.set("ia", "rsx", "rsx! {}<Left>", { desc = "rsx macro abbreviation", buffer = true })
-vim.keymap.set("ia", "clr", "|| {}<Left>", { desc = "closure abbreviation", buffer = true })
+vim.keymap.set("ia", "cls", "||<Left>", { desc = "closure abbreviation", buffer = true })
+vim.keymap.set("ia", "mcr", "#[]<Left>", { desc = "macro abbreviation", buffer = true })

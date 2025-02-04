@@ -59,7 +59,7 @@ return {
       },
       -- Pickers
       -- Files and text
-      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files"},
+      { "<leader>ff", function() Snacks.picker.files({cmd = "fd"}) end, desc = "Find Files"},
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers"},
       { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep in files"},
       { "<leader>rr", function() Snacks.picker.resume() end, desc = "Resume search"},

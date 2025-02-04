@@ -7,7 +7,7 @@
 # And here is the theme collection
 # https://github.com/nushell/nu_scripts/tree/main/themes
 
-use ./nu_scripts/themes/nu-themes/everforest.nu
+# use ./nu_scripts/themes/nu-themes/everforest.nu
 
 let dark_theme = {
     # color for nushell primitives
@@ -974,4 +974,4 @@ alias sg = ast-grep
 use ~/.cache/starship/init.nu
 
 
-$env.config.color_config = (everforest)
+# $env.config.color_config = (everforest)

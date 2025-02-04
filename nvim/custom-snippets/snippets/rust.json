@@ -33,5 +33,10 @@
         "prefix": "serde",
         "body": "#[derive(Serialize, Deserialize)]",
         "description": "Derive serde traits"
+    },
+    "dixous component": {
+        "prefix": "cmpt",
+        "body": "#[component]\npub fn ${2}(${3}) -> Element {\n\trsx! {\n\t\t${4}\n\t}\n}\n",
+        "description": "A dioxus component"
     }
 }

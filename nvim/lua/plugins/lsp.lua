@@ -235,16 +235,16 @@ return {
       lspconfig.nushell.setup {}
 
       -- nukleus
-      require("lspconfig.configs").nukleus = {
-        default_config = {
-          cmd = { "/home/nicolas/dev/work/nukleus-lsp/target/debug/nukleus-lsp" },
-          filetypes = { "yaml" },
-          root_dir = lspconfig.util.find_git_ancestor,
-          -- root_dir = lspconfig.util.root_pattern "go.mod",
-          settings = {},
-        },
-      }
-      lspconfig.nukleus.setup {}
+      -- require("lspconfig.configs").nukleus = {
+      --   default_config = {
+      --     cmd = { "/home/nicolas/dev/work/nukleus-lsp/target/debug/nukleus-lsp" },
+      --     filetypes = { "yaml" },
+      --     root_dir = lspconfig.util.find_git_ancestor,
+      --     -- root_dir = lspconfig.util.root_pattern "go.mod",
+      --     settings = {},
+      --   },
+      -- }
+      -- lspconfig.nukleus.setup {}
 
       -- Autoformatting with conform
       require("conform").setup {

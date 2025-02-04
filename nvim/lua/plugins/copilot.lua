@@ -34,8 +34,15 @@ return {
     dependencies = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+      { "MeanderingProgrammer/render-markdown.nvim" },
     },
     config = function()
+      require("render-markdown").setup {
+        file_types = { --[[ "markdown", ]]
+          "copilot-chat",
+        },
+      }
+
       require("CopilotChat").setup {
         debug = true, -- Enable debugging
         -- See Configuration section for rest
