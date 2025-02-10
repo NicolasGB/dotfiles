@@ -43,17 +43,25 @@ return {
         },
       }
 
-      require("CopilotChat").setup {
+      local chat = require "CopilotChat"
+
+      chat.setup {
         debug = true, -- Enable debugging
         -- See Configuration section for rest
         model = "claude-3.5-sonnet",
+        mappings = {
+          reset = {
+            normal = "<C-x>",
+            insert = "<C-x>",
+          },
+        },
       }
 
       -- -- Trigger quick chat
       vim.keymap.set("n", "<leader>ccq", function()
         local input = vim.fn.input "Quick Chat: "
         if input ~= "" then
-          require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+          chat.ask(input, { selection = require("CopilotChat.select").buffer })
         end
       end, { desc = "CopilotChat - Quick chat" })
 
@@ -61,14 +69,20 @@ return {
       vim.keymap.set("v", "<leader>ccq", function()
         local input = vim.fn.input "Quick Chat: "
         if input ~= "" then
-          require("CopilotChat").ask(input, { selection = require("CopilotChat.select").visual })
+          chat.ask(input, { selection = require("CopilotChat.select").visual })
         end
       end, { desc = "CopilotChat - Quick chat visual" })
 
+      vim.keymap.set({ "n" }, "<leader>ccc", function()
+        chat.ask(
+          "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.",
+          { context = "git:unstaged" }
+        )
+      end, { desc = "Write a commit message with copilot" })
       -- -- Trigger actions
       vim.keymap.set({ "n", "v" }, "<leader>ccp", function()
         local actions = require "CopilotChat.actions"
-        require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+        require("CopilotChat.integrations.snacks").pick(actions.prompt_actions())
       end, { noremap = true, desc = "CopilotChat - Prompt actions" })
     end,
     -- See Commands section for default commands if you want to lazy load on them

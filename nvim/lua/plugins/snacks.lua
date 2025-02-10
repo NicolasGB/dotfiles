@@ -66,7 +66,7 @@ return {
       { "<leader>sc", function() Snacks.picker.lines() end, desc = "Search in current buffer"},
       { "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep buffers"},
       { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" }},
-      { "<leader>sm", function() Snacks.picker.smart() end, desc = "Smart picker"},
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart picker"},
       -- Keymaps
       { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps"},
       -- Commands

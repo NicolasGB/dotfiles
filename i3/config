@@ -147,9 +147,6 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+m  move workspace to output next
 
 
-#Open goland
-bindsym $mod+Control+Shift+g exec goland
-
 ###############################
 #        WORKSPACES           #
 ###############################
