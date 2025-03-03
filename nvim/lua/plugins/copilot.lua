@@ -48,7 +48,7 @@ return {
       chat.setup {
         debug = true, -- Enable debugging
         -- See Configuration section for rest
-        model = "claude-3.5-sonnet",
+        model = "claude-3.7-sonnet-thought",
         mappings = {
           reset = {
             normal = "<C-x>",

@@ -7,7 +7,7 @@ return {
         focus = true,
       }
       vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>")
-      vim.keymap.set("n", "<leader>qf", "<cmd>Trouble qflist toggle<cr")
+      vim.keymap.set("n", "<leader>qf", "<cmd>Trouble qflist toggle<cr>")
 
       --- Trouble signs
     end,

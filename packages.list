@@ -959,7 +959,6 @@ nvidia-settings
 nvidia-utils
 ocl-icd
 ollama
-ollama-cuda
 onetbb
 oniguruma
 openal

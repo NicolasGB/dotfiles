@@ -15,6 +15,14 @@ return {
         return "../" .. cwd_parts[#cwd_parts - 1] .. "/" .. cwd_parts[#cwd_parts]
       end
 
+      local lint_progress = function()
+        local linters = require("lint").get_running()
+        if #linters == 0 then
+          return "󰦕"
+        end
+        return "󱉶 " .. table.concat(linters, ", ")
+      end
+
       require("lualine").setup {
         options = {
           icons_enabled = true,
@@ -37,7 +45,7 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = { "filename" },
+          lualine_c = { "filename", lint_progress },
           lualine_x = { cwd, "encoding", "fileformat", "filetype" },
           lualine_y = { "progress" },
           lualine_z = { "location" },

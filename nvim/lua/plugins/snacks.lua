@@ -12,8 +12,10 @@ return {
         timeout = 3000,
       },
       profiler = { enabled = true },
+      image = { enabled = true },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
+      explorer = { enabled = true },
       styles = {
         notification = {
           wo = { wrap = true }, -- Wrap notifications
@@ -24,11 +26,21 @@ return {
       },
       picker = {
         enabled = true,
+        previewers = {
+          diff = {
+            builtin = false,
+            cmd = { "delta" },
+          },
+          git = {
+            native = true,
+          },
+        },
         win = {
           input = {
             keys = {
               ["<c-h>"] = { "toggle_hidden", mode = { "i", "n" } },
               ["<c-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+              ["<leader>q"] = { "qflist_all", mode = { "n" } },
             },
           },
         },
@@ -37,7 +49,7 @@ return {
     keys = {
       -- stylua: ignore start
       { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode"},
-      { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notification History"},
+      { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History"},
       { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File"},
       { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse"},
       { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History"},
@@ -58,6 +70,8 @@ return {
         end,
       },
       -- Pickers
+      -- Explorer
+      { "<leader>ft", function () Snacks.explorer() end, desc = "File tree" },
       -- Files and text
       { "<leader>ff", function() Snacks.picker.files({cmd = "fd"}) end, desc = "Find Files"},
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers"},

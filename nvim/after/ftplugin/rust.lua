@@ -17,7 +17,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.keymap.set("n", "<leader>K", "<cmd>RustLsp hover actions<CR>", { desc = "Rust hover actions", buffer = true })
+vim.keymap.set(
+  "n",
+  "K", -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+  function()
+    vim.cmd.RustLsp { "hover", "actions" }
+  end,
+  { desc = "Rust hover actions", silent = true, buffer = bufnr }
+)
+
+vim.keymap.set("n", "<leader>ll", "<cmd>RustLsp flyCheck<CR>", { desc = "Rust fly check", buffer = true })
 
 vim.keymap.set("ia", "rsx", "rsx! {}<Left>", { desc = "rsx macro abbreviation", buffer = true })
 vim.keymap.set("ia", "cls", "||<Left>", { desc = "closure abbreviation", buffer = true })

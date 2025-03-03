@@ -16,7 +16,10 @@ return {
         -- Keymaps
         keymap = {
           preset = "default",
-          ["<C-y>"] = { "accept", "fallback" },
+          -- ["<C-y>"] = { "accept", "fallback" },
+          -- Snacks did this to me, bye ctrl n/p
+          ["<C-j>"] = { "select_next", "fallback" },
+          ["<C-k>"] = { "select_prev", "fallback" },
         },
         completion = {
           -- General config later
@@ -49,6 +52,18 @@ return {
           enabled = true,
           window = {
             border = "rounded",
+          },
+        },
+        fuzzy = { implementation = "prefer_rust_with_warning" },
+        cmdline = {
+          keymap = {
+            ["<C-j>"] = { "select_next" },
+            ["<C-k>"] = { "select_prev" },
+          },
+          completion = {
+            menu = {
+              auto_show = true,
+            },
           },
         },
         sources = {

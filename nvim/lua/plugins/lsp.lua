@@ -26,13 +26,17 @@ return {
           -- stylua: ignore start
           local opts = { buffer = event.buf }
           -- Hover
-          vim.keymap.set("n", "K", function() vim.lsp.buf.hover({border = "rounded"}) end, opts)
+          -- Avoid setting it on rust files since its managed by rustanalyzer
+          if vim.bo.filetype ~= "rust" then
+            vim.keymap.set("n", "K", function() vim.lsp.buf.hover({border = "rounded"}) end, opts)
+          end
 
           -- View diagnostics
           vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end, opts)
 
           -- Go to next error
           vim.keymap.set("n", "ge", function() vim.diagnostic.jump({count = 1}) end, opts)
+          vim.keymap.set("n", "<C-e>", function() vim.diagnostic.jump({count = 1}) end, opts)
 
           -- Go to previous error
           vim.keymap.set("n", "gpe", function() vim.diagnostic.jump({count = -1}) end, opts)
@@ -133,10 +137,29 @@ return {
                 gopls = {
                   directoryFilters = { "-**/graph/generated", "-**/node_modules" },
                   experimentalPostfixCompletions = true,
+                  codelenses = {
+                    gc_details = false,
+                    generate = true,
+                    regenerate_cgo = true,
+                    run_govulncheck = true,
+                    test = true,
+                    tidy = true,
+                    upgrade_dependency = true,
+                    vendor = true,
+                  },
                   analyses = {
+                    ST1003 = false,
+                    fieldalignment = false,
+                    fillreturns = true,
+                    nilness = true,
+                    nonewvars = true,
+                    shadow = true,
+                    undeclaredname = true,
+                    unreachable = true,
                     unusedparams = true,
                     unusedresult = true,
-                    shadow = true,
+                    unusedwrite = true,
+                    useany = true,
                   },
                   staticcheck = true,
                   hints = {
@@ -149,6 +172,7 @@ return {
                     rangeVariableTypes = true,
                   },
                   gofumpt = true,
+                  semanticTokens = false,
                 },
               },
             }
