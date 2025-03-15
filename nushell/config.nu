@@ -931,8 +931,8 @@ alias cd = z
 alias cdi = zi
 
 # Stack
-alias stack = cd /home/nicolas/dev-stack
-alias ds = make -C /home/nicolas/dev-stack
+alias stack = cd /home/nicolas/dev/work/dev-stack
+alias ds = make -C /home/nicolas/dev/work/dev-stack
 alias wip = make test-wip
 alias tag = make test-tag
 alias gen = make generate

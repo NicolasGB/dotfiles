@@ -57,6 +57,15 @@ return {
         fuzzy = { implementation = "prefer_rust_with_warning" },
         cmdline = {
           keymap = {
+            ["<Tab>"] = {
+              function(cmp)
+                -- If the menu is not visible show it, otherwise accept
+                if not cmp.is_menu_visible() then
+                  return cmp.show {}
+                end
+              end,
+              "accept",
+            },
             ["<C-j>"] = { "select_next" },
             ["<C-k>"] = { "select_prev" },
           },

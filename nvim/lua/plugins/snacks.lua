@@ -52,6 +52,7 @@ return {
       { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History"},
       { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File"},
       { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse"},
+      { "<leader>go", function() Snacks.gitbrowse({what = "repo"}) end, desc = "Git open repo"},
       { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History"},
       { "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit"},
       { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications"},
@@ -80,7 +81,7 @@ return {
       { "<leader>sc", function() Snacks.picker.lines() end, desc = "Search in current buffer"},
       { "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep buffers"},
       { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" }},
-      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart picker"},
+      { "<leader><space>", function() Snacks.picker.files() end, desc = "Smart picker"},
       -- Keymaps
       { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps"},
       -- Commands

@@ -17,4 +17,18 @@ return {
       require("gitlab").setup()
     end,
   },
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "folke/snacks.nvim",
+    },
+    config = function()
+      require("octo").setup {
+        default_merge_method = "squash",
+        picker = "snacks",
+        ssh_aliases = { ["te.github.com"] = "github.com" },
+      }
+    end,
+  },
 }
