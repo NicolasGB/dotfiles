@@ -37,7 +37,11 @@ return {
             draw = {
               -- Add treesitter highlighting on labels
               -- treesitter = { "lsp" },
-              columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
+              columns = {
+                { "label", "label_description", gap = 1 },
+                { "kind_icon", "kind", gap = 1 },
+                { "source_name", gap = 1 },
+              },
             },
           },
           documentation = {
@@ -118,6 +122,7 @@ return {
       -- Labels
       vim.api.nvim_set_hl(0, "BlinkCmpLabelDescription", { fg = "#d79a66" })
       vim.api.nvim_set_hl(0, "BlinkCmpLabelDetail", { fg = "#6c7b95" })
+      vim.api.nvim_set_hl(0, "BlinkCmpSource", { fg = "#56B6C2" })
     end,
   },
 }
