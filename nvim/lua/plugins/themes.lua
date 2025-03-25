@@ -5,7 +5,7 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require("everforest").setup {
         background = "hard",
-        -- transparent_background_level = 2,
+        transparent_background_level = 2,
         -- sign_column_background = "grey",
         -- ui_contrast = "high",
         float_style = "dim",

@@ -953,6 +953,7 @@ alias pacrem = sudo pacman -Rns
 def pacupd [] {
     sudo systemctl daemon-reload;
     paru;
+    flatpak update;
     cargo install-update -a;
     bun;
 }

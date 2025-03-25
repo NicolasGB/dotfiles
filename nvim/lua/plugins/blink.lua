@@ -5,6 +5,11 @@ return {
     event = "InsertEnter",
     dependencies = {
       "L3MON4D3/LuaSnip",
+      "folke/lazydev.nvim",
+      {
+        "Kaiser-Yang/blink-cmp-git",
+        dependencies = { "nvim-lua/plenary.nvim" },
+      },
     },
     build = "cargo build --release",
     -- version = "v0.*",
@@ -58,7 +63,14 @@ return {
             border = "rounded",
           },
         },
-        fuzzy = { implementation = "prefer_rust_with_warning" },
+        fuzzy = {
+          implementation = "prefer_rust_with_warning",
+          sorts = {
+            "exact",
+            "score",
+            "sort_text",
+          },
+        },
         cmdline = {
           keymap = {
             ["<Tab>"] = {
@@ -87,6 +99,8 @@ return {
               return { "lsp", "path", "snippets", "lazydev" }
             elseif vim.bo.filetype == "proto" or vim.bo.filetype == "cucumber" or vim.bo.filetype == "yaml" then
               return { "buffer", "path" }
+            elseif vim.bo.filetype == "octo" then
+              return { "git", "buffer", "path" }
             end
 
             -- Only get treesitter node if needed
@@ -113,6 +127,14 @@ return {
             snippets = { score_offset = -1 },
             path = { score_offset = 3 },
             buffer = { score_offset = -3 },
+            -- This is the octo.nvim cmp
+            git = {
+              module = "blink-cmp-git",
+              name = "Git",
+              opts = {
+                -- options for the blink-cmp-git
+              },
+            },
           },
         },
       }

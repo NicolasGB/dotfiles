@@ -15,6 +15,11 @@ return {
             progress_ringbuf_size = 2048, -- Configure the nvim's LSP progress ring buffer size
           },
         },
+        notification = {
+          window = {
+            winblend = 0,
+          },
+        },
       }
 
       -- Hack to close fidget notification when progress is finished

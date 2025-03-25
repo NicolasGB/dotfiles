@@ -31,12 +31,14 @@ case "$1" in
         create_symlink conf/custom.conf conf/custom.conf
         create_symlink conf/windowrules/custom.conf conf/windowrules/custom.conf
         create_symlink conf/keybindings/custom.conf conf/keybindings/custom.conf
+        create_symlink conf/layouts/custom.conf conf/layouts/custom.conf
         echo "Setup completed!"
         ;;
     "remove")
         remove_symlink conf/custom.conf 
         remove_symlink conf/windowrules/custom.conf 
         remove_symlink conf/keybindings/custom.conf 
+        remove_symlink conf/layouts/custom.conf 
         echo "Removal completed!"
         ;;
     *)
