@@ -963,6 +963,7 @@ def neo [] {
     nvim
 }
 
+
 # Some git things
 alias gco = git checkout
 alias grpo = git remote prune origin
