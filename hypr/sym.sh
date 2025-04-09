@@ -32,6 +32,7 @@ case "$1" in
         create_symlink conf/windowrules/custom.conf conf/windowrules/custom.conf
         create_symlink conf/keybindings/custom.conf conf/keybindings/custom.conf
         create_symlink conf/layouts/custom.conf conf/layouts/custom.conf
+        create_symlink scripts/screen-record.sh scripts/screen-record.sh
         echo "Setup completed!"
         ;;
     "remove")
@@ -39,6 +40,7 @@ case "$1" in
         remove_symlink conf/windowrules/custom.conf 
         remove_symlink conf/keybindings/custom.conf 
         remove_symlink conf/layouts/custom.conf 
+        remove_symlink scripts/screen-record.sh
         echo "Removal completed!"
         ;;
     *)

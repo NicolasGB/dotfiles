@@ -76,7 +76,7 @@ return {
       -- Files and text
       { "<leader>ff", function() Snacks.picker.files({cmd = "fd", hidden = true}) end, desc = "Find Files"},
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers"},
-      { "<leader>gr", function() Snacks.picker.grep() end, desc = "Grep in files"},
+      { "<leader>gr", function() Snacks.picker.grep({hidden = true}) end, desc = "Grep in files"},
       { "<leader>rr", function() Snacks.picker.resume() end, desc = "Resume search"},
       { "<leader>sc", function() Snacks.picker.lines() end, desc = "Search in current buffer"},
       { "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep buffers"},

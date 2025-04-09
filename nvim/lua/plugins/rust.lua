@@ -8,21 +8,24 @@ return {
       vim.g.rustaceanvim = {
         tools = {
           float_win_config = {
-            border = {
-              { "╭", "FloatBorder" },
-              { "─", "FloatBorder" },
-              { "╮", "FloatBorder" },
-              { "│", "FloatBorder" },
-              { "╯", "FloatBorder" },
-              { "─", "FloatBorder" },
-              { "╰", "FloatBorder" },
-              { "│", "FloatBorder" },
-            },
+            border = "rounded",
           },
         },
         server = {
           on_attach = function(_, b)
             vim.lsp.inlay_hint.enable(true, { bufnr = b })
+
+            -- Setup the hover func
+            vim.keymap.set(
+              "n",
+              "K", -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+              function()
+                vim.cmd.RustLsp { "hover", "actions" }
+              end,
+              { desc = "Rust hover actions", silent = true, buffer = b }
+            )
+
+            vim.keymap.set("n", "<leader>ll", "<cmd>RustLsp flyCheck<CR>", { desc = "Rust fly check", buffer = b })
           end,
           settings = {
             ["rust-analyzer"] = {

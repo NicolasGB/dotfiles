@@ -122,6 +122,9 @@ return {
 
           -- add lazydev to sources
           providers = {
+            lsp = {
+              async = true,
+            },
             -- dont show LuaLS require statements when lazydev has items
             lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" } },
             snippets = { score_offset = -1 },
