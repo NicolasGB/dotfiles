@@ -4,6 +4,7 @@ return {
     version = "^5", -- Recommended
     dependencies = {},
     init = function()
+      local cfg = require "rustaceanvim.config"
       -- Configure rustaceanvim here
       vim.g.rustaceanvim = {
         tools = {

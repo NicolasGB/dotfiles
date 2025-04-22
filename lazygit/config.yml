@@ -6,3 +6,7 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+
+os:
+  openLink: 'xdg-open {{link}} | null'
+  open: 'xdg-open {{filename}} | null'
