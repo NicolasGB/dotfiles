@@ -49,7 +49,8 @@ return {
       chat.setup {
         debug = false, -- Enable debugging
         -- See Configuration section for rest
-        model = "gpt-4.1",
+        -- model = "gpt-4.1",
+        model = "gemini-2.5-pro",
         mappings = {
           reset = {
             normal = "<C-x>",

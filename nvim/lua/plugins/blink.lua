@@ -98,7 +98,7 @@ return {
             if vim.bo.filetype == "lua" then
               return { "lsp", "path", "snippets", "lazydev" }
             elseif vim.bo.filetype == "proto" or vim.bo.filetype == "cucumber" or vim.bo.filetype == "yaml" then
-              return { "buffer", "path" }
+              return { "snippets", "buffer", "path" }
             elseif vim.bo.filetype == "octo" then
               return { "git", "buffer", "path" }
             end

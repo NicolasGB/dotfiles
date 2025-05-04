@@ -96,7 +96,30 @@ return {
       { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
       { "gi", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
       { "gt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+      { "<leader>ss", function() Snacks.picker.lsp_symbols({
+        filter = {
+          rust = {
+            "File",
+            "Module",
+            "Namespace",
+            "Class",
+            "Method",
+            "Property",
+            "Field",
+            "Constructor",
+            "Enum",
+            "Interface",
+            "Function",
+            "Constant",
+            "Number",
+            "Object",
+            "Key",
+            "EnumMember",
+            "Struct",
+            "TypeParameter",
+          }
+        }
+      }) end, desc = "LSP Symbols" },
       { "<leader>le", function() Snacks.picker.diagnostics_buffer() end, desc = "Goto T[y]pe Definition" },
       -- TODO
       { "<leader>td", function() Snacks.picker.todo_comments() end, desc = "Todo" },

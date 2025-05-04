@@ -7,26 +7,70 @@ return {
         size = 15,
         open_mapping = [[<C-t>]],
         direction = "float",
+        on_open = function(term)
+          -- Map ESC to exit terminal mode in any toggleterm terminal
+          vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], { buffer = term.bufnr })
+        end,
       }
 
       -- Lazy docker terminal
       local Terminal = require("toggleterm.terminal").Terminal
-      local lazydocker = Terminal:new { cmd = "lazydocker", hidden = true, direction = "float" }
+      local lazydocker = Terminal:new {
+        cmd = "lazydocker",
+        hidden = true,
+        direction = "float",
+        close_on_exit = false,
+        on_open = function(term)
+          vim.keymap.set("t", "q", function()
+            term:toggle()
+          end, { buffer = term.bufnr, desc = "Toggle lazydocker" })
+          vim.keymap.set("t", "Q", function()
+            term:shutdown()
+          end, { buffer = term.bufnr, desc = "Close lazydocker" })
+        end,
+      }
 
-      function _lazydocker_toggle()
+      local gitme = Terminal:new {
+        cmd = "gitme",
+        hidden = true,
+        direction = "float",
+        close_on_exit = false,
+        on_open = function(term)
+          vim.keymap.set("t", "q", function()
+            term:toggle()
+          end, { buffer = term.bufnr, desc = "Toggle Gitme" })
+          vim.keymap.set("t", "Q", function()
+            term:shutdown()
+          end, { buffer = term.bufnr, desc = "Close Gitme" })
+        end,
+      }
+      local bacon = Terminal:new {
+        cmd = "bacon",
+        hidden = true,
+        direction = "float",
+        close_on_exit = false,
+        on_open = function(term)
+          vim.keymap.set("t", "<C-b>", function()
+            term:toggle()
+          end, { buffer = term.bufnr, desc = "Toggle bacon" })
+          vim.keymap.set("t", "q", function()
+            term:shutdown()
+          end, { buffer = term.bufnr, desc = "Toggle bacon" })
+        end,
+      }
+
+      -- Setup lazydocker toggle
+      vim.keymap.set("n", "<leader>ld", function()
         lazydocker:toggle()
-      end
+      end, { desc = "Lazydocker", noremap = true, silent = true })
+      -- Setup gitme toggle
+      vim.keymap.set("n", "<leader>gm", function()
+        gitme:toggle()
+      end, { desc = "Gitme", noremap = true, silent = true })
 
-      vim.api.nvim_set_keymap("n", "<leader>ld", "<cmd>lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
-
-      -- Mappings
-      function _G.set_terminal_keymaps()
-        local opts = { buffer = 0 }
-        vim.keymap.set("t", "<ESC>", [[<C-\><C-n>]], opts)
-      end
-
-      -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-      vim.cmd "autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()"
+      vim.keymap.set("n", "<C-b>", function()
+        bacon:toggle()
+      end, { desc = "Bacon", noremap = true, silent = true })
     end,
   },
 }

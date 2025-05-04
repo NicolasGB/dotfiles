@@ -27,6 +27,13 @@ return {
         cinnamon.scroll "gg"
       end)
 
+      vim.keymap.set({ "n", "x" }, "]]", function()
+        cinnamon.scroll "]]zz"
+      end)
+      vim.keymap.set({ "n", "x" }, "[[", function()
+        cinnamon.scroll "[[zz"
+      end)
+
       -- Line scroll
       vim.keymap.set({ "n", "v" }, "H", function()
         cinnamon.scroll "^"

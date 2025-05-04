@@ -14,14 +14,6 @@ vim.keymap.set("n", "<c-j>", "<c-w><c-j>")
 vim.keymap.set("n", "<c-k>", "<c-w><c-k>")
 vim.keymap.set("n", "<c-l>", "<c-w><c-l>")
 
--- INFO: Disabled due to the use of this through cinnamon.nvim
--- Jump to start and end of line using the home row keys
--- vim.api.nvim_set_keymap("n", "H", "^", { noremap = true })
--- vim.api.nvim_set_keymap("n", "L", "$", { noremap = true })
--- -- In visual mode, H and L should also work as expected
--- vim.api.nvim_set_keymap("v", "H", "^", { noremap = true })
--- vim.api.nvim_set_keymap("v", "L", "$", { noremap = true })
-
 -- Moving to occurrences with centered
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
