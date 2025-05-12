@@ -55,208 +55,202 @@ return {
       })
 
       -- LspConfig
-      local lspconfig = require "lspconfig"
-      local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
-
-      -- Lsp Default setup
-      local default_setup = function(server)
-        -- Register given lsp default capabilities
-        lspconfig[server].setup {
-          capabilities = lsp_capabilities,
-        }
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local on_attach = function(_, b)
+        vim.lsp.inlay_hint.enable(true, { bufnr = b })
       end
 
+      -- Setup mason and enable automatically the lsp installed by them
       require("mason").setup {}
       require("mason-lspconfig").setup {
         ensure_installed = { "gopls", "lua_ls", "yamlls", "jsonls", "taplo", "typos_lsp" },
-        automatic_installation = true,
-        handlers = {
-          default_setup,
-          -- Lua setup
-          lua_ls = function()
-            lspconfig.lua_ls.setup {
-              on_attach = function(_, b)
-                vim.lsp.inlay_hint.enable(true, { bufnr = b })
-              end,
-              settings = {
-                Lua = {
-                  completion = {
-                    callSnippet = "Replace",
-                  },
-                  runtime = {
-                    version = "LuaJIT",
-                  },
-                  workspace = {
-                    checkThirdParty = false,
-                  },
-                  hint = {
-                    enable = true,
-                  },
-                },
-              },
-            }
-          end,
-          -- YAML setup
-          yamlls = function()
-            lspconfig.yamlls.setup {
-              settings = {
-                yaml = {
-                  schemaStore = {
-                    -- You must disable built-in schemaStore support if you want to use
-                    -- this plugin and its advanced options like `ignore`.
-                    enable = false,
-                    -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                    url = "",
-                  },
-                  schemas = require("schemastore").yaml.schemas(),
-                  keyOrdering = false,
-                },
-              },
-            }
-          end,
-          -- GraphQL setup
-          graphql = function()
-            local util = require "lspconfig.util"
-            lspconfig.graphql.setup {
-              root_dir = util.root_pattern(
-                ".git",
-                ".graphqlrc*",
-                ".graphql.config.*",
-                "graphql.config.*",
-                "/config/gqlgen.yaml"
-              ),
-            }
-          end,
-          -- Golang setup
-          gopls = function()
-            lspconfig.gopls.setup {
-              on_attach = function(_, b)
-                vim.lsp.inlay_hint.enable(true, { bufnr = b })
-              end,
-              settings = {
-                gopls = {
-                  directoryFilters = { "-**/graph/generated", "-**/node_modules" },
-                  experimentalPostfixCompletions = true,
-                  codelenses = {
-                    gc_details = false,
-                    generate = true,
-                    regenerate_cgo = true,
-                    run_govulncheck = true,
-                    test = true,
-                    tidy = true,
-                    upgrade_dependency = true,
-                    vendor = true,
-                  },
-                  analyses = {
-                    ST1003 = false,
-                    fieldalignment = false,
-                    fillreturns = true,
-                    nilness = true,
-                    nonewvars = true,
-                    shadow = true,
-                    undeclaredname = true,
-                    unreachable = true,
-                    unusedparams = true,
-                    unusedresult = true,
-                    unusedwrite = true,
-                    useany = true,
-                  },
-                  staticcheck = true,
-                  hints = {
-                    assignVariableTypes = true,
-                    compositeLiteralFields = true,
-                    compositeLiteralTypes = true,
-                    constantValues = true,
-                    functionTypeParameters = true,
-                    parameterNames = true,
-                    rangeVariableTypes = true,
-                  },
-                  gofumpt = true,
-                  semanticTokens = false,
-                },
-              },
-            }
-          end,
-          -- TS Server setup
-          ts_ls = function()
-            require("lspconfig").ts_ls.setup {
-              on_attach = function(_, b)
-                vim.lsp.inlay_hint.enable(true, { bufnr = b })
-              end,
-              init_options = {
-                preferences = {
-                  includeInlayParameterNameHints = "all",
-                  includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                  includeInlayFunctionParameterTypeHints = true,
-                  includeInlayVariableTypeHints = true,
-                  includeInlayPropertyDeclarationTypeHints = true,
-                  includeInlayFunctionLikeReturnTypeHints = true,
-                  includeInlayEnumMemberValueHints = true,
-                  importModuleSpecifierPreference = "non-relative",
-                },
-              },
-              single_file_support = true,
-              root_dir = require("lspconfig.util").root_pattern "package.json",
-            }
-          end,
-          typos_lsp = function()
-            require("lspconfig").typos_lsp.setup {
-              config = {
-                -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
-                cmd_env = { RUST_LOG = "ERROR" },
-              },
-              init_options = {
-                -- Custom config. Used together with any workspace config files, taking precedence for
-                -- settings declared in both. Equivalent to the typos `--config` cli argument.
-                -- config = '~/code/typos-lsp/crates/typos-lsp/tests/typos.toml',
-                -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
-                -- Defaults to error.
-                diagnosticSeverity = "Information",
-              },
-              single_file_support = true,
-              root_dir = function(fname)
-                return require("lspconfig.util").root_pattern("typos.toml", "_typos.toml", ".typos.toml")(fname)
-                  or vim.fn.getcwd()
-              end,
-              filetypes = {
-                "go",
-                "gomod",
-                "gowork",
-                "rust",
-                "yaml",
-                "toml",
-                "cucumber",
-                "graphql",
-                "markdown",
-                "lua",
-                "ts",
-                ".",
-                "proto",
-              },
-            }
-          end,
-          cucumber_language_server = function()
-            -- We just want formatting since cucumber needs the source code sadly
-            require("lspconfig").cucumber_language_server.setup {
-              on_init = function(client, _)
-                client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
-              end,
-              handlers = {
-                ["textDocument/publishDiagnostics"] = function() end,
-              },
-            }
-          end,
-          -- html = function()
-          --   require("lspconfig").html.setup {
-          --     -- Lol go templates can be recognized by treesitter as html angular
-          --     filetypes = { "htmlangular", "html", "templ" },
-          --   }
-          -- end,
-        },
+        automatic_enable = true,
       }
 
-      -- Nushell (not in mason)
-      lspconfig.nushell.setup {}
+      -- Setup lua
+      vim.lsp.config("lua_ls", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+            },
+            runtime = {
+              version = "LuaJIT",
+            },
+            workspace = {
+              checkThirdParty = false,
+            },
+            hint = {
+              enable = true,
+            },
+          },
+        },
+      })
+      -- Setup go
+      vim.lsp.config("gopls", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          gopls = {
+            directoryFilters = { "-**/graph/generated", "-**/node_modules" },
+            experimentalPostfixCompletions = true,
+            codelenses = {
+              gc_details = false,
+              generate = true,
+              regenerate_cgo = true,
+              run_govulncheck = true,
+              test = true,
+              tidy = true,
+              upgrade_dependency = true,
+              vendor = true,
+            },
+            analyses = {
+              ST1003 = false,
+              fieldalignment = false,
+              fillreturns = true,
+              nilness = true,
+              nonewvars = true,
+              shadow = true,
+              undeclaredname = true,
+              unreachable = true,
+              unusedparams = true,
+              unusedresult = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            staticcheck = true,
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+            gofumpt = true,
+            semanticTokens = false,
+          },
+        },
+      })
+
+      -- Setup yamlls
+      vim.lsp.config("yamlls", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          yaml = {
+            schemaStore = {
+              -- You must disable built-in schemaStore support if you want to use
+              -- this plugin and its advanced options like `ignore`.
+              enable = false,
+              -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+              url = "",
+            },
+            schemas = require("schemastore").yaml.schemas(),
+            keyOrdering = false,
+          },
+        },
+      })
+
+      -- Setup graphql
+      local util = require "lspconfig.util"
+      vim.lsp.config("graphql", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        root_dir = util.root_pattern(
+          ".git",
+          ".graphqlrc*",
+          ".graphql.config.*",
+          "graphql.config.*",
+          "/config/gqlgen.yaml"
+        ),
+      })
+
+      -- Setup ts_ls
+      vim.lsp.config("ts_ls", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        init_options = {
+          preferences = {
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+            importModuleSpecifierPreference = "non-relative",
+          },
+        },
+        single_file_support = true,
+        root_dir = require("lspconfig.util").root_pattern "package.json",
+      })
+
+      -- Setup typos
+      vim.lsp.config("typos_lsp", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        config = {
+          -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
+          cmd_env = { RUST_LOG = "ERROR" },
+        },
+        init_options = {
+          -- Custom config. Used together with any workspace config files, taking precedence for
+          -- settings declared in both. Equivalent to the typos `--config` cli argument.
+          -- config = '~/code/typos-lsp/crates/typos-lsp/tests/typos.toml',
+          -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
+          -- Defaults to error.
+          diagnosticSeverity = "Information",
+        },
+        single_file_support = true,
+        root_dir = function(fname)
+          return require("lspconfig.util").root_pattern("typos.toml", "_typos.toml", ".typos.toml")(fname)
+            or vim.fn.getcwd()
+        end,
+        filetypes = {
+          "go",
+          "gomod",
+          "gowork",
+          "rust",
+          "yaml",
+          "toml",
+          "cucumber",
+          "graphql",
+          "markdown",
+          "lua",
+          "ts",
+          ".",
+          "proto",
+        },
+      })
+
+      -- Setup cucumber
+      vim.lsp.config("cucumber_language_server", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        on_init = function(client, _)
+          client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+        end,
+        handlers = {
+          ["textDocument/publishDiagnostics"] = function() end,
+        },
+      })
+
+      -- Setup html
+      vim.lsp.config("html", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "htmlangular", "html", "templ" },
+      })
+
+      -- Setup nushell
+      vim.lsp.config("nushell", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
 
       -- nukleus
       -- require("lspconfig.configs").nukleus = {

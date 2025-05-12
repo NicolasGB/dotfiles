@@ -36,9 +36,11 @@ return {
         direction = "float",
         close_on_exit = false,
         on_open = function(term)
+          -- Toggle out
           vim.keymap.set("t", "q", function()
             term:toggle()
           end, { buffer = term.bufnr, desc = "Toggle Gitme" })
+          -- Exit for good
           vim.keymap.set("t", "Q", function()
             term:shutdown()
           end, { buffer = term.bufnr, desc = "Close Gitme" })
@@ -68,9 +70,26 @@ return {
         gitme:toggle()
       end, { desc = "Gitme", noremap = true, silent = true })
 
-      vim.keymap.set("n", "<C-b>", function()
-        bacon:toggle()
-      end, { desc = "Bacon", noremap = true, silent = true })
+      -- Open by default bacon in background for rust files
+      vim.g.bacon_setup = false
+      local bacon_group = vim.api.nvim_create_augroup("BaconAutoOpen", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "rust",
+        group = bacon_group,
+        callback = function()
+          if not vim.g.bacon_setup then
+            -- Add the bacon keymap
+            vim.keymap.set("n", "<C-b>", function()
+              bacon:toggle()
+            end, { desc = "Bacon", noremap = true, silent = true })
+
+            -- Toggle it open and close it immediately to start scanning
+            bacon:toggle()
+            bacon:toggle()
+            vim.g.bacon_setup = true
+          end
+        end,
+      })
     end,
   },
 }

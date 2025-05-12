@@ -35,6 +35,11 @@ return {
             native = true,
           },
         },
+        formatters = {
+          file = {
+            truncate = 60,
+          },
+        },
         win = {
           input = {
             keys = {
