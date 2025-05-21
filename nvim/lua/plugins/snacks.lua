@@ -82,11 +82,12 @@ return {
       { "<leader>ff", function() Snacks.picker.files({cmd = "fd", hidden = true}) end, desc = "Find Files"},
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers"},
       { "<leader>gr", function() Snacks.picker.grep({hidden = true}) end, desc = "Grep in files"},
-      { "<leader>rr", function() Snacks.picker.resume() end, desc = "Resume search"},
+      { "<leader>re", function() Snacks.picker.resume() end, desc = "Resume search"},
       { "<leader>sc", function() Snacks.picker.lines() end, desc = "Search in current buffer"},
       { "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep buffers"},
       { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" }},
       { "<leader><space>", function() Snacks.picker.files({hidden = true}) end, desc = "Smart picker"},
+      { "<leader>m", function() Snacks.picker.marks() end, desc = "Smart picker"},
       -- Keymaps
       { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps"},
       -- Commands
@@ -98,9 +99,14 @@ return {
       { "<leader>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
       -- LSP
       { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+      { "gD", function() vim.cmd.vsplit() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
       { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
       { "gi", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
       { "gt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+      { "gT", function()
+        vim.cmd.vsplit()
+        Snacks.picker.lsp_type_definitions()
+      end, desc = "Goto T[y]pe Definition" },
       { "<leader>ss", function() Snacks.picker.lsp_symbols({
         filter = {
           rust = {

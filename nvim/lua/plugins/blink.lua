@@ -11,8 +11,8 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
       },
     },
-    build = "cargo build --release",
-    -- version = "v0.*",
+    -- build = "cargo build --release",
+    version = "v1.*",
     config = function()
       -- local ls = require "luasnip"
       require("blink.cmp").setup {

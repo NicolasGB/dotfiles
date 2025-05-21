@@ -1,7 +1,7 @@
 return {
   {
     "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach",
+    event = "BufEnter",
     config = function()
       -- Diagnostics
       vim.diagnostic.config {

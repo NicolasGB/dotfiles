@@ -11,9 +11,9 @@ return {
       local cinnamon = require "cinnamon"
       -- Default hops
       vim.keymap.set("n", "f", function()
-        cinnamon.scroll(function()
-          hop.hint_words { multi_windows = true }
-        end)
+        -- cinnamon.scroll(function()
+        hop.hint_words { multi_windows = true }
+        -- end)
       end, { noremap = true, silent = true, desc = "Hop to word" })
 
       vim.keymap.set("n", "t", function()

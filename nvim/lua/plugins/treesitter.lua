@@ -89,7 +89,6 @@ return {
             selection_modes = {
               ["@parameter.outer"] = "v", -- charwise
               ["@function.outer"] = "V", -- linewise
-              ["@class.outer"] = "<c-v>", -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
             -- extended to include preceding or succeeding whitespace. Succeeding
@@ -101,6 +100,16 @@ return {
             -- * selection_mode: eg 'v'
             -- and should return true of false
             include_surrounding_whitespace = false,
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["gna"] = "@parameter.inner", -- Jump to next argument
+            },
+            goto_previous_start = {
+              ["gpa"] = "@parameter.inner", -- Jump to previous argument
+            },
           },
 
           lsp_interop = {
@@ -114,6 +123,10 @@ return {
           },
         },
       }
+
+      local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
     end,
   },
   {
