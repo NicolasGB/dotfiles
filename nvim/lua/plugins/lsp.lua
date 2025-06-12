@@ -63,7 +63,7 @@ return {
       -- Setup mason and enable automatically the lsp installed by them
       require("mason").setup {}
       require("mason-lspconfig").setup {
-        ensure_installed = { "gopls", "lua_ls", "yamlls", "jsonls", "taplo", "typos_lsp" },
+        ensure_installed = { "gopls", "lua_ls", "yamlls", "jsonls", "taplo", "typos_lsp", "ts_ls" },
         automatic_enable = true,
       }
 

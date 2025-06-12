@@ -47,7 +47,7 @@ return {
         end,
       }
       local bacon = Terminal:new {
-        cmd = "bacon",
+        cmd = "bacon -j clippy",
         hidden = true,
         direction = "float",
         close_on_exit = false,

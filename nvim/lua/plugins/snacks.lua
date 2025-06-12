@@ -79,7 +79,7 @@ return {
       -- Explorer
       { "<leader>ft", function () Snacks.explorer() end, desc = "File tree" },
       -- Files and text
-      { "<leader>ff", function() Snacks.picker.files({cmd = "fd", hidden = true}) end, desc = "Find Files"},
+      -- { "<leader>ff", function() Snacks.picker.files({cmd = "fd", hidden = true}) end, desc = "Find Files"},
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers"},
       { "<leader>gr", function() Snacks.picker.grep({hidden = true}) end, desc = "Grep in files"},
       { "<leader>re", function() Snacks.picker.resume() end, desc = "Resume search"},
@@ -148,9 +148,6 @@ return {
             Snacks.debug.backtrace()
           end
           vim.print = _G.dd -- Override print to use snacks for `:=` command
-
-          -- Enable input
-          Snacks.input.enable()
 
           -- Create some toggle mappings
           Snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>us"

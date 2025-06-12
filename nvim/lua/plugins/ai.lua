@@ -103,15 +103,8 @@ return {
       "j-hui/fidget.nvim",
       {
         "MeanderingProgrammer/render-markdown.nvim",
-        config = function()
-          require("render-markdown").setup {
-            file_types = {
-              "codecompanion",
-            },
-          }
-        end,
       },
-      -- {
+      "ravitemer/codecompanion-history.nvim",
     },
     init = function()
       require("plugins.codecompanion.fidget"):init()
@@ -122,6 +115,13 @@ return {
 
       cc.setup {
         strategies = {
+          -- inline = {
+          --   adapter = {
+          --     name = "copilot",
+          --     model = "claude-sonnet-4",
+          --     -- model = "gpt-4o",
+          --   },
+          -- },
           chat = {
             slash_commands = {
               ["buffer"] = {
@@ -156,17 +156,45 @@ return {
             return adapters.extend("copilot", {
               schema = {
                 model = {
-                  -- default = "gpt-4.1",
-                  default = "gemini-2.5-pro",
+                  default = "claude-sonnet-4",
                 },
               },
             })
           end,
         },
+        extensions = {
+          history = {
+            enabled = true,
+            opts = {
+              keymap = "gh",
+              auto_save = true,
+              picker = "snacks",
+              ---Automatically generate titles for new chats
+              auto_generate_title = true,
+              title_generation_opts = {
+                ---Adapter for generating titles (defaults to current chat adapter)
+                adapter = "copilot",
+                ---Model for generating titles (defaults to current chat model)
+                model = "claude-sonnet-4",
+              },
+              ---On exiting and entering neovim, loads the last chat on opening chat
+              continue_last_chat = false,
+              ---When chat is cleared with `gx` delete the chat from history
+              delete_on_clearing_chat = false,
+              ---Directory path to save the chats
+              dir_to_save = vim.fn.stdpath "data" .. "/codecompanion-history",
+            },
+          },
+        },
       }
 
-      vim.keymap.set("n", "<leader>cco", function()
-        cc.chat {}
+      vim.keymap.set("n", "<A-i>", function()
+        cc.toggle()
+        vim.defer_fn(function()
+          if vim.bo.filetype == "codecompanion" then
+            vim.cmd "startinsert"
+          end
+        end, 20)
       end, { desc = "AI - Chat open" })
 
       vim.keymap.set({ "n", "v" }, "<leader>ccp", function()
@@ -174,8 +202,7 @@ return {
       end, { noremap = true, desc = "AI - Prompt actions" })
 
       vim.keymap.set("n", "<leader>ccc", ":CodeCompanion /commit<CR>", { desc = "AI - Generate commit" })
-      vim.keymap.set("v", "<leader>ccq", ":CodeCompanion<CR>", { desc = "AI - Quick prompt " })
-      vim.keymap.set("n", "<leader>ccq", ":CodeCompanion<CR>", { desc = "AI - Quick prompt " })
+      vim.keymap.set({ "n", "v" }, "<leader>ccq", ":CodeCompanion<CR>", { desc = "AI - Quick prompt " })
     end,
   },
 }

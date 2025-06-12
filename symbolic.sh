@@ -41,6 +41,7 @@ case "$1" in
         create_symlink ghostty ghostty
         create_symlink gtk-4.0 gtk-4.0 
         create_symlink lazygit lazygit
+        create_symlink jj/config.toml jj/config.toml
         echo "Setup completed!"
         ;;
     "remove")
@@ -58,6 +59,7 @@ case "$1" in
         remove_symlink ghostty
         remove_symlink gtk-4.0
         remove_symlink lazygit
+        remove_symlink jj
         echo "Removal completed!"
         ;;
     *)

@@ -15,6 +15,20 @@ return {
       vim.keymap.set("n", "<leader>md", vim.cmd.MarkdownPreview, { desc = "Markdown preview" })
     end,
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    config = function()
+      require("render-markdown").setup {
+        file_types = {
+          "codecompanion",
+          "rust",
+        },
+        heading = {
+          enabled = false,
+        },
+      }
+    end,
+  },
   -- {
   --   -- init.lua
   --   "lukas-reineke/headlines.nvim",

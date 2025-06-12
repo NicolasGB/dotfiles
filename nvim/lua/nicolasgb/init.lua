@@ -35,3 +35,16 @@ vim.keymap.set("n", "gf", function()
 
   vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
 end)
+
+-- Reload files when externally modified
+vim.api.nvim_create_autocmd({
+  "FocusGained",
+  "BufEnter", --[[ "CursorHold", "CursorHoldI" ]]
+}, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd "checktime"
+    end
+  end,
+})

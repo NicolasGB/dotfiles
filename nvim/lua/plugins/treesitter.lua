@@ -106,9 +106,11 @@ return {
             set_jumps = true,
             goto_next_start = {
               ["gna"] = "@parameter.inner", -- Jump to next argument
+              ["gnf"] = "@function.outer", -- Jump to next function
             },
             goto_previous_start = {
               ["gpa"] = "@parameter.inner", -- Jump to previous argument
+              ["gpf"] = "@function.outer", -- Jump to previous function
             },
           },
 
