@@ -46,7 +46,7 @@ vim.keymap.set("i", "<C-q>", "<Esc>:qa<CR>")
 vim.keymap.set("v", "<C-q>", "<Esc>:qa<CR>")
 
 -- New lines
-vim.api.nvim_set_keymap("n", "<Leader>j", "o<Esc>k", { noremap = true, silent = true, desc = "Add new line on bottom" })
+vim.api.nvim_set_keymap("n", "<Leader>J", "o<Esc>k", { noremap = true, silent = true, desc = "Add new line on bottom" })
 vim.api.nvim_set_keymap("n", "<Leader>k", "O<Esc>j", { noremap = true, silent = true, desc = "Add new line on top" })
 
 -- Select all

@@ -3,9 +3,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = {
-      -- NOTE: additional parser
-      { "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
-
       -- Kestrel prod
       -- {
       --   "tree-sitter-kestrel",

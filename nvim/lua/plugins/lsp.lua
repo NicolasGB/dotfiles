@@ -63,7 +63,7 @@ return {
       -- Setup mason and enable automatically the lsp installed by them
       require("mason").setup {}
       require("mason-lspconfig").setup {
-        ensure_installed = { "gopls", "lua_ls", "yamlls", "jsonls", "taplo", "typos_lsp", "ts_ls" },
+        ensure_installed = { "gopls", "lua_ls", "yamlls", "jsonls", "typos_lsp", "ts_ls" },
         automatic_enable = true,
       }
 
@@ -119,6 +119,12 @@ return {
               unusedresult = true,
               unusedwrite = true,
               useany = true,
+              -- Comments and package
+              ST1000 = false,
+              -- Comments format
+              ST1020 = false,
+              ST1021 = false,
+              ST1022 = false,
             },
             staticcheck = true,
             hints = {
@@ -251,6 +257,13 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
       })
+
+      -- Setup tombi
+      vim.lsp.config("tombi", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+      vim.lsp.enable "tombi"
 
       -- nukleus
       -- require("lspconfig.configs").nukleus = {

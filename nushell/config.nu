@@ -213,7 +213,22 @@ $env.config = {
         external: {
             enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-            completer: null # check 'carapace_completer' above as an example
+            # completer: null # check 'carapace_completer' above as an example
+            completer:   {|tokens: list<string>|
+              let expanded = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
+
+              mut expanded_tokens = if $expanded != null and $tokens.0 != "cd" {
+                $expanded | split row " " | append ($tokens | skip 1)
+              } else {
+                $tokens
+              }
+
+              $expanded_tokens.0 = ($expanded_tokens.0 | str trim --left --char "^")
+
+              fish --command $"complete '--do-complete=($expanded_tokens | str join ' ')'"
+              | $"value(char tab)description(char newline)" + $in
+              | from tsv --flexible --no-infer
+            }
         }
         use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
     }
@@ -974,5 +989,7 @@ alias sg = ast-grep
 # Load starship
 use ~/.cache/starship/init.nu
 
+# Load atuin
+source ~/.local/share/atuin/init.nu
 
 # $env.config.color_config = (everforest)
