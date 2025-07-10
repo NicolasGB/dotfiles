@@ -5,7 +5,7 @@ return {
       "nvim-neorg/lua-utils.nvim",
       "pysan3/pathlib.nvim",
     },
-    ft = "neorg",
+    ft = "norg",
     version = "*", -- Pin Neorg to the latest stable release
     config = function()
       require("neorg").setup {

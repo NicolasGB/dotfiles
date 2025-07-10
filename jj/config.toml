@@ -5,12 +5,17 @@ name = "NicolasGB"
 email = "ngou0210@gmail.com"
 
 
+[signing.backends.ssh]
+program = "/opt/1Password/op-ssh-sign"
+
 [revset-aliases]
-'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+'closest_bookmark(to)' = "heads(::to & bookmarks())"
+'default()' = "coalesce(trunk(),root())::present(@) | ancestors(visible_heads() & recent(), 2)"
+'recent()' = 'committer_date(after:"1 month ago")'
 
 [aliases]
 # tug: bring nearest bookmark up to recent commit
-tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@"]
 # retrunk:
 # `jj rebase -d 'trunk()'` is shorthand for `jj rebase -b @ -d 'trunk()'`
 #
@@ -19,11 +24,33 @@ tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
 # `-b @` rebases the entire branch that the current @ is on relative to the destination. (Default),
 # `-d trunk()` sets the destination. trunk() finds the most recent `main | master | trunk` branch thats on a remote. trunk() is builtin.
 retrunk = ["rebase", "-d", "trunk()"]
+# log-recent = ["log", "-r", "default() & recent()"]
+# Edit
+e = ["edit"]
+# Git init
+i = ["git", "init", "--colocate"]
+# Create new bookmark
+nb = ["bookmark", "create", "-r @"]  # "new bookmark"
+# Pull from remote
+pull = ["git", "fetch"]
+# Push to remote
+push = ["git", "push"]
+# Rebase
+r = ["rebase"]
+# Squash
+s = ["squash"]
+# Squash interactive
+si = ["squash", "--interactive"]
 
 [template-aliases]
 "format_timestamp(timestamp)" = "timestamp.ago()"
+"format_short_id(id)" = "id.shortest()"
 
 [ui]
 default-command = "log"
 pager = "delta"
 diff-formatter = ":git"
+diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+
+[git]
+push-new-bookmarks = true
