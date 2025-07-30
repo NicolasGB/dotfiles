@@ -215,7 +215,7 @@ $env.config = {
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
             # completer: null # check 'carapace_completer' above as an example
             completer:   {|tokens: list<string>|
-              let expanded = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
+              let expanded = scope aliases | where name == $tokens.0 | get --optional expansion.0
 
               mut expanded_tokens = if $expanded != null and $tokens.0 != "cd" {
                 $expanded | split row " " | append ($tokens | skip 1)
@@ -341,7 +341,7 @@ $env.config = {
                 max_completion_width: 50,
                 max_completion_height: 10, # will be limited by the available lines in the terminal
                 padding: 0,
-                border: true,
+                border: false,
                 cursor_offset: 0,
                 description_mode: "prefer_right"
                 min_description_width: 0
@@ -400,12 +400,13 @@ $env.config = {
 
     keybindings: [
         {
-            name: completion_menu
+            name: ide_completion_menu
             modifier: none
             keycode: tab
             mode: [emacs vi_normal vi_insert]
             event: {
                 until: [
+                    # { send: menu name: completion_menu }
                     { send: menu name: completion_menu }
                     { send: menunext }
                     { edit: complete }
@@ -924,7 +925,14 @@ $env.config = {
 alias lg = lazygit
 alias ld = lazydocker
 
-alias v = nvim
+# Open neovim loading last session if no args given
+def v [...args] {
+    if ($args | is-empty) {
+        nvim -c "SessionManager load_current_dir_session"
+    } else {
+        nvim ...$args
+    }
+}
 
 alias l = ls -l
 alias la = ls -a
@@ -933,7 +941,7 @@ alias lla = ls -la
 # Edit neovim
 def cv [] {
     cd ~/.config/nvim;
-    nvim
+    v
 }
 # Update neovim
 alias bun = bob update nightly
@@ -975,7 +983,7 @@ def pacupd [] {
 
 def neo [] {
     cd ~/neorg
-    nvim
+    v
 }
 
 

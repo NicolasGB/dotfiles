@@ -14,6 +14,7 @@ return {
         diagnostic = false,
         lsp_document_formatting = false,
         lsp_inlay_hints = nil,
+        -- iferr_less_highlight = true,
       }
     end,
     ft = { "go", "gomod" },

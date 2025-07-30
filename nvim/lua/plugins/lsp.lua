@@ -251,12 +251,14 @@ return {
         capabilities = capabilities,
         filetypes = { "htmlangular", "html", "templ" },
       })
+      vim.lsp.enable "html"
 
       -- Setup nushell
       vim.lsp.config("nushell", {
         on_attach = on_attach,
         capabilities = capabilities,
       })
+      vim.lsp.enable "nushell"
 
       -- Setup tombi
       vim.lsp.config("tombi", {

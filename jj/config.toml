@@ -8,14 +8,36 @@ email = "ngou0210@gmail.com"
 [signing.backends.ssh]
 program = "/opt/1Password/op-ssh-sign"
 
+[revsets]
+# log = "present(@) | present(@):: | (present(develop)::@-) | latest(mine(), 3) | ancestors(present(develop), 3) | ancestors(present(main), 3)"
+log = "@ | current_branch_history() | other_branches_summary() | context()"
+
 [revset-aliases]
 'closest_bookmark(to)' = "heads(::to & bookmarks())"
 'default()' = "coalesce(trunk(),root())::present(@) | ancestors(visible_heads() & recent(), 2)"
 'recent()' = 'committer_date(after:"1 month ago")'
+# Define core integration branches for clarity.
+'trunk()' = "present(main)"
+'dev_branch()' = "present(develop)"
+# A "feature branch" is any local bookmark that is not main or develop.
+'feature_branches()' = "bookmarks() ~ (trunk() | dev_branch())"
+# The specific feature branch you are currently working on is the one
+# that is an ancestor of your working copy (@).
+'current_feature_branch()' = "feature_branches() & ::@"
+# "Other" feature branches are the ones you are not currently working on.
+'other_feature_branches()' = "feature_branches() & ~::@"
+# The full, connected history for the current feature branch.
+# The `connected()` function prevents "(elided revisions)" from appearing. [1]
+'current_branch_history()' = "connected(dev_branch()..current_feature_branch())"
+# A summary (last 2 commits) of all other feature branches.
+'other_branches_summary()' = "ancestors(other_feature_branches(), 2)"
+# Context from the main integration branches (last 3 commits).
+'context()' = "ancestors(trunk(), 3) | ancestors(dev_branch(), 3)"
 
 [aliases]
 # tug: bring nearest bookmark up to recent commit
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@"]
+tug- = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
 # retrunk:
 # `jj rebase -d 'trunk()'` is shorthand for `jj rebase -b @ -d 'trunk()'`
 #
@@ -24,13 +46,14 @@ tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@"]
 # `-b @` rebases the entire branch that the current @ is on relative to the destination. (Default),
 # `-d trunk()` sets the destination. trunk() finds the most recent `main | master | trunk` branch thats on a remote. trunk() is builtin.
 retrunk = ["rebase", "-d", "trunk()"]
-# log-recent = ["log", "-r", "default() & recent()"]
+# Log recent
+lr = ["log", "-r", "default() & recent()"]
 # Edit
 e = ["edit"]
 # Git init
 i = ["git", "init", "--colocate"]
 # Create new bookmark
-nb = ["bookmark", "create", "-r @"]  # "new bookmark"
+bc = ["bookmark", "create", "-r @"]  # "new bookmark"
 # Pull from remote
 pull = ["git", "fetch"]
 # Push to remote
@@ -41,6 +64,18 @@ r = ["rebase"]
 s = ["squash"]
 # Squash interactive
 si = ["squash", "--interactive"]
+# List my branches
+mine = ["bookmark", "list", "-r", "mine()"]
+# List all branches
+branches = ["log", "-r", "heads(all())"]
+# log mine
+lm = [
+  "log",
+  "-r",
+  "present(@) | ancestors(present(develop) | present(main), 4) | heads(mine() & ~(present(develop) | present(main)))",
+]
+# Open a pr on github for the current bookmark
+pr = ["util", "exec", "--", "sh", "-c", "~/.config/jj/pr-gh.nu"]
 
 [template-aliases]
 "format_timestamp(timestamp)" = "timestamp.ago()"
@@ -54,3 +89,20 @@ diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 
 [git]
 push-new-bookmarks = true
+private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
+
+[colors]
+tag = "red"
+change_id = "#E69875"  # Everforest orange
+"working_copy change_id" = "#D699B6"  # Everforest purple
+commit_id = "#0CABA6"
+"working_copy commit_id" = "#0CABA6"
+timestamp = "green"
+git_head = "#DBBC7F"  # Everforest yellow - bright and distinctive
+bookmarks = { fg = "#E67E80", bold = true }  # Everforest red with bold for clarity
+author = "#7FBBB3"  # Everforest blue-green - softer than bright blue
+committer = "#7FBBB3"  # Everforest blue-green - softer than bright blue
+"working_copy author" = "#7FBBB3"  # Consistent with author
+"working_copy empty description placeholder" = "bright yellow"
+"node working_copy" = "bright green"
+"elided" = { fg = "#B5A8C0", italic = true }

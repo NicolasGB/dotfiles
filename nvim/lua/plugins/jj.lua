@@ -27,10 +27,17 @@ return {
       end, { desc = "JJ diff current" })
 
       vim.keymap.set("n", "<leader>sj", cmd.squash, { desc = "JJ squash" })
+      -- Uplift the bookmark
       vim.keymap.set("n", "<leader>jt", function()
         cmd.j "tug"
-        -- cmd.log {}
       end, { desc = "JJ tug" })
+      -- Push and pull
+      vim.keymap.set("n", "<leader>jp", function()
+        cmd.j "pull"
+      end, { desc = "JJ pull" })
+      vim.keymap.set("n", "<leader>jP", function()
+        cmd.j "push"
+      end, { desc = "JJ push" })
 
       vim.keymap.set("n", "<leader>gj", function()
         require("jj.picker").status()

@@ -33,7 +33,7 @@ return {
               cargo = { features = "all" },
               assist = {
                 importEnforceGranularity = true,
-                importPrefix = "module",
+                importPrefix = "crate",
               },
               checkOnSave = {
                 enable = true,
