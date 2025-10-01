@@ -44,10 +44,11 @@ sleep 950ms
 
 # Prepare filename with timestamp
 let dateTime = (date now | format date '%m-%d-%Y-%H:%M:%S')
-let output_file = $"($env.HOME)/Videos/($dateTime).mp4"
+let output_file = $"($env.HOME)/Videos/($dateTime).gif"
 
 # Start wf-recorder
 # Using 'media-record' icon
-notify-send -i media-record -h string:wf-recorder:record -t 1500 "<b>Recording Started</b>" $"Saving to:\n<i>($output_file)</i>"
-wf-recorder --bframes max_b_frames -g $geometry -f $output_file
+notify-send -i media-record -h string:wf-recorder:record -t 1000 "<b>Recording Started</b>" $"Saving to:\n<i>($output_file)</i>"
+sleep 1sec
+wf-recorder --bframes max_b_frames -g $geometry -f $output_file -F fps=30 -c gif
 

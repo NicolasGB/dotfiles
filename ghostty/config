@@ -3,7 +3,7 @@ font-family = JetBrainsMono Nerd Font
 font-size = 10.5
 
 # Theme
-theme = Everforest Dark - Hard
+theme = Everforest Dark   Hard
 background-opacity = 0.7
 
 # Cursor
@@ -17,11 +17,14 @@ keybind = ctrl+comma=open_config
 keybind = alt+a>r=reload_config
 
 # Tabs and Splits
-keybind = alt+a>+t=new_tab
+keybind = alt+a>t=new_tab
 keybind = alt+a>s=new_split:down
 keybind = alt+n=new_split:right
 keybind = ctrl+shift+n=new_window
 keybind = alt+a>c=close_surface
+
+# Command palette
+keybind = alt+p=toggle_command_palette
 
 
 # Window

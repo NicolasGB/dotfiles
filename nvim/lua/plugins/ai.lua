@@ -152,15 +152,18 @@ return {
           },
         },
         adapters = {
-          copilot = function()
-            return adapters.extend("copilot", {
-              schema = {
-                model = {
-                  default = "claude-sonnet-4",
+          http = {
+            copilot = function()
+              return adapters.extend("copilot", {
+                schema = {
+                  model = {
+                    -- default = "claude-sonnet-4",
+                    default = "gpt-5",
+                  },
                 },
-              },
-            })
-          end,
+              })
+            end,
+          },
         },
         extensions = {
           history = {

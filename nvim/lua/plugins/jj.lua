@@ -1,6 +1,7 @@
 return {
   {
     dir = "~/dev/personal/plugins/jj.nvim",
+    -- dir = "~/dev/personal/plugins/jj-pr",
     name = "jj.nvim",
     dependencies = {
       "folke/snacks.nvim",

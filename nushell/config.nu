@@ -986,6 +986,25 @@ def neo [] {
     v
 }
 
+# JJ life
+alias j = jj
+alias jn = jj new
+alias je = jj edit
+alias jrt = jj resolve --tool mergiraf
+alias jrs = jj resolve
+alias jr = jj rebase
+alias js = jj status
+alias jd = jj describe
+alias jt = jj tug
+alias jt- = jj tug-
+alias jsq = jj squash
+alias jpr = jj pr
+alias jpl = jj pull
+alias jp = jj push
+alias ja = jj log -r 'all()'
+alias jld = jj log -r '@::'
+alias jrd = jj rebase -d develop -r
+
 
 # Some git things
 alias gco = git checkout

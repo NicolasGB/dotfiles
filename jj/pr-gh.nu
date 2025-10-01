@@ -1,11 +1,20 @@
 #!/usr/bin/env nu
 
-let bookmark = (jj log -r @ --no-graph -T 'bookmarks' 
+mut bookmark = (jj log -r @ --no-graph -T 'bookmarks' 
     | str trim)
 
 if ($bookmark | is-empty ) {
     print "The current change does not have a bookmark."
-    exit 1
+    print "Checking for @- commit."
+
+    $bookmark = (jj log -r @- --no-graph -T 'bookmarks' | str trim)
+
+    if ($bookmark | is-empty ) {
+        print "The @- commit also does not have a bookmark."
+        exit 1
+    } else {
+        print $"Found bookmark '($bookmark)' on @- commit."
+    }
 }
 
 let raw_url = (jj git remote list 
