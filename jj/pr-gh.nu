@@ -17,6 +17,8 @@ if ($bookmark | is-empty ) {
     }
 }
 
+$bookmark | str trim -c "*"
+
 let raw_url = (jj git remote list 
     | lines 
     | where ($it | str contains "origin") 

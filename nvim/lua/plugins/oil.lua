@@ -18,6 +18,7 @@ return {
           show_hidden = true,
         },
         float = {
+          border = "rounded",
           max_width = 100,
           max_height = 50,
         },

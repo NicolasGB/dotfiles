@@ -1,3 +1,4 @@
 nushell/history.txt
 nushell/*.msgpackz
 nushell/nu_scripts
+ghostty/shaders/*

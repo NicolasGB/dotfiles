@@ -11,22 +11,22 @@ return {
       }
     end,
   },
-  {
-    "echasnovski/mini.diff",
-    version = "*",
-    config = function()
-      require("mini.diff").setup {
-        view = {
-          -- Signs used for hunks with 'sign' view
-          signs = { add = "│", change = "│", delete = "_" },
-        },
-        mappings = {
-          goto_prev = "gnd",
-          goto_next = "gpd",
-        },
-      }
-    end,
-  },
+  -- {
+  --   "echasnovski/mini.diff",
+  --   version = "*",
+  --   config = function()
+  --     require("mini.diff").setup {
+  --       view = {
+  --         -- Signs used for hunks with 'sign' view
+  --         signs = { add = "│", change = "│", delete = "_" },
+  --       },
+  --       mappings = {
+  --         goto_prev = "gnd",
+  --         goto_next = "gpd",
+  --       },
+  --     }
+  --   end,
+  -- },
   -- {
   --   "echasnovski/mini.surround",
   --   version = "*",

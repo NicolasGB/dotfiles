@@ -100,6 +100,7 @@ $env.NU_PLUGIN_DIRS = [
 # source ($nu.default-config-dir | path join 'custom.nu')
 $env.EDITOR = "/home/nicolas/.local/share/bob/nvim-bin/nvim"
 $env.TERMINAL = "/usr/bin/ghostty"
+$env.DFT_BACKGROUND = "light"
 
 #  Load my secrets
 source secrets.nu

@@ -3,10 +3,9 @@ gui:
     selectedLineBgColor:
       - "#3B4252"
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
-
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
 os:
   openLink: 'xdg-open {{link}} | null'
   open: 'xdg-open {{filename}} | null'

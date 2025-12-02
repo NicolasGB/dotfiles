@@ -2,7 +2,7 @@ return {
   {
     "romgrk/barbar.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
-    branch = "master",
+    version = "^1.0.0",
     config = function()
       require("barbar").setup {
         icons = {

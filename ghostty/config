@@ -3,7 +3,7 @@ font-family = JetBrainsMono Nerd Font
 font-size = 10.5
 
 # Theme
-theme = Everforest Dark   Hard
+theme = Everforest Dark Hard
 background-opacity = 0.7
 
 # Cursor
@@ -30,6 +30,9 @@ keybind = alt+p=toggle_command_palette
 # Window
 keybind = ctrl+enter=unbind
 keybind = alt+f4=unbind
+
+# Temporal fix for copilot cli
+keybind = enter=text:\r
 
 # Resize splits
 keybind = alt+a>equal=equalize_splits
@@ -75,8 +78,9 @@ window-subtitle = working-directory
 # window-decoration = false
 window-new-tab-position = end
 window-theme = ghostty
-# window-padding-color = extend
-# split-divider-color = "#83c092"
+
+window-padding-color = extend
+split-divider-color = "#a7c080"
 window-padding-x = 3
 
 confirm-close-surface = false
@@ -92,3 +96,5 @@ gtk-wide-tabs = true
 # Behavior
 # Reuse the instance, instead of launching a new process every time
 gtk-single-instance = true
+
+# custom-shader = shaders/cursor_warp.glsl

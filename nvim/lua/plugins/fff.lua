@@ -1,0 +1,53 @@
+return {
+  -- {
+  --   "dmtrKovalenko/fff.nvim",
+  --   build = function()
+  --     require("fff.download").download_or_build_binary()
+  --   end,
+  --   opts = {
+  --     title = "Files",
+  --     prompt = " ",
+  --     layout = {
+  --       prompt_position = "top",
+  --     },
+  --     preview = {
+  --       line_numbers = true,
+  --     },
+  --     keymaps = {
+  --       move_down = { "<C-j>", "<Down>" },
+  --       move_up = { "<C-k>", "<Up>" },
+  --     },
+  --     debug = {
+  --       enabled = true, -- we expect your collaboration at least during the beta
+  --       --   show_scores = true, -- to help us optimize the scoring system, feel free to share your scores!
+  --     },
+  --   },
+  --   lazy = false,
+  --   keys = {
+  --     -- {
+  --     --   "<leader><space>", -- try it if you didn't it is a banger keybinding for a picker
+  --     --   function()
+  --     --     require("fff").find_files()
+  --     --   end,
+  --     --   desc = "FFFind files",
+  --     -- },
+  --   },
+  -- },
+  -- Snacks picker
+  -- {
+  --   "madmaxieee/fff-snacks.nvim",
+  --   dependencies = {
+  --     "dmtrKovalenko/fff.nvim",
+  --     "folke/snacks.nvim",
+  --   },
+  --   cmd = "FFFSnacks",
+  --   keys = {
+  --     {
+  --       "<leader><space>",
+  --       "<cmd> FFFSnacks <cr>",
+  --       desc = "FFF",
+  --     },
+  --   },
+  --   config = true,
+  -- },
+}

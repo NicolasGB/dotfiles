@@ -25,6 +25,13 @@ return {
           -- Snacks did this to me, bye ctrl n/p
           ["<C-j>"] = { "select_next", "fallback" },
           ["<C-k>"] = { "select_prev", "fallback" },
+          ["<Tab>"] = {
+            "snippet_forward",
+            function() -- sidekick next edit suggestion
+              return require("sidekick").nes_jump_or_apply()
+            end,
+            "fallback",
+          },
         },
         completion = {
           -- General config later

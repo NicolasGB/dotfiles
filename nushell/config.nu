@@ -1001,16 +1001,37 @@ alias jsq = jj squash
 alias jpr = jj pr
 alias jpl = jj pull
 alias jp = jj push
-alias ja = jj log -r 'all()'
+# alias ja = jj log -r 'all()'
 alias jld = jj log -r '@::'
 alias jrd = jj rebase -d develop -r
+alias jrm = jj rebase -d main -r
 
+# Log all with optional limit
+def ja [...args] {
+    if ($args | is-empty) {
+        jj log -r 'all()'
+    } else {
+        jj log -r 'all()' -n ...$args
+    }
+}
+
+def jsh [...args] {
+    if ($args | is-empty) {
+        jj show
+    } else {
+        jj show -r ...$args
+    }
+}
+
+alias jsd = jj show --git --config pager=delta
 
 # Some git things
 alias gco = git checkout
 alias grpo = git remote prune origin
 
 alias sg = ast-grep
+
+alias gmt = go mod tidy
 
 
 # Load starship

@@ -48,3 +48,19 @@ vim.api.nvim_create_autocmd({
     end
   end,
 })
+
+-- When spliting the smae file deactivate cursorline for inactive buffer
+-- Enable cursor for buffer
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+  group = vim.api.nvim_create_augroup("active_cursorline", { clear = true }),
+  callback = function()
+    vim.opt_local.cursorline = true
+  end,
+})
+-- Disable cursor for buffer
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+  group = "active_cursorline",
+  callback = function()
+    vim.opt_local.cursorline = false
+  end,
+})

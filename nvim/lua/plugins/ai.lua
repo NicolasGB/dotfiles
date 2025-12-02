@@ -28,73 +28,52 @@ return {
       end, { desc = "Copilot toggle auto_trigger" })
     end,
   },
-  -- {
-  --   "CopilotC-Nvim/CopilotChat.nvim",
-  --   version = "^v3",
-  --   dependencies = {
-  --     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-  --     { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-  --     { "MeanderingProgrammer/render-markdown.nvim" },
-  --   },
-  --   build = "make tiktoken",
-  --   config = function()
-  --     require("render-markdown").setup {
-  --       file_types = { --[[ "markdown", ]]
-  --         "copilot-chat",
-  --       },
-  --     }
-  --
-  --     local chat = require "CopilotChat"
-  --
-  --     chat.setup {
-  --       debug = false, -- Enable debugging
-  --       -- See Configuration section for rest
-  --       model = "gpt-4.1",
-  --       -- model = "gemini-2.5-pro",
-  --       mappings = {
-  --         reset = {
-  --           normal = "<C-x>",
-  --           insert = "<C-x>",
-  --           callback = function()
-  --             return chat.reset()
-  --           end,
-  --         },
-  --       },
-  --     }
-  --
-  --     vim.keymap.set("n", "<leader>cco", function()
-  --       chat.open {}
-  --     end, { desc = "CopilotChat - Chat open" })
-  --
-  --     -- -- Trigger quick chat
-  --     vim.keymap.set("n", "<leader>ccq", function()
-  --       local input = vim.fn.input "Quick Chat: "
-  --       if input ~= "" then
-  --         chat.ask(input, { selection = require("CopilotChat.select").buffer })
-  --       end
-  --     end, { desc = "CopilotChat - Quick chat" })
-  --
-  --     -- Quick chat with visual selection
-  --     vim.keymap.set("v", "<leader>ccq", function()
-  --       local input = vim.fn.input "Quick Chat: "
-  --       if input ~= "" then
-  --         chat.ask(input, { selection = require("CopilotChat.select").visual })
-  --       end
-  --     end, { desc = "CopilotChat - Quick chat visual" })
-  --
-  --     vim.keymap.set({ "n" }, "<leader>ccc", function()
-  --       chat.ask(
-  --         "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters. Wrap the whole message in code block with language gitcommit.",
-  --         { context = { "git:staged", "git:unstaged" } }
-  --       )
-  --     end, { desc = "Write a commit message with copilot" })
-  --     -- -- Trigger actions
-  --     vim.keymap.set({ "n", "v" }, "<leader>ccp", function()
-  --       chat.select_prompt {}
-  --     end, { noremap = true, desc = "CopilotChat - Prompt actions" })
-  --   end,
-  --   -- See Commands section for default commands if you want to lazy load on them
-  -- },
+  {
+    "folke/sidekick.nvim",
+    opts = {
+      -- add any options here
+      nes = {
+        enabled = false,
+      },
+    },
+    keys = {
+      {
+        "<tab>",
+        function()
+          -- if there is a next edit, jump to it, otherwise apply it if any
+          if not require("sidekick").nes_jump_or_apply() then
+            return "<Tab>" -- fallback to normal tab
+          end
+        end,
+        expr = true,
+        desc = "Goto/Apply Next Edit Suggestion",
+      },
+      {
+        "<c-.>",
+        function()
+          require("sidekick.cli").focus()
+        end,
+        mode = { "n", "x", "i", "t" },
+        desc = "Sidekick Switch Focus",
+      },
+      {
+        "<leader>aa",
+        function()
+          require("sidekick.cli").toggle { focus = true }
+        end,
+        desc = "Sidekick Toggle CLI",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>ap",
+        function()
+          require("sidekick.cli").select_prompt()
+        end,
+        desc = "Sidekick Ask Prompt",
+        mode = { "n", "v" },
+      },
+    },
+  },
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
@@ -178,7 +157,7 @@ return {
                 ---Adapter for generating titles (defaults to current chat adapter)
                 adapter = "copilot",
                 ---Model for generating titles (defaults to current chat model)
-                model = "claude-sonnet-4",
+                default = "claude-sonnet-4.5",
               },
               ---On exiting and entering neovim, loads the last chat on opening chat
               continue_last_chat = false,
@@ -207,5 +186,12 @@ return {
       vim.keymap.set("n", "<leader>ccc", ":CodeCompanion /commit<CR>", { desc = "AI - Generate commit" })
       vim.keymap.set({ "n", "v" }, "<leader>ccq", ":CodeCompanion<CR>", { desc = "AI - Quick prompt " })
     end,
+  },
+  -- Amp Plugin
+  {
+    "sourcegraph/amp.nvim",
+    branch = "main",
+    lazy = false,
+    opts = { auto_start = true, log_level = "info" },
   },
 }
