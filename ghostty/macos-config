@@ -1,0 +1,28 @@
+font-size = 13
+background-blur-radius = 20
+
+#MAC LIFE
+macos-option-as-alt = true
+macos-titlebar-style = tabs
+macos-auto-secure-input = true
+keybind = global:super+shift+t=toggle_quick_terminal
+keybind = super+n=new_split:right
+keybind = super+d=new_split:down
+keybind = super+shift+n=new_window
+# Command palette
+keybind = cmd+p=toggle_command_palette
+
+
+keybind = super+shift+h=resize_split:left,20
+keybind = super+shift+k=resize_split:up,20
+keybind = super+shift+j=resize_split:down,20
+keybind = super+shift+l=resize_split:right,20
+keybind = super+f=toggle_split_zoom
+
+# Moving around
+## Splits
+keybind = super+h=goto_split:left
+keybind = super+k=goto_split:top
+keybind = super+j=goto_split:bottom
+keybind = super+l=goto_split:right
+

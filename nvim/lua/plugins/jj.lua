@@ -33,7 +33,7 @@ return {
       -- Bookmark deletion
       vim.keymap.set("n", "<leader>jbc", cmd.bookmark_create, { desc = "JJ bookmark create" })
       vim.keymap.set("n", "<leader>jbd", cmd.bookmark_delete, { desc = "JJ bookmark delete" })
-      vim.keymap.set("n", "<leader>jbm", cmd.bookmark_move, { desc = "JJ bookmark delete" })
+      vim.keymap.set("n", "<leader>jbm", cmd.bookmark_move, { desc = "JJ bookmark move" })
 
       vim.keymap.set("n", "<leader>dj", cmd.diff, { desc = "JJ diff" })
       vim.keymap.set("n", "<leader>dcj", function()
@@ -69,6 +69,12 @@ return {
       vim.keymap.set("n", "<leader>df", function()
         diff.open_vdiff()
       end, { desc = "JJ diff current buffer" })
+
+      -- Annotations
+      local annotation = require "jj.annotate"
+      vim.keymap.set("n", "<leader>bl", function()
+        annotation.line()
+      end, { desc = "JJ blame" })
     end,
   },
   {

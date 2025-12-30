@@ -39,5 +39,10 @@ let encoded_bookmark = ($bookmark | url encode)
 
 let pr_url = $"($repo_url)/compare/($encoded_bookmark)?expand=1"
 
-xdg-open $pr_url | null
+let open_cmd = if ($nu.os-info.name == "macos") {
+    "open"
+} else {
+    "xdg-open"
+}
 
+^$open_cmd $pr_url | null

@@ -101,12 +101,14 @@ $env.NU_PLUGIN_DIRS = [
 $env.EDITOR = "/home/nicolas/.local/share/bob/nvim-bin/nvim"
 $env.TERMINAL = "/usr/bin/ghostty"
 $env.DFT_BACKGROUND = "light"
+$env.HOMEBREW_NO_AUTO_UPDATE = 1
 
 #  Load my secrets
 source secrets.nu
 
 # PATH
 use std "path add"
+path add /opt/homebrew/bin
 path add ~/go
 path add ~/go/bin/
 path add ~/.cargo/bin

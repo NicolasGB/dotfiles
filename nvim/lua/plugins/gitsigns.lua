@@ -45,7 +45,7 @@ return {
         },
       }
 
-      vim.keymap.set("n", "<leader>bl", gitsigns.blame_line, { desc = "Blame current line" })
+      -- vim.keymap.set("n", "<leader>bl", gitsigns.blame_line, { desc = "Blame current line" })
       vim.keymap.set("n", "<leader>gb", gitsigns.blame, { desc = "Blame buffer" })
     end,
   },

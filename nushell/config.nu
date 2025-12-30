@@ -981,6 +981,14 @@ def pacupd [] {
     bun;
 }
 
+def bupd [] {
+    brew update;
+    brew upgrade --fetch-HEAD;
+    brew cleanup;
+    cargo install-update -a;
+    bun;
+}
+
 def neo [] {
     cd ~/neorg
     v

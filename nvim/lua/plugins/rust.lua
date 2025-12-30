@@ -1,10 +1,9 @@
 return {
   {
     "mrcjkb/rustaceanvim",
-    version = "^5", -- Recommended
+    version = "^7", -- Recommended
     dependencies = {},
     init = function()
-      local cfg = require "rustaceanvim.config"
       -- Configure rustaceanvim here
       vim.g.rustaceanvim = {
         tools = {
@@ -28,7 +27,7 @@ return {
 
             vim.keymap.set("n", "<leader>ll", "<cmd>RustLsp flyCheck<CR>", { desc = "Rust fly check", buffer = b })
           end,
-          settings = {
+          default_settings = {
             ["rust-analyzer"] = {
               cargo = { features = "all" },
               assist = {
@@ -76,29 +75,29 @@ return {
       crates.show()
     end,
   },
-  {
-    "nwiizo/cargo.nvim",
-    build = "cargo build --release",
-    config = function()
-      require("cargo").setup {
-        float_window = true,
-        window_width = 0.8,
-        window_height = 0.8,
-        border = "rounded",
-        auto_close = true,
-        close_timeout = 5000,
-      }
-    end,
-    ft = { "rust" },
-    cmd = {
-      "CargoBench",
-      "CargoBuild",
-      "CargoClean",
-      "CargoDoc",
-      "CargoNew",
-      "CargoRun",
-      "CargoTest",
-      "CargoUpdate",
-    },
-  },
+  -- {
+  --   "nwiizo/cargo.nvim",
+  --   build = "cargo build --release",
+  --   config = function()
+  --     require("cargo").setup {
+  --       float_window = true,
+  --       window_width = 0.8,
+  --       window_height = 0.8,
+  --       border = "rounded",
+  --       auto_close = true,
+  --       close_timeout = 5000,
+  --     }
+  --   end,
+  --   ft = { "rust" },
+  --   cmd = {
+  --     "CargoBench",
+  --     "CargoBuild",
+  --     "CargoClean",
+  --     "CargoDoc",
+  --     "CargoNew",
+  --     "CargoRun",
+  --     "CargoTest",
+  --     "CargoUpdate",
+  --   },
+  -- },
 }
