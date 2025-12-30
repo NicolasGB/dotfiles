@@ -9,9 +9,6 @@ behavior = "own"
 backend = "ssh"
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFQqRi3s5soDIL1F3dwtWM6Mw47U4s8INNjz2WFEF70"
 
-[signing.backends.ssh]
-program = "/opt/1Password/op-ssh-sign"
-
 [revsets]
 # Clean default log - your work + branch context
 log = """
@@ -118,8 +115,13 @@ diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 diff-formatter = ["difft", "--color=always", "$left", "$right"]
 
 [git]
-push-new-bookmarks = true
 private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
+
+[remotes.origin]
+auto-track-bookmarks = "glob:ngb/* | main | develop"
+
+[templates]
+git_push_bookmark = '"ngb/push-" ++ change_id.short()'
 
 [merge-tools.meld]
 merge-args = ["$left", "$base", "$right", "-o", "$output", "--auto-merge"]

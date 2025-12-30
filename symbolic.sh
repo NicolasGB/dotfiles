@@ -42,6 +42,8 @@ case "$1" in
         create_symlink gtk-4.0 gtk-4.0 
         create_symlink lazygit lazygit
         create_symlink jj/config.toml jj/config.toml
+        create_symlink jj/conf.d/linux.toml jj/conf.d/linux.toml
+        create_symlink jj/conf.d/macos.toml jj/conf.d/macos.toml
         create_symlink jj/pr-gh.nu jj/pr-gh.nu
         echo "Setup completed!"
         ;;
