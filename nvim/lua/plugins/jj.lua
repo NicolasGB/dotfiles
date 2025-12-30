@@ -8,7 +8,13 @@ return {
     },
     config = function()
       local jj = require "jj"
-      jj.setup {}
+      jj.setup {
+        cmd = {
+          bookmark = {
+            prefix = "ngb/",
+          },
+        },
+      }
 
       local cmd = require "jj.cmd"
       vim.keymap.set("n", "<leader>jd", cmd.describe, { desc = "JJ describe" })
