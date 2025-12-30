@@ -38,7 +38,7 @@ case "$1" in
         create_symlink mpd mpd
         create_symlink networkmanager-dmenu networkmanager-dmenu
         create_symlink nushell nushell
-        create_symlink ghostty ghostty
+        create_symlink ghostty/config ghostty/config
         create_symlink gtk-4.0 gtk-4.0 
         create_symlink lazygit lazygit
         create_symlink jj/config.toml jj/config.toml

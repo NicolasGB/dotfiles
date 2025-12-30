@@ -1,0 +1,69 @@
+font-size = 10.5
+window-theme = ghostty
+
+
+# Keybingds
+# Config 
+keybind = super+shift+comma=reload_config
+
+# Tabs and Splits
+keybind = super+t=new_tab
+keybind = super+d=new_split:down
+keybind = super+n=new_split:right
+keybind = super+shift+n=new_window
+keybind = super+w=close_surface
+
+# Command palette
+keybind = super+p=toggle_command_palette
+
+
+# Window
+keybind = ctrl+enter=unbind
+keybind = alt+f4=unbind
+
+# Temporal fix for copilot cli
+keybind = enter=text:\r
+
+# # Resize splits
+keybind = super+equal=equalize_splits
+keybind = super+shift+h=resize_split:left,20
+keybind = super+shift+k=resize_split:up,20
+keybind = super+shift+j=resize_split:down,20
+keybind = super+shift+l=resize_split:right,20
+keybind = super+f=toggle_split_zoom
+
+# Moving around
+## Splits
+keybind = super+h=goto_split:left
+keybind = super+k=goto_split:top
+keybind = super+j=goto_split:bottom
+keybind = super+l=goto_split:right
+
+## Tabs
+keybind = super+one=goto_tab:1
+keybind = super+two=goto_tab:2
+keybind = super+three=goto_tab:3
+keybind = super+four=goto_tab:4
+keybind = super+five=goto_tab:5
+keybind = super+six=goto_tab:6
+keybind = super+seven=goto_tab:7
+keybind = super+eight=goto_tab:8
+keybind = super+nine=goto_tab:9
+
+# keybind = alt+a>l=next_tab
+# keybind = alt+a>h=previous_tab
+
+# Clipboard
+keybind = ctrl+insert=copy_to_clipboard
+keybind = shift+insert=paste_from_clipboard
+
+# Quitting
+# keybind = ctrl+shift+q=quit
+
+# GTK Decoration
+adw-toolbar-style = flat
+gtk-wide-tabs = true
+
+# Behavior
+# Reuse the instance, instead of launching a new process every time
+gtk-single-instance = true
