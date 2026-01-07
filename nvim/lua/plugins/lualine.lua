@@ -22,21 +22,6 @@ return {
         end
         return "󱉶 " .. table.concat(linters, ", ")
       end
-      local sidekick = {
-        function()
-          return " "
-        end,
-        color = function()
-          local status = require("sidekick.status").get()
-          if status then
-            return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
-          end
-        end,
-        cond = function()
-          local status = require "sidekick.status"
-          return status.get() ~= nil
-        end,
-      }
 
       require("lualine").setup {
         options = {
@@ -60,7 +45,7 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = { "filename", lint_progress, sidekick },
+          lualine_c = { "filename", lint_progress },
           lualine_x = { cwd, "encoding", "fileformat", "filetype" },
           lualine_y = { "progress" },
           lualine_z = { "location" },

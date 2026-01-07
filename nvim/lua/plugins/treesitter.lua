@@ -25,9 +25,43 @@ return {
       -- },
     },
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      -- require("nvim-treesitter").setup {}
-      require("nvim-treesitter").install { "lua", "go", "rust", "toml", "yaml", "markdown_inline", "json", "nu" }
+      local ts = require "nvim-treesitter"
+
+      -- Idempotent
+      ts.install { "lua", "go", "rust", "toml", "yaml", "markdown_inline", "json", "nu" }
+
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+      -- Now we need to manually enable treesitter apparently
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "*",
+        },
+        callback = function()
+          local ft = vim.bo.filetype
+          -- Special case for markdown
+          if ft == "markdown" then
+            ft = "markdown_inline"
+          end
+
+          local installed = ts.get_installed()
+          -- Check if the parser for the current filetype is already installed
+          if vim.tbl_contains(installed, ft) then
+            vim.treesitter.start()
+            return
+          else
+            local available = ts.get_available()
+            if not vim.tbl_contains(available, ft) then
+              return
+            end
+            -- Install the parser for the current filetype and start treesitter
+            vim.schedule(function()
+              ts.install({ ft }):wait(10000)
+              vim.treesitter.start()
+            end)
+          end
+        end,
+      })
     end,
   },
   {
