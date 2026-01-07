@@ -20,11 +20,11 @@ return {
       vim.keymap.set("n", "<leader>jd", cmd.describe, { desc = "JJ describe" })
       vim.keymap.set("n", "<leader>jl", cmd.log, { desc = "JJ log" })
       vim.keymap.set("n", "<leader>je", cmd.edit, { desc = "JJ edit" })
-      -- vim.keymap.set("n", "<leader>jl", function()
-      --   cmd.log {
-      --     revisions = "all()",
-      --   }
-      -- end, { desc = "JJ log" })
+      vim.keymap.set("n", "<leader>ja", function()
+        cmd.log {
+          revisions = "all()",
+        }
+      end, { desc = "JJ log" })
       vim.keymap.set("n", "<leader>jn", function()
         cmd.new { show_log = true }
       end, { desc = "JJ new" })

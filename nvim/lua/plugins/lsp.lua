@@ -260,12 +260,12 @@ return {
       })
       vim.lsp.enable "nushell"
 
-      -- Setup tombi
-      vim.lsp.config("tombi", {
-        on_attach = on_attach,
-        capabilities = capabilities,
-      })
-      vim.lsp.enable "tombi"
+      -- -- Setup tombi
+      -- vim.lsp.config("tombi", {
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      -- })
+      -- vim.lsp.enable "tombi"
 
       -- nukleus
       -- require("lspconfig.configs").nukleus = {
