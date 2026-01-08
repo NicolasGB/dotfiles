@@ -105,7 +105,7 @@ default-command = "log"
 pager = "cat"
 # diff-formatter = ":git"
 diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
-diff-formatter = ["difft", "--color=always", "$left", "$right"]
+diff-formatter = ["difft", "--color=always", "--skip-unchanged", "$left", "$right"]
 
 [git]
 private-commits = "description(glob:'wip:*') | description(glob:'private:*')"

@@ -93,9 +93,9 @@ return {
       vim.keymap.set({ "n", "i" }, "<A-e>", function()
         require("clasp").wrap "next"
       end)
-      vim.keymap.set({ "n", "i" }, "<A-w>", function()
-        require("clasp").wrap "prev"
-      end)
+      -- vim.keymap.set({ "n", "i" }, "<A-w>", function()
+      --   require("clasp").wrap "prev"
+      -- end)
     end,
   },
   {
