@@ -130,7 +130,12 @@ return {
               async = true,
             },
             -- dont show LuaLS require statements when lazydev has items
-            lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", fallbacks = { "lsp" } },
+            lazydev = {
+              name = "LazyDev",
+              module = "lazydev.integrations.blink",
+              fallbacks = { "lsp" },
+              score_offset = 100,
+            },
             snippets = { score_offset = -1 },
             path = { score_offset = 3 },
             buffer = { score_offset = -3 },

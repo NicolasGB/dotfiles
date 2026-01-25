@@ -5,6 +5,7 @@ return {
     name = "jj.nvim",
     dependencies = {
       "folke/snacks.nvim",
+      "sindrets/diffview.nvim",
     },
     config = function()
       local jj = require "jj"
@@ -13,6 +14,9 @@ return {
           bookmark = {
             prefix = "ngb/",
           },
+        },
+        diff = {
+          backend = "codediff",
         },
       }
 

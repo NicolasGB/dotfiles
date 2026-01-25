@@ -18,7 +18,7 @@ return {
           "html-lsp",
           "json-lsp",
           "taplo",
-          "lua_ls",
+          -- "lua_ls",
           "graphql-language-service-cli",
           "dockerls",
           "yaml-language-server",
