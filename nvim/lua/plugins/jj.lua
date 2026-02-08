@@ -6,13 +6,26 @@ return {
     dependencies = {
       "folke/snacks.nvim",
       "sindrets/diffview.nvim",
+      "esmuellert/codediff.nvim",
     },
     config = function()
       local jj = require "jj"
       jj.setup {
         cmd = {
+          describe = {
+            editor = {
+              keymaps = {
+                close = { "<Esc>", "<C-c>", "q" },
+              },
+            },
+          },
           bookmark = {
             prefix = "ngb/",
+          },
+          keymaps = {
+            log = {
+              fetch = "<S-f>",
+            },
           },
         },
         diff = {
@@ -90,5 +103,8 @@ return {
   },
   {
     "tpope/vim-fugitive",
+  },
+  {
+    "tpope/vim-rhubarb",
   },
 }
