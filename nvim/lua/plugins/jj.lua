@@ -52,16 +52,16 @@ return {
       vim.keymap.set("n", "<leader>jbd", cmd.bookmark_delete, { desc = "JJ bookmark delete" })
       vim.keymap.set("n", "<leader>jbm", cmd.bookmark_move, { desc = "JJ bookmark move" })
 
-      vim.keymap.set("n", "<leader>dj", cmd.diff, { desc = "JJ diff" })
-      vim.keymap.set("n", "<leader>dcj", function()
-        cmd.diff { current = true }
-      end, { desc = "JJ diff current" })
-
       vim.keymap.set("n", "<leader>sj", cmd.squash, { desc = "JJ squash" })
-      -- Uplift the bookmark
-      vim.keymap.set("n", "<leader>jt", function()
-        cmd.j "tug"
-      end, { desc = "JJ tug" })
+      -- Tags
+      vim.keymap.set("n", "<leader>jtd", function()
+        require("jj.cmd").tag_delete()
+      end, { desc = "JJ tag delete" })
+
+      vim.keymap.set("n", "<leader>jtp", function()
+        require("jj.cmd").tag_push()
+      end, { desc = "JJ tag push" })
+
       -- Push and pull
       vim.keymap.set("n", "<leader>jf", function()
         cmd.fetch()
@@ -92,6 +92,19 @@ return {
       vim.keymap.set("n", "<leader>bl", function()
         annotation.line()
       end, { desc = "JJ blame" })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "jjdescription",
+        callback = function(ev)
+          vim.schedule(function()
+            local lines = vim.api.nvim_buf_get_lines(ev.buf, 0, -1, false)
+            local desc = require("jj.utils").extract_description_from_describe(lines)
+            if not desc or desc == "" then
+              vim.cmd "startinsert"
+            end
+          end)
+        end,
+      })
     end,
   },
   {
