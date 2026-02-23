@@ -51,6 +51,7 @@ return {
       vim.keymap.set("n", "<leader>jbc", cmd.bookmark_create, { desc = "JJ bookmark create" })
       vim.keymap.set("n", "<leader>jbd", cmd.bookmark_delete, { desc = "JJ bookmark delete" })
       vim.keymap.set("n", "<leader>jbm", cmd.bookmark_move, { desc = "JJ bookmark move" })
+      vim.keymap.set("n", "<leader>jbt", cmd.bookmark_track, { desc = "JJ bookmark track" })
 
       vim.keymap.set("n", "<leader>sj", cmd.squash, { desc = "JJ squash" })
       -- Tags

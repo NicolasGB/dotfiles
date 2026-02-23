@@ -115,6 +115,7 @@ path add ~/.cargo/bin
 path add ~/.local/share/bob/nvim-bin
 path add ~/binaries
 path add ~/.local/bin
+path add ~/.npm-global
 
 
 # Plugins
