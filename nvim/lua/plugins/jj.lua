@@ -28,6 +28,9 @@ return {
             },
           },
         },
+        editor = {
+          auto_insert = true,
+        },
         diff = {
           backend = "codediff",
         },
@@ -74,6 +77,10 @@ return {
       vim.keymap.set("n", "<leader>jpr", function()
         cmd.open_pr { list_bookmarks = true }
       end, { desc = "JJ open PR" })
+      -- Fetch a pr
+      vim.keymap.set("n", "<leader>jpf", function()
+        cmd.fetch_pr {}
+      end, { desc = "JJ fetch PR" })
 
       vim.keymap.set("n", "<leader>gj", function()
         require("jj.picker").status()
@@ -94,18 +101,18 @@ return {
         annotation.line()
       end, { desc = "JJ blame" })
 
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "jjdescription",
-        callback = function(ev)
-          vim.schedule(function()
-            local lines = vim.api.nvim_buf_get_lines(ev.buf, 0, -1, false)
-            local desc = require("jj.utils").extract_description_from_describe(lines)
-            if not desc or desc == "" then
-              vim.cmd "startinsert"
-            end
-          end)
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("FileType", {
+      --   pattern = "jjdescription",
+      --   callback = function(ev)
+      --     vim.schedule(function()
+      --       local lines = vim.api.nvim_buf_get_lines(ev.buf, 0, -1, false)
+      --       local desc = require("jj.utils").extract_description_from_describe(lines)
+      --       if not desc or desc == "" then
+      --         vim.cmd "startinsert"
+      --       end
+      --     end)
+      --   end,
+      -- })
     end,
   },
   {

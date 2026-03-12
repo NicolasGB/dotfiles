@@ -25,6 +25,7 @@ return {
       vim.keymap.set("n", "<A-.>", vim.cmd.BufferNext)
 
       vim.keymap.set("n", "<A-w>", vim.cmd.BufferClose)
+      vim.keymap.set("n", "<A-S-w>", ":BufferClose!<CR>", { desc = "Force close buffer" })
 
       vim.keymap.set("n", "<leader>bc", vim.cmd.BufferCloseAllButCurrent)
     end,

@@ -18,7 +18,6 @@ return {
     },
     config = function()
       -- On LSP attach setup telescope mappings with lsp actions
-      local telescope = require "telescope.builtin"
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp_keybindings", { clear = true }),
         desc = "LSP actions",
@@ -259,6 +258,12 @@ return {
         capabilities = capabilities,
       })
       vim.lsp.enable "nushell"
+
+      vim.lsp.config("terraform-ls", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+      vim.lsp.enable "terraform-ls"
 
       -- -- Setup tombi
       -- vim.lsp.config("tombi", {

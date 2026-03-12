@@ -109,8 +109,18 @@ return {
 
             -- Only get treesitter node if needed
             local node = vim.treesitter.get_node()
-            if node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
-              return { "buffer" }
+            if node then
+              if vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+                return { "buffer" }
+              end
+              if
+                vim.tbl_contains(
+                  { "string", "raw_string", "raw_string_literal", "interpreted_string_literal", "string_literal" },
+                  node:type()
+                )
+              then
+                return { "lsp", "path" }
+              end
             end
 
             -- Check if the line starts with a comment, in go/rust it seems that the treesitter node is not constantly updated
