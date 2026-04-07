@@ -151,4 +151,32 @@ return {
     lazy = false,
     opts = { auto_start = true, log_level = "info" },
   },
+  {
+    "folke/sidekick.nvim",
+    lazy = false,
+    keys = {
+      {
+        "<tab>",
+        function()
+          -- if there is a next edit, jump to it, otherwise apply it if any
+          if not require("sidekick").nes_jump_or_apply() then
+            return "<Tab>" -- fallback to normal tab
+          end
+        end,
+        expr = true,
+        desc = "Goto/Apply Next Edit Suggestion",
+      },
+      {
+        "<C-.>",
+        function()
+          require("sidekick.cli").toggle "pi"
+        end,
+        desc = "Toggle pi sidekick",
+      },
+    },
+    config = function()
+      require("sidekick").setup {}
+      require("sidekick.nes").enable(true)
+    end,
+  },
 }

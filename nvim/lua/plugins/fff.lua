@@ -5,6 +5,7 @@ return {
       require("fff.download").download_or_build_binary()
     end,
     lazy = false,
+    -- commit = "eb577ea4f39f7b9296ff8c6b4bf2b2899d017ded",
     keys = {
       {
         "<leader><space>", -- try it if you didn't it is a banger keybinding for a picker
@@ -40,7 +41,7 @@ return {
           move_up = { "<C-k>", "<Up>" },
         },
         debug = {
-          enabled = true, -- we expect your collaboration at least during the beta
+          enabled = false,
           --   show_scores = true, -- to help us optimize the scoring system, feel free to share your scores!
         },
       }

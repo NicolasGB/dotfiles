@@ -400,6 +400,16 @@ $env.config = {
 
     keybindings: [
         {
+            name: zoxide_cdi
+            modifier: control
+            keycode: char_g
+            mode: [emacs, vi_insert, vi_normal]
+            event: {
+                send: executehostcommand
+                cmd: "zi"
+            }
+        }
+        {
             name: ide_completion_menu
             modifier: none
             keycode: tab
@@ -943,6 +953,7 @@ def cv [] {
     cd ~/.config/nvim;
     v
 }
+
 # Update neovim
 alias bun = bob update nightly
 
@@ -996,6 +1007,7 @@ def neo [] {
 
 # JJ life
 alias j = jj
+alias jl = jj log
 alias jn = jj new
 alias je = jj edit
 alias jrt = jj resolve --tool mergiraf
@@ -1013,6 +1025,10 @@ alias jp = jj push
 alias jld = jj log -r '@::'
 alias jrd = jj rebase -d develop -r
 alias jrm = jj rebase -d main -r
+
+# Open jj.nvim
+alias vj = nvim  -c "SessionManager load_current_dir_session" -c "J log"
+
 
 # Log all with optional limit
 def ja [...args] {
@@ -1041,11 +1057,110 @@ alias sg = ast-grep
 
 alias gmt = go mod tidy
 
+# Pull all subdirectories with jj to develop
+def jpd [] {
+  ls | where type == dir | each { |d| 
+    cd $d.name
+    if (".jj" | path exists) { 
+      jpl
+      jn develop
+    }
+  }
+  null
+}
+
+# Print latest tags for all jj subdirectories
+def jpt [] {
+  ls | where type == dir | each { |d| 
+    cd $d.name
+    if (".jj" | path exists) { 
+      { dir: $d.name, tags: (jj log -r @- --no-graph -T 'tags' | str trim) }
+    }
+  } | compact | each { |r| $"($r.dir):($r.tags)" } | str join "\n" | print
+}
+
+# Print the most recent local tag for all jj subdirectories
+# based on jj's committer-date sort order
+# Capture the full command output first so selecting the first line doesn't SIGPIPE jj.
+def jlt [] {
+  let root = $env.PWD
+  mut rows = []
+
+  for d in (ls | where type == dir) {
+    let repo_dir = ($root | path join $d.name)
+    let jj_dir = ($repo_dir | path join ".jj")
+
+    if ($jj_dir | path exists) {
+      let tag_output = (
+        ^jj -R $repo_dir tag list --sort committer-date- -T 'if(!self.remote(), name ++ if(!self.present(), " (deleted)", "") ++ "\n")'
+        | complete
+        | get stdout
+      )
+
+      let latest_tag = (
+        $tag_output
+        | lines
+        | where { |line| not ($line | str trim | is-empty) }
+        | get --optional 0
+        | default "<no tags>"
+        | str trim
+      )
+
+      $rows = ($rows | append {
+        dir: $d.name,
+        tag: $latest_tag
+      })
+    }
+  }
+
+  $rows | each { |r| $"($r.dir):($r.tag)" } | str join "\n" | print
+}
+
+
+def dexec [...args] {
+  if ($args | is-empty) {
+    error make { msg: "usage: dexec <command> [args...]" }
+  }
+
+  let root = $env.PWD
+  let command = ($args | str join " " )
+
+  for d in (ls | where type == dir) {
+    print $"==> ($d.name)"
+    cd $root
+    cd $d.name
+
+    try {
+      nu -c $command
+    } catch {|err|
+      print --stderr $"dexec: command failed in ($d.name)"
+      print --stderr ($err | to text)
+    }
+  }
+
+  cd $root
+}
 
 # Load starship
 use ~/.cache/starship/init.nu
 
 # Load atuin
 source ~/.local/share/atuin/init.nu
+
+
+def --env awsp  [] { 
+    let profile = (grep '^\[profile' ~/.aws/config | sed 's/.*\[profile //;s/\].*//' | fzf)
+    $env.AWS_PROFILE = $profile
+}
+
+def aws-ssm-port-forward [--bounce-host: string = "*bounce*", --local-port: int = 38529, --remote-port: int = 18529, --host-pattern: string = "arangograph"] {
+    let instance_id = (aws ec2 describe-instances --output text --query 'Reservations[].Instances[].[InstanceId]' --filters $'Name=tag:Name,Values=($bounce_host)')
+    let zone_id = (aws route53 list-hosted-zones --query 'HostedZones[?Config.PrivateZone==`true`].Id' --output text | str trim | split row / | get 2)
+    let host = (aws route53 list-resource-record-sets --hosted-zone-id $zone_id --query $'ResourceRecordSets[?starts_with(Name, `($host_pattern)`)].{Name:Name, Type:Type, Value:ResourceRecords[0].Value}' --output text | split row '\t' | get 0)
+    
+    aws ssm start-session --target $instance_id --document-name AWS-StartPortForwardingSessionToRemoteHost --parameters ({localPortNumber: [$local_port], portNumber: [$remote_port], host: [$host]} | to json)
+}
+
+
 
 # $env.config.color_config = (everforest)

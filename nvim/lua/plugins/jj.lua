@@ -28,6 +28,11 @@ return {
             },
           },
         },
+        terminal = {
+          window = {
+            type = "floating",
+          },
+        },
         editor = {
           auto_insert = true,
         },
@@ -55,8 +60,8 @@ return {
       vim.keymap.set("n", "<leader>jbd", cmd.bookmark_delete, { desc = "JJ bookmark delete" })
       vim.keymap.set("n", "<leader>jbm", cmd.bookmark_move, { desc = "JJ bookmark move" })
       vim.keymap.set("n", "<leader>jbt", cmd.bookmark_track, { desc = "JJ bookmark track" })
+      vim.keymap.set("n", "<leader>jbf", cmd.bookmark_forget, { desc = "JJ bookmark forget" })
 
-      vim.keymap.set("n", "<leader>sj", cmd.squash, { desc = "JJ squash" })
       -- Tags
       vim.keymap.set("n", "<leader>jtd", function()
         require("jj.cmd").tag_delete()

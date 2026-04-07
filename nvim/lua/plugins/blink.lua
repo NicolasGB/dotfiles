@@ -1,6 +1,9 @@
 ---@diagnostic disable: missing-fields
 return {
   {
+    "saghen/blink.lib",
+  },
+  {
     "saghen/blink.cmp",
     event = "InsertEnter",
     dependencies = {
@@ -26,6 +29,9 @@ return {
           ["<C-j>"] = { "select_next", "fallback" },
           ["<C-k>"] = { "select_prev", "fallback" },
           ["<Tab>"] = {
+            function() -- sidekick next edit suggestion
+              return require("sidekick").nes_jump_or_apply()
+            end,
             "snippet_forward",
             "fallback",
           },
