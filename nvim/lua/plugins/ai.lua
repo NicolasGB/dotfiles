@@ -175,8 +175,10 @@ return {
       },
     },
     config = function()
-      require("sidekick").setup {}
-      require("sidekick.nes").enable(true)
+      require("sidekick").setup {
+        nes = { enabled = false },
+      }
+      -- require("sidekick.nes").enable(false)
     end,
   },
 }

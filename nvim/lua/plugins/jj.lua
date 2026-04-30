@@ -28,11 +28,11 @@ return {
             },
           },
         },
-        terminal = {
-          window = {
-            type = "floating",
-          },
-        },
+        -- terminal = {
+        --   window = {
+        --     type = "floating",
+        --   },
+        -- },
         editor = {
           auto_insert = true,
         },

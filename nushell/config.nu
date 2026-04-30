@@ -1011,6 +1011,7 @@ alias jl = jj log
 alias jn = jj new
 alias je = jj edit
 alias jrt = jj resolve --tool mergiraf
+alias jrm = jj resolve --tool meld -r
 alias jrs = jj resolve
 alias jr = jj rebase
 alias js = jj status
@@ -1024,7 +1025,6 @@ alias jp = jj push
 # alias ja = jj log -r 'all()'
 alias jld = jj log -r '@::'
 alias jrd = jj rebase -d develop -r
-alias jrm = jj rebase -d main -r
 
 # Open jj.nvim
 alias vj = nvim  -c "SessionManager load_current_dir_session" -c "J log"

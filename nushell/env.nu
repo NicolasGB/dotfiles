@@ -102,6 +102,7 @@ $env.EDITOR = "/home/nicolas/.local/share/bob/nvim-bin/nvim"
 $env.TERMINAL = "/usr/bin/ghostty"
 $env.DFT_BACKGROUND = "light"
 $env.HOMEBREW_NO_AUTO_UPDATE = 1
+$env.PI_FFF_MODE = "tools-only"
 
 #  Load my secrets
 source secrets.nu
