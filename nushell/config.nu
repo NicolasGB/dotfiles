@@ -1053,6 +1053,16 @@ alias jsd = jj show --git --config pager=delta
 alias gco = git checkout
 alias grpo = git remote prune origin
 
+## Create releases at work
+def grel [branch?: string, version?: string] {
+  if ($branch == null) or ($version == null) {
+    print "Usage: grel <branch> <version>"
+  } else {
+    # --notes "" forces non-interactive mode (no notes prompt)
+    gh release create $version --target $branch --title $version --notes ""
+  }
+}
+
 alias sg = ast-grep
 
 alias gmt = go mod tidy

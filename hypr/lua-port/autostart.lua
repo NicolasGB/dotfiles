@@ -1,0 +1,21 @@
+hl.on("hyprland.start", function()
+	-- Basinc needs
+	hl.exec_cmd("~/.config/hypr/scripts/xdg.sh")
+	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+	hl.exec_cmd("~/.config/hypr/scripts/wallpaper-restore.sh")
+	hl.exec_cmd("swaync")
+	hl.exec_cmd("~/.config/hypr/scripts/gtk.sh")
+	hl.exec_cmd("hypridle")
+	hl.exec_cmd("wl-paste --watch cliphist store")
+	hl.exec_cmd("~/.config/ml4w/scripts/ml4w-autostart.sh")
+	hl.exec_cmd("~/.config/hypr/scripts/cleanup.sh")
+	hl.exec_cmd("~/.config/nwg-dock-hyprland/launch.sh")
+
+	-- My things
+	hl.exec_cmd("ibus start --type wayland")
+	hl.exec_cmd("shikane")
+	hl.exec_cmd("sleep 5; discord")
+	hl.exec_cmd("DRI_PRIME=1 zen-browser")
+	hl.exec_cmd("sleep 10; DRI_PRIME=1 1password")
+	hl.exec_cmd("~/dotfiles/i3/battery-notify -f 20 -s 10 -i 3")
+end)
