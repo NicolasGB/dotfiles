@@ -1,4 +1,4 @@
-local C = require("lua-port2/colors")
+local C = require("colors")
 
 hl.config({
 

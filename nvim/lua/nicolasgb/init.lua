@@ -2,13 +2,13 @@ require "nicolasgb.remap"
 require "nicolasgb.set"
 require "nicolasgb.snips.init"
 
+vim.api.nvim_set_hl(0, "IncSearch", { fg = "#282c34", bg = "#a7c080" })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight_yank", {}),
   desc = "Highlight selection on yank",
-  pattern = "*",
   callback = function()
-    vim.api.nvim_set_hl(0, "IncSearch", { fg = "#282c34", bg = "#a7c080" })
-    vim.highlight.on_yank { higroup = "IncSearch", timeout = 200 }
+    vim.hl.hl_op { higroup = "IncSearch", timeout = 200 }
   end,
 })
 

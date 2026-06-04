@@ -45,6 +45,7 @@ case "$1" in
         create_symlink jj/conf.d/linux.toml jj/conf.d/linux.toml
         create_symlink jj/conf.d/macos.toml jj/conf.d/macos.toml
         create_symlink jj/pr-gh.nu jj/pr-gh.nu
+        create_symlink hypr hypr
         echo "Setup completed!"
         ;;
     "remove")
@@ -63,6 +64,7 @@ case "$1" in
         remove_symlink gtk-4.0
         remove_symlink lazygit
         remove_symlink jj
+        remove_symlink hypr
         echo "Removal completed!"
         ;;
     *)

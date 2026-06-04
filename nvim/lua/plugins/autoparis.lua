@@ -21,8 +21,11 @@ return {
   {
     "saghen/blink.pairs",
     version = "*", -- (recommended) only required with prebuilt binaries
-    dependencies = "saghen/blink.download",
-
+    dependencies = "saghen/blink.lib",
+    -- download prebuilt binaries from github releases, must be on a versioned release
+    build = function()
+      require("blink.pairs").build():pwait(60000)
+    end,
     --- @module 'blink.pairs'
     --- @type blink.pairs.Config
     opts = {

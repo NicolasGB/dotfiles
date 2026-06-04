@@ -17,7 +17,7 @@ return {
         filetypes = {
           yaml = true,
           markdown = true,
-          rust = false,
+          -- rust = false,
           TelescopePrompt = false,
         },
       }

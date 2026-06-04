@@ -22,6 +22,18 @@ return {
           bookmark = {
             prefix = "ngb/",
           },
+          resolve_strategies = {
+            {
+              name = "Meld",
+              args = { "--tool", "meld" },
+              external = true,
+            },
+            {
+              name = "Mergiraf",
+              args = { "--tool", "mergiraf" },
+              external = true,
+            },
+          },
           keymaps = {
             log = {
               fetch = "<S-f>",
@@ -44,7 +56,6 @@ return {
       local cmd = require "jj.cmd"
       vim.keymap.set("n", "<leader>jd", cmd.describe, { desc = "JJ describe" })
       vim.keymap.set("n", "<leader>jl", cmd.log, { desc = "JJ log" })
-      vim.keymap.set("n", "<leader>je", cmd.edit, { desc = "JJ edit" })
       vim.keymap.set("n", "<leader>ja", function()
         cmd.log {
           revisions = "all()",
@@ -54,7 +65,6 @@ return {
         cmd.new { show_log = true }
       end, { desc = "JJ new" })
       vim.keymap.set("n", "<leader>js", cmd.status, { desc = "JJ status" })
-
       -- Bookmark deletion
       vim.keymap.set("n", "<leader>jbc", cmd.bookmark_create, { desc = "JJ bookmark create" })
       vim.keymap.set("n", "<leader>jbd", cmd.bookmark_delete, { desc = "JJ bookmark delete" })
@@ -72,9 +82,6 @@ return {
       end, { desc = "JJ tag push" })
 
       -- Push and pull
-      vim.keymap.set("n", "<leader>jf", function()
-        cmd.fetch()
-      end, { desc = "JJ pull" })
       vim.keymap.set("n", "<leader>jP", function()
         cmd.push()
       end, { desc = "JJ push" })
@@ -93,31 +100,27 @@ return {
       vim.keymap.set("n", "<leader>jgh", function()
         require("jj.picker").file_history()
       end, { desc = "JJ Picker history" })
+      vim.keymap.set("n", "<leader>jcr", function()
+        require("jj.picker").conflict()
+      end, { desc = "JJ Picker conflict" })
+      vim.keymap.set("n", "<leader>jcf", function()
+        require("jj.picker").conflict_sections()
+      end, { desc = "JJ Picker conflict" })
 
       -- Diffs
       local diff = require "jj.diff"
       vim.keymap.set("n", "<leader>df", function()
         diff.open_vdiff()
       end, { desc = "JJ diff current buffer" })
+      vim.keymap.set("n", "<leader>dF", function()
+        diff.diff_revisions { left = "@", right = "@-" }
+      end, { desc = "JJ diff current change" })
 
       -- Annotations
       local annotation = require "jj.annotate"
       vim.keymap.set("n", "<leader>bl", function()
         annotation.line()
       end, { desc = "JJ blame" })
-
-      -- vim.api.nvim_create_autocmd("FileType", {
-      --   pattern = "jjdescription",
-      --   callback = function(ev)
-      --     vim.schedule(function()
-      --       local lines = vim.api.nvim_buf_get_lines(ev.buf, 0, -1, false)
-      --       local desc = require("jj.utils").extract_description_from_describe(lines)
-      --       if not desc or desc == "" then
-      --         vim.cmd "startinsert"
-      --       end
-      --     end)
-      --   end,
-      -- })
     end,
   },
   {

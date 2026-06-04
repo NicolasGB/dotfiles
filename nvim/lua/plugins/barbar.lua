@@ -22,7 +22,7 @@ return {
         },
       }
 
-      --Keymaps
+      -- Keymaps
       vim.keymap.set("n", "<A-,>", vim.cmd.BufferPrevious)
       vim.keymap.set("n", "<A-.>", vim.cmd.BufferNext)
 

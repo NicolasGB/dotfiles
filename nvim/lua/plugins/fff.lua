@@ -25,6 +25,13 @@ return {
         end,
         desc = "FFF live grep",
       },
+      {
+        "<leader>re",
+        function()
+          require("fff").resume()
+        end,
+        desc = "FFF resume",
+      },
     },
     config = function()
       require("fff").setup {
