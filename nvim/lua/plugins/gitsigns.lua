@@ -47,6 +47,12 @@ return {
 
       -- vim.keymap.set("n", "<leader>bl", gitsigns.blame_line, { desc = "Blame current line" })
       vim.keymap.set("n", "<leader>gb", gitsigns.blame, { desc = "Blame buffer" })
+      vim.keymap.set("n", "<leader>gn", function()
+        gitsigns.nav_hunk "next"
+      end, { desc = "Blame buffer" })
+      vim.keymap.set("n", "<leader>gp", function()
+        gitsigns.nav_hunk "prev"
+      end, { desc = "Blame buffer" })
     end,
   },
 }

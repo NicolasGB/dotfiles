@@ -7,6 +7,9 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = "CodeDiff",
     opts = {
+      diff = {
+        jump_to_first_change = false,
+      },
       keymaps = {
         view = {
           next_hunk = "<C-j>",
