@@ -98,7 +98,18 @@ $env.NU_PLUGIN_DIRS = [
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
-$env.EDITOR = "/home/nicolas/.local/share/bob/nvim-bin/nvim"
+let bob_nvim = ($env.HOME | path join ".local" "share" "bob" "nvim-bin" "nvim")
+
+if ($bob_nvim | path exists) {
+    $env.EDITOR = $bob_nvim
+    $env.VISUAL = $bob_nvim
+    $env.JJ_EDITOR = $bob_nvim
+} else {
+    $env.EDITOR = "nvim"
+    $env.VISUAL = "nvim"
+    $env.JJ_EDITOR = "nvim"
+}
+
 $env.TERMINAL = "/usr/bin/ghostty"
 $env.DFT_BACKGROUND = "light"
 $env.HOMEBREW_NO_AUTO_UPDATE = 1
