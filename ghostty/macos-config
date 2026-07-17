@@ -18,6 +18,7 @@ keybind = super+shift+k=resize_split:up,20
 keybind = super+shift+j=resize_split:down,20
 keybind = super+shift+l=resize_split:right,20
 keybind = super+f=toggle_split_zoom
+keybind = super+shift+f=start_search
 
 # Moving around
 ## Splits
