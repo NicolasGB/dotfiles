@@ -5,7 +5,8 @@ background-blur-radius = 20
 macos-option-as-alt = true
 macos-titlebar-style = tabs
 macos-auto-secure-input = true
-keybind = global:super+shift+t=toggle_quick_terminal
+# keybind = global:super+shift+t=toggle_quick_terminal
+keybind = enter=text:\r
 keybind = super+n=new_split:right
 keybind = super+d=new_split:down
 keybind = super+shift+n=new_window
