@@ -12,8 +12,8 @@ return {
       },
       keymaps = {
         view = {
-          next_hunk = "<C-j>",
-          prev_hunk = "<C-k>",
+          next_hunk = "<C-n>",
+          prev_hunk = "<C-p>",
         },
       },
     },
