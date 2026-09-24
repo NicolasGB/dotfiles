@@ -89,7 +89,7 @@ bind("ALT + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 --- Applications
 bind("ALT + p", hl.dsp.exec_cmd("1password  --toggle"))
-bind("ALT + x", hl.dsp.exec_cmd("~/.config/ml4w/scripts/wlogout.sh"))
+bind("ALT + x", hl.dsp.exec_cmd("~/.config/hypr/scripts/wlogout.sh"))
 bind("CTRL + SHIFT + p", hl.dsp.exec_cmd("1password  --quick-access"))
 bind("SUPER + B", hl.dsp.exec_cmd("~/.config/ml4w/settings/browser.sh"))
 bind("SUPER + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" }), { description = "Universal copy" })
