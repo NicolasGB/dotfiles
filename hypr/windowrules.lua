@@ -95,5 +95,13 @@ hl.window_rule({
 	center = true,
 	match = { title = "(satty)" },
 })
+-- Android Emulator: float only the phone window, not its separate controls toolbar.
+hl.window_rule({
+	name = "android-emulator-phone",
+	float = true,
+	center = true,
+	match = { class = "^Emulator$", title = "^Android Emulator - .*" },
+})
+
 -- ShowMeTheKey
 hl.window_rule({ name = "showmethekey-rule", float = true, match = { class = "(showmethekey-gtk)" } })
