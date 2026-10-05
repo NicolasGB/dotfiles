@@ -95,13 +95,41 @@ hl.window_rule({
 	center = true,
 	match = { title = "(satty)" },
 })
--- Android Emulator: float only the phone window, not its separate controls toolbar.
+-- The phone starts with title "Emulator" and is renamed after mapping.
+-- Float both windows at creation. The emulator can move them off-screen AFTER
+-- Hyprland's initial placement, so center the phone after its title changes.
 hl.window_rule({
-	name = "android-emulator-phone",
+	name = "android-emulator-windows",
 	float = true,
-	center = true,
-	match = { class = "^Emulator$", title = "^Android Emulator - .*" },
+	match = { class = "^Emulator$" },
 })
+
+hl.on("window.title", function(window)
+	if window.class ~= "Emulator" or not window.title:match("^Android Emulator %- ") then
+		return
+	end
+	local address = window.address
+	local attempts = 0
+	local timer
+	-- Qt restores its saved position asynchronously, sometimes *after* the
+	-- title change. Only recheck for 6 seconds so manual moves aren't
+	-- overridden long after the emulator appears.
+	timer = hl.timer(function()
+		attempts = attempts + 1
+		local phone = hl.get_window("address:" .. address)
+		if not phone or not phone.floating or attempts >= 6 then
+			timer:set_enabled(false)
+		end
+		if not phone or not phone.floating then return end
+		local monitor = phone.monitor
+		if not monitor then return end
+		local x = monitor.x + (monitor.width - phone.size.x) / 2
+		local y = monitor.y + (monitor.height - phone.size.y) / 2
+		if math.abs(phone.at.x - x) > 20 or math.abs(phone.at.y - y) > 20 then
+			hl.dispatch(hl.dsp.window.center({ window = phone }))
+		end
+	end, { timeout = 1000, type = "repeat" })
+end)
 
 -- ShowMeTheKey
 hl.window_rule({ name = "showmethekey-rule", float = true, match = { class = "(showmethekey-gtk)" } })
