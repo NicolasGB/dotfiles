@@ -98,7 +98,13 @@ $env.NU_PLUGIN_DIRS = [
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
-let bob_nvim = ($env.HOME | path join ".local" "share" "bob" "nvim-bin" "nvim")
+# Bob's proxy location differs between macOS and Linux.
+let bob_bin = if $nu.os-info.name == 'macos' {
+    $env.HOME | path join 'Library' 'Application Support' 'bob' 'nvim-bin'
+} else {
+    $env.HOME | path join '.local' 'share' 'bob' 'nvim-bin'
+}
+let bob_nvim = ($bob_bin | path join 'nvim')
 
 if ($bob_nvim | path exists) {
     $env.EDITOR = $bob_nvim
@@ -124,7 +130,7 @@ path add /opt/homebrew/bin
 path add ~/go
 path add ~/go/bin/
 path add ~/.cargo/bin
-path add ~/.local/share/bob/nvim-bin
+path add $bob_bin
 path add ~/binaries
 path add ~/.local/bin
 path add ~/.npm-global/bin
@@ -135,6 +141,20 @@ if $nu.os-info.name == 'linux' {
     $env.ANDROID_HOME = ($env.HOME | path join 'Android' 'Sdk')
     $env.ANDROID_SDK_ROOT = $env.ANDROID_HOME
     $env.ANDROID_NDK_HOME = ($env.ANDROID_HOME | path join 'ndk' '30.0.16248370')
+
+    path add ($env.JAVA_HOME | path join 'bin')
+    path add ($env.ANDROID_HOME | path join 'platform-tools')
+    path add ($env.ANDROID_HOME | path join 'emulator')
+    path add ($env.ANDROID_HOME | path join 'cmdline-tools' 'latest' 'bin')
+}
+
+# Android development tools on macOS.
+if $nu.os-info.name == 'macos' {
+    $env.JAVA_HOME = '/Applications/Android Studio.app/Contents/jbr/Contents/Home'
+    $env.ANDROID_HOME = ($env.HOME | path join 'Library' 'Android' 'sdk')
+    $env.ANDROID_SDK_ROOT = $env.ANDROID_HOME
+    $env.ANDROID_NDK_HOME = ($env.ANDROID_HOME | path join 'ndk' '30.0.16248370')
+    $env.NDK_HOME = $env.ANDROID_NDK_HOME
 
     path add ($env.JAVA_HOME | path join 'bin')
     path add ($env.ANDROID_HOME | path join 'platform-tools')
