@@ -37,17 +37,29 @@ vim.keymap.set("n", "gf", function()
   vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
 end)
 
--- Reload files when externally modified
-vim.api.nvim_create_autocmd({
-  "FocusGained",
-  "BufEnter", --[[ "CursorHold", "CursorHoldI" ]]
-}, {
-  pattern = "*",
-  callback = function()
+-- Reload externally modified files without overwriting unsaved buffer edits.
+vim.opt.autoread = true
+local reload_group = vim.api.nvim_create_augroup("reload_external_changes", { clear = true })
+local function check_external_changes()
+  -- Defer until event handlers finish (task status updates can be asynchronous).
+  vim.schedule(function()
     if vim.fn.mode() ~= "c" then
       vim.cmd "checktime"
     end
-  end,
+  end)
+end
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  group = reload_group,
+  desc = "Check for external file changes on focus and buffer entry",
+  callback = check_external_changes,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  group = reload_group,
+  pattern = "OverseerListUpdate",
+  desc = "Check for external file changes when Overseer tasks change status",
+  callback = check_external_changes,
 })
 
 -- When spliting the smae file deactivate cursorline for inactive buffer

@@ -4,11 +4,16 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    -- Replace this with && if on bash
-    build = "cd app; yarn install",
+    cmd = { "MarkdownPreview", "MarkdownPreviewToggle", "MarkdownPreviewStop" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_auto_close = 0
+      -- Use the system default browser: `open` on macOS, `xdg-open` on Linux.
+      vim.g.mkdp_browser = ""
+      vim.g.mkdp_echo_preview_url = 1
     end,
     ft = { "markdown" },
     config = function()
