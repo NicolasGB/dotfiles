@@ -11,6 +11,10 @@ return {
         float_style = "dim",
         on_highlights = function(hl, _)
           hl.LspInlayHint = { fg = "#6C7E8C", bold = true, ctermfg = 198, cterm = { bold = true } }
+          -- Orange code comments across languages; keep documentation and UI grey.
+          hl["@comment"] = { fg = "#F5A044", italic = true }
+          hl["@comment.documentation"] = { link = "Comment" }
+          hl["@comment.jjdescription"] = { link = "Comment" }
         end,
       }
 

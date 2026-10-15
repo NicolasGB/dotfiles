@@ -28,7 +28,7 @@ return {
       local ts = require "nvim-treesitter"
 
       -- Idempotent
-      ts.install { "lua", "go", "rust", "toml", "yaml", "markdown_inline", "json", "nu" }
+      ts.install { "lua", "go", "rust", "javascript", "toml", "yaml", "markdown_inline", "json", "nu" }
 
       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 

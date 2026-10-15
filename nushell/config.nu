@@ -1174,4 +1174,48 @@ def aws-ssm-port-forward [--bounce-host: string = "*bounce*", --local-port: int 
 
 
 
+let rex_completer = {|place|
+    # Nushell 0.116 and later pass a record and keep the words in place.command.
+    # Earlier releases pass that word list directly as the first argument. Naming
+    # the parameter place matters, since 0.116 warns that any other positional
+    # input is deprecated.
+    let spans = if ($place | describe | str starts-with "list") {
+        $place
+    } else {
+        $place.command
+    }
+
+    if (($spans | is-empty) or $spans.0 != "rex") {
+        null
+    } else {
+        # Nushell includes the partial word as the final span, including an empty
+        # span after a space. Cobra's completion protocol expects exactly that.
+        let args = ($spans | skip 1)
+        let result = (^rex __complete ...$args | complete)
+        let lines = ($result.stdout | lines)
+        let directive = ($lines | last | str replace ':' '' | into int)
+
+        # A record list already suppresses file completion, so only Cobra's error
+        # bit needs special handling here. The final line is protocol metadata.
+        if ($directive bit-and 1) != 0 {
+            []
+        } else {
+            $lines
+            | drop 1
+            | each {|line|
+                let fields = ($line | split row "\t")
+                {
+                    value: ($fields | first)
+                    description: ($fields | get -o 1 | default "")
+                }
+            }
+        }
+    }
+}
+
+$env.config.completions.external = {
+    enable: true
+    completer: $rex_completer
+}
+
 # $env.config.color_config = (everforest)
