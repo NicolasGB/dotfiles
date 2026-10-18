@@ -22,3 +22,4 @@ vim.keymap.set("n", "<leader>ll", "<cmd>RustLsp flyCheck<CR>", { desc = "Rust fl
 vim.keymap.set("ia", "rsx", "rsx! {}<Left>", { desc = "rsx macro abbreviation", buffer = true })
 vim.keymap.set("ia", "cls", "||<Left>", { desc = "closure abbreviation", buffer = true })
 vim.keymap.set("ia", "mcr", "#[]<Left>", { desc = "macro abbreviation", buffer = true })
+vim.keymap.set("ia", "impf", "impl Future<Output = ><Left>", { desc = "impl future abbreviation", buffer = true })
