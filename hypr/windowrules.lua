@@ -18,12 +18,15 @@ hl.window_rule({
 	match = { class = ".*waypaper.*" },
 })
 
+-- Waybar
+hl.layer_rule({ name = "layerrule-waybar", blur = true, ignore_alpha = 0, xray = false, match = { namespace = "waybar" } })
+
 -- Swaync
-hl.layer_rule({ name = "layerrule-1", blur = true, ignore_alpha = 0.5, match = { namespace = "swaync-control-center" } })
+hl.layer_rule({ name = "layerrule-1", blur = true, ignore_alpha = 0, xray = false, match = { namespace = "swaync-control-center" } })
 hl.layer_rule({
 	name = "layerrule-2",
 	blur = true,
-	ignore_alpha = 0.5,
+	ignore_alpha = 0, xray = false,
 	match = { namespace = "swaync-notification-window" },
 })
 
@@ -44,6 +47,34 @@ hl.window_rule({
 	pin = true,
 	match = { class = "nwg-displays" },
 })
+
+-- PingID (Wine)
+hl.window_rule({
+	name = "pingid-rule",
+	float = true,
+	center = true,
+	match = { class = "^pingid\\.exe$" },
+})
+
+-- PingID/Wine can restore stale coordinates after the initial center rule.
+-- Its title is initially empty, so re-center briefly once PingID sets it.
+hl.on("window.title", function(window)
+	if window.class ~= "pingid.exe" or window.title ~= "PingID" then
+		return
+	end
+	local address = window.address
+	local attempts = 0
+	local timer
+	timer = hl.timer(function()
+		attempts = attempts + 1
+		local pingid = hl.get_window("address:" .. address)
+		if not pingid or not pingid.floating or attempts >= 3 then
+			timer:set_enabled(false)
+		end
+		if not pingid or not pingid.floating then return end
+		hl.dispatch(hl.dsp.window.center({ window = pingid }))
+	end, { timeout = 500, type = "repeat" })
+end)
 
 -- Calculator
 hl.window_rule({

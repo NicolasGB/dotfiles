@@ -19,6 +19,8 @@ bind("ALT + 8", hl.dsp.focus({ workspace = "8" }))
 bind("ALT + 9", hl.dsp.focus({ workspace = "9" }))
 
 -- Window management
+-- Cycle column widths (wraps): 33.3%, 50%, 66.7%, 83.3%, 95%, full.
+bind("ALT + semicolon", hl.dsp.layout("colresize +conf"))
 bind("ALT + CTRL + 0", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh 10"))
 bind("ALT + CTRL + 1", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh 2"))
 bind("ALT + CTRL + 2", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh 2"))
@@ -32,7 +34,6 @@ bind("ALT + CTRL + 9", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh 9"))
 
 bind("ALT + CTRL + B", hl.dsp.exec_cmd("~/.config/waybar/toggle.sh"))
 bind("ALT + CTRL + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/screen-record.sh"))
-bind("ALT + CTRL + S", hl.dsp.exec_cmd("flatpak run com.ml4w.settings"))
 bind("ALT + CTRL + T", hl.dsp.exec_cmd("~/.config/waybar/themeswitcher.sh"))
 
 -- Switch floating/tiled, fullscreen and group
@@ -86,6 +87,15 @@ bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true })
 bind("ALT + mouse:273", hl.dsp.window.resize(), { mouse = true })
 bind("ALT + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 bind("ALT + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+
+-- Hex: forward press/release through Hyprland's GlobalShortcuts portal.
+-- Hex's Hold/Toggle and double-tap settings control dictation behavior.
+bind("ALT + I", hl.dsp.global("hex:dictation"))
+bind("ALT + CTRL + V", hl.dsp.global("hex:paste-last"))
+bind("ALT + CTRL + S", hl.dsp.global("hex:capture"))
+bind("ALT + CTRL + D", hl.dsp.global("hex:annotate-draw"))
+-- Escape cancellation is not exposed as a portal shortcut.
+bind("ALT + Escape", hl.dsp.exec_cmd("~/.local/bin/hex dictation cancel"))
 
 --- Applications
 bind("ALT + p", hl.dsp.exec_cmd("1password  --toggle"))
