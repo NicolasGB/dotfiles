@@ -35,121 +35,49 @@ return {
     opts = { auto_start = true, log_level = "info" },
   },
   {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "j-hui/fidget.nvim",
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-      },
-      "ravitemer/codecompanion-history.nvim",
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+    -- Load at startup so the websocket server and ~/.claude/ide lock file exist
+    -- right away and Claude Code can auto-connect without a manual trigger.
+    event = "VeryLazy",
+    opts = {
+      auto_start = true,
+      terminal_cmd = "/Users/nicolas/.local/bin/claude",
     },
-    config = function()
-      local cc = require "codecompanion"
-      local adapters = require "codecompanion.adapters"
-
-      cc.setup {
-        strategies = {
-          -- inline = {
-          --   adapter = {
-          --     name = "copilot",
-          --     model = "claude-sonnet-4",
-          --     -- model = "gpt-4o",
-          --   },
-          -- },
-          chat = {
-            slash_commands = {
-              ["buffer"] = {
-                keymaps = {
-                  modes = {
-                    i = "<C-b>",
-                    n = { "<C-b>", "gb" },
-                  },
-                },
-                opts = {
-                  provider = "snacks",
-                },
-              },
-              ["file"] = {
-                opts = {
-                  provider = "snacks",
-                },
-              },
-            },
-          },
-        },
-        display = {
-          chat = {
-            -- show_settings = true,
-          },
-          action_palette = {
-            provider = "snacks",
-          },
-        },
-        adapters = {
-          http = {
-            copilot = function()
-              return adapters.extend("copilot", {
-                schema = {
-                  model = {
-                    -- default = "claude-sonnet-4",
-                    default = "gpt-5.2-codex",
-                  },
-                },
-              })
-            end,
-          },
-        },
-        extensions = {
-          history = {
-            enabled = true,
-            opts = {
-              keymap = "gh",
-              auto_save = true,
-              picker = "snacks",
-              ---Automatically generate titles for new chats
-              auto_generate_title = true,
-              title_generation_opts = {
-                ---Adapter for generating titles (defaults to current chat adapter)
-                adapter = "copilot",
-                ---Model for generating titles (defaults to current chat model)
-                default = "claude-sonnet-4.5",
-              },
-              ---On exiting and entering neovim, loads the last chat on opening chat
-              continue_last_chat = false,
-              ---When chat is cleared with `gx` delete the chat from history
-              delete_on_clearing_chat = false,
-              ---Directory path to save the chats
-              dir_to_save = vim.fn.stdpath "data" .. "/codecompanion-history",
-            },
-          },
-        },
-      }
-
-      vim.keymap.set("n", "<A-i>", function()
-        cc.toggle()
-        vim.defer_fn(function()
-          if vim.bo.filetype == "codecompanion" then
-            vim.cmd "startinsert"
-          end
-        end, 20)
-      end, { desc = "AI - Chat open" })
-
-      vim.keymap.set({ "n", "v" }, "<leader>ccp", function()
-        cc.actions {}
-      end, { noremap = true, desc = "AI - Prompt actions" })
-
-      vim.keymap.set("n", "<leader>ccc", ":CodeCompanion /commit<CR>", { desc = "AI - Generate commit" })
-      vim.keymap.set({ "n", "v" }, "<leader>ccq", ":CodeCompanion<CR>", { desc = "AI - Quick prompt " })
-    end,
-  },
-  -- Amp Plugin
-  {
-    "sourcegraph/amp.nvim",
-    branch = "main",
-    lazy = false,
-    opts = { auto_start = true, log_level = "info" },
+    -- `cmd` lets lazy.nvim create command stubs that load the plugin on first use,
+    -- so `:ClaudeCode` and friends work on a fresh start. Without it, a keys-only
+    -- spec defers loading until a <leader>a* mapping is pressed and the commands
+    -- would not exist yet.
+    cmd = {
+      "ClaudeCode",
+      "ClaudeCodeFocus",
+      "ClaudeCodeSelectModel",
+      "ClaudeCodeAdd",
+      "ClaudeCodeSend",
+      "ClaudeCodeTreeAdd",
+      "ClaudeCodeStatus",
+      "ClaudeCodeStart",
+      "ClaudeCodeStop",
+      "ClaudeCodeOpen",
+      "ClaudeCodeClose",
+      "ClaudeCodeDiffAccept",
+      "ClaudeCodeDiffDeny",
+      "ClaudeCodeCloseAllDiffs",
+    },
+    keys = {
+      { "<leader>a", nil, desc = "AI/Claude Code" },
+      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+      -- Diff management
+      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+    },
   },
   {
     "folke/sidekick.nvim",

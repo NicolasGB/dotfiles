@@ -2,7 +2,7 @@ return {
   "Wansmer/treesj",
   keys = {
     {
-      "gT",
+      "<leader>cj",
       function()
         require("treesj").toggle()
       end,
