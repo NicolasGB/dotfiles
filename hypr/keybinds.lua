@@ -90,10 +90,12 @@ bind("ALT + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Hex: forward press/release through Hyprland's GlobalShortcuts portal.
 -- Hex's Hold/Toggle and double-tap settings control dictation behavior.
-bind("ALT + I", hl.dsp.global("hex:dictation"))
-bind("ALT + CTRL + V", hl.dsp.global("hex:paste-last"))
-bind("ALT + CTRL + S", hl.dsp.global("hex:capture"))
-bind("ALT + CTRL + D", hl.dsp.global("hex:annotate-draw"))
+-- IDs are stable (no key suffix since anomalyco/hex#1376); check `hyprctl globalshortcuts` after updates.
+bind("ALT + I", hl.dsp.global("anomaly.hex:dictation"))
+bind("ALT + CTRL + V", hl.dsp.global("anomaly.hex:paste-last"))
+bind("ALT + CTRL + S", hl.dsp.global("anomaly.hex:capture"))
+-- Drawing is no longer registered as a portal shortcut.
+bind("ALT + CTRL + D", hl.dsp.exec_cmd("~/.local/bin/hex annotate draw"))
 -- Escape cancellation is not exposed as a portal shortcut.
 bind("ALT + Escape", hl.dsp.exec_cmd("~/.local/bin/hex dictation cancel"))
 

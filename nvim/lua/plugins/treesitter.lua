@@ -124,16 +124,6 @@ return {
             ["gpf"] = "@function.outer", -- Jump to previous function
           },
         },
-
-        -- lsp_interop = {
-        --   enable = true,
-        --   border = "rounded",
-        --   floating_preview_opts = {},
-        --   peek_definition_code = {
-        --     ["<leader>vf"] = "@function.outer",
-        --     ["<leader>vF"] = "@class.outer",
-        --   },
-        -- },
       }
 
       local ts_repeat_move = require "nvim-treesitter-textobjects.repeatable_move"
